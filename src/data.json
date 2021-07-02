@@ -1,139 +1,204 @@
 {
-    "users": [
-        {
-            "_id": "60d4b0a6ab5931a81a87fe38",
-            "ownedProjects": [],
-            "collabProjects": [],
-            "rcId": 4383,
-            "first_name": "Artur",
-            "last_name": "Szerejko",
-            "zulip_id": 399441,
-            "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d1688a5ceec2ad2d0ff0133b5dadd9fceac0f3f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/IMG_8621.jpeg",
-            "batch": "S2'21",
-            "__v": 0
-        },
-        {
-            "_id": "60d3ade6247434d68a7f5870",
-            "ownedProjects": [],
-            "collabProjects": [],
-            "rcId": 4287,
-            "first_name": "Amanda",
-            "last_name": "Pettenati",
-            "zulip_id": 372997,
-            "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
-            "batch": "W2'21",
-            "__v": 0
-        }
-    ],
-    "projects": [
-        {
-            "collaborators": [],
-            "tags": [
-                {
-                    "_id": "60ddf759dcdd55f269b08b29",
-                    "category": "collaboration style",
-                    "value": "solo"
-                }
-            ],
-            "_id": "60ddf759dccec857999143e6",
-            "title": "Sample Project 1",
-            "description": "A sample description of a sample project",
-            "githubLink": "https://github.com/User1/sample_project1",
-            "active": true,
-            "owner": {
-                "_id": "60d3ade6247434d68a7f5870",
-                "first_name": "Amanda",
-                "last_name": "Pettenati",
-                "zulip_id": 372997,
-                "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
-                "batch": "W2'21"
-            },
-            "createdAt": "2021-07-02T16:37:30.253Z",
-            "updatedAt": "2021-07-02T16:37:30.253Z",
-            "__v": 0
-        },
-        {
-            "collaborators": [],
-            "tags": [
-                {
-                    "_id": "60de11ffdcdd55f269c7d99f",
-                    "category": "language",
-                    "value": "Python"
-                },
-                {
-                    "_id": "60de1239dcdd55f269c80ed9",
-                    "category": "library",
-                    "value": "Beautiful Soup"
-                }
-            ],
-            "_id": "60de1239345fc27db88c3fda",
-            "title": "Sample Project 2",
-            "description": "A sample description of a sample project",
-            "githubLink": "https://github.com/User2/sample_project1",
-            "active": true,
-            "owner": {
-                "_id": "60d3ade6247434d68a7f5870",
-                "first_name": "Amanda",
-                "last_name": "Pettenati",
-                "zulip_id": 372997,
-                "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
-                "batch": "W2'21"
-            },
-            "createdAt": "2021-07-02T16:37:30.253Z",
-            "updatedAt": "2021-07-02T16:37:30.253Z",
-            "__v": 0
-        },
-        {
-            "collaborators": [
-                {
-                    "_id": "60d3ade6247434d68a7f5870",
-                    "first_name": "Amanda",
-                    "last_name": "Pettenati"
-                }
-            ],
-            "tags": [
-                {
-                    "_id": "60ddf759dcdd55f269b08b29",
-                    "category": "collaboration style",
-                    "value": "solo"
-                }
-            ],
-            "_id": "60de132acf7d608198d82ae8",
-            "title": "Sample Project 3",
-            "description": "A sample description of a sample project",
-            "githubLink": "https://github.com/User3/sample_project1",
-            "active": true,
-            "owner": {
-                "_id": "60de10d8345fc27db88c3fc6",
-                "first_name": "Artur",
-                "last_name": "Szerejko",
-                "zulip_id": 399441,
-                "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d1688a5ceec2ad2d0ff0133b5dadd9fceac0f3f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/IMG_8621.jpeg",
-                "batch": "S2'21"
-            },
-            "createdAt": "2021-07-02T16:37:30.253Z",
-            "updatedAt": "2021-07-02T16:37:30.253Z",
-            "__v": 0
-        },
-        {
-            "collaborators": [],
-            "tags": [],
-            "_id": "60de1379cf7d608198d82af5",
-            "title": "Sample Project 4",
-            "description": "A sample description of a sample project",
-            "githubLink": "https://github.com/User4/sample_project1",
-            "active": true,
-            "owner": {
-                "_id": "60de10d8345fc27db88c3fc6",
-                "first_name": "Artur",
-                "last_name": "Szerejko",
-                "zulip_id": 399441,
-                "image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d1688a5ceec2ad2d0ff0133b5dadd9fceac0f3f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/IMG_8621.jpeg",
-                "batch": "S2'21"
-            },
-            "createdAt": "2021-07-02T16:37:30.253Z",
-            "updatedAt": "2021-07-02T16:37:30.253Z",
-            "__v": 0
-        }
-    ]
+	"users": [
+		{
+			"ownedProjects": [
+				{
+					"collaborators": [
+						"60df61967a3fe13df29c9681"
+					],
+					"tags": [],
+					"_id": "60df96c990dce3852067b530",
+					"title": "Sample Project 3",
+					"description": "A sample description of a sample project",
+					"githubLink": "https://github.com/User1/sample_project1",
+					"active": true,
+					"owner": "60df5ae00e8f43f1495e7939"
+				},
+				{
+					"collaborators": [],
+					"tags": [
+						"60df972adcdd55f26919e4fa"
+					],
+					"_id": "60df972a90dce3852067b53e",
+					"title": "Sample Project 4",
+					"description": "A sample description of a sample project",
+					"githubLink": "https://github.com/User1/sample_project1",
+					"active": true,
+					"owner": "60df5ae00e8f43f1495e7939"
+				}
+			],
+			"collabProjects": [],
+			"_id": "60df5ae00e8f43f1495e7939",
+			"rcId": 4287,
+			"first_name": "Amanda",
+			"last_name": "Pettenati",
+			"zulip_id": 372997,
+			"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+			"batchEndDate": "2021-08-06T00:00:00.000Z",
+			"batch": "S2'21",
+			"__v": 6
+		},
+		{
+			"ownedProjects": [
+				{
+					"collaborators": [
+						"60df5ae00e8f43f1495e7939"
+					],
+					"tags": [
+						"60ddf759dcdd55f269b08b29",
+						"60df966bdcdd55f269192aad"
+					],
+					"_id": "60df966bf0781b84c13ff9cf",
+					"title": "Sample Project 1",
+					"description": "A sample description of a sample project",
+					"githubLink": "https://github.com/User1/sample_project1",
+					"active": true,
+					"owner": "60df61967a3fe13df29c9681"
+				},
+				{
+					"collaborators": [],
+					"tags": [
+						"60de11ffdcdd55f269c7d99f"
+					],
+					"_id": "60df9691f0781b84c13ff9da",
+					"title": "Sample Project 2",
+					"description": "A sample description of a sample project",
+					"githubLink": "https://github.com/User1/sample_project1",
+					"active": true,
+					"owner": "60df61967a3fe13df29c9681"
+				}
+			],
+			"collabProjects": [],
+			"_id": "60df61967a3fe13df29c9681",
+			"rcId": 4383,
+			"first_name": "Artur",
+			"last_name": "Szerejko",
+			"zulip_id": 399441,
+			"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+			"batchEndDate": "2021-08-06T00:00:00.000Z",
+			"batch": "S2'21",
+			"__v": 4
+		}
+	],
+	"projects": [
+		{
+			"collaborators": [
+				{
+					"_id": "60df5ae00e8f43f1495e7939",
+					"first_name": "Amanda",
+					"last_name": "Pettenati"
+				}
+			],
+			"tags": [
+				{
+					"_id": "60ddf759dcdd55f269b08b29",
+					"category": "collaboration style",
+					"value": "solo"
+				},
+				{
+					"_id": "60df966bdcdd55f269192aad",
+					"category": "library",
+					"value": "react"
+				}
+			],
+			"_id": "60df966bf0781b84c13ff9cf",
+			"title": "Sample Project 1",
+			"description": "A sample description of a sample project",
+			"githubLink": "https://github.com/User1/sample_project1",
+			"active": true,
+			"owner": {
+				"_id": "60df61967a3fe13df29c9681",
+				"first_name": "Artur",
+				"last_name": "Szerejko",
+				"zulip_id": 399441,
+				"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+				"batchEndDate": "2021-08-06T00:00:00.000Z",
+				"batch": "S2'21"
+			},
+			"createdAt": "2021-07-02T22:42:51.180Z",
+			"updatedAt": "2021-07-02T22:42:51.180Z",
+			"__v": 0
+		},
+		{
+			"collaborators": [],
+			"tags": [
+				{
+					"_id": "60de11ffdcdd55f269c7d99f",
+					"category": "language",
+					"value": "Python"
+				}
+			],
+			"_id": "60df9691f0781b84c13ff9da",
+			"title": "Sample Project 2",
+			"description": "A sample description of a sample project",
+			"githubLink": "https://github.com/User1/sample_project1",
+			"active": true,
+			"owner": {
+				"_id": "60df61967a3fe13df29c9681",
+				"first_name": "Artur",
+				"last_name": "Szerejko",
+				"zulip_id": 399441,
+				"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+				"batchEndDate": "2021-08-06T00:00:00.000Z",
+				"batch": "S2'21"
+			},
+			"createdAt": "2021-07-02T22:43:29.077Z",
+			"updatedAt": "2021-07-02T22:43:29.077Z",
+			"__v": 0
+		},
+		{
+			"collaborators": [
+				{
+					"_id": "60df61967a3fe13df29c9681",
+					"first_name": "Artur",
+					"last_name": "Szerejko"
+				}
+			],
+			"tags": [],
+			"_id": "60df96c990dce3852067b530",
+			"title": "Sample Project 3",
+			"description": "A sample description of a sample project",
+			"githubLink": "https://github.com/User1/sample_project1",
+			"active": true,
+			"owner": {
+				"_id": "60df5ae00e8f43f1495e7939",
+				"first_name": "Amanda",
+				"last_name": "Pettenati",
+				"zulip_id": 372997,
+				"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+				"batchEndDate": "2021-08-06T00:00:00.000Z",
+				"batch": "S2'21"
+			},
+			"createdAt": "2021-07-02T22:44:25.791Z",
+			"updatedAt": "2021-07-02T22:44:25.791Z",
+			"__v": 0
+		},
+		{
+			"collaborators": [],
+			"tags": [
+				{
+					"_id": "60df972adcdd55f26919e4fa",
+					"category": "library",
+					"value": "bootstrap"
+				}
+			],
+			"_id": "60df972a90dce3852067b53e",
+			"title": "Sample Project 4",
+			"description": "A sample description of a sample project",
+			"githubLink": "https://github.com/User1/sample_project1",
+			"active": true,
+			"owner": {
+				"_id": "60df5ae00e8f43f1495e7939",
+				"first_name": "Amanda",
+				"last_name": "Pettenati",
+				"zulip_id": 372997,
+				"image_path": "https://assets.recurse.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBWXM9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2b2f7353c9e868938bab92b6f3f69a9bf9550272/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRVd2VERTFNQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--d8f54fe211cbe3254ece86a55c83c4d5b374eaab/profile_pic.jpg",
+				"batchEndDate": "2021-08-06T00:00:00.000Z",
+				"batch": "S2'21"
+			},
+			"createdAt": "2021-07-02T22:46:02.236Z",
+			"updatedAt": "2021-07-02T22:46:02.236Z",
+			"__v": 0
+		}
+	]
 }
