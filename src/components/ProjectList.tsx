@@ -1,11 +1,15 @@
-import React from 'react';
-import { projects } from '../data.json';
+import React, { useEffect } from 'react';
 
-const ProjectList = (): JSX.Element => {
+interface ProjectsListProps {
+    // TODO: correct type
+    projects: any;
+}
+
+const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     return (
         <div className="project-list">
             <h2>ProjectList</h2>
-            {projects.map((project) => {
+            {projects.map((project: any) => {
                 return (
                     // TODO: replace with project component
                     <div key={project._id}>

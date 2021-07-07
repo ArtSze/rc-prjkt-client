@@ -1,37 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from './components/Nav';
 import ProjectList from './components/ProjectList';
-import { useImmer } from 'use-immer';
+import axios from 'axios';
+import { QueryParams } from './components/Nav';
 
-export type TStatusFilter = {
-    active: boolean;
-    inactive: boolean;
-};
-
-type TTagFilter = { tag: string[] };
-type TUserFilter = { rcId: number };
-export type Filter = TTagFilter | TUserFilter;
-
-type QueryParams = {
-    // if statusFilter.active is true, return active projects
-    // if statusFilter.active is false, return inactive projects
-    // if statusFilter.active is true and Checkboxes.inactive is true, do not send as a query param and retrieve all projects
-    active?: boolean;
-    tag?: TTagFilter;
-    rcId?: TUserFilter;
-};
+// TODO: update types
+type TProject = any;
+type TProjects = Array<TProject>;
 
 const App = (): JSX.Element => {
-    const [statusFilter, setStatusFilter] = useImmer({
-        active: true,
-        inactive: false,
-    } as TStatusFilter);
+    const [projects, setProjects] = useState([] as TProjects);
+    const [params, setParams] = useState({} as QueryParams);
 
+    useEffect(() => {
+        fetchProjects();
+    }, [params, setProjects]);
+
+    async function fetchProjects() {
+        console.table({ params });
+        try {
+            const response: TProjects = (await axios.get('/projects', { params })).data;
+            console.log(response);
+            setProjects(response);
+        } catch (e) {
+            // TODO: handle error
+            console.log(e);
+        }
+    }
     return (
         <div>
             <h1>RC-Prjkt</h1>
-            <Nav statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
-            <ProjectList />
+            <Nav setParams={setParams} />
+            <ProjectList projects={projects} />
         </div>
     );
 };

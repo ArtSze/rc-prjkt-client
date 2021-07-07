@@ -1,5 +1,5 @@
 import React from 'react';
-import { TStatusFilter } from '../../App';
+import { TStatusFilter } from '../Nav';
 import { Updater } from 'use-immer';
 
 interface StatusFilterProps {
