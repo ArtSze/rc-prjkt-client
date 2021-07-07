@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { TProjects } from '../App';
 
 interface ProjectsListProps {
     // TODO: correct type
-    projects: any;
+    projects: TProjects;
 }
 
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
@@ -17,6 +18,7 @@ const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
                         <p>{project.description}</p>
                         <p>{project.githubLink}</p>
                         <p>{project.active}</p>
+                        <hr />
                     </div>
                 );
             })}

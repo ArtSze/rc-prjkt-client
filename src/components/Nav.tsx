@@ -4,6 +4,8 @@ import StatusFilter from './nav/StatusFilter';
 import Filter from './nav/Filter';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
+import { TProjects } from '../App';
+import axios from 'axios';
 
 export type TStatusFilter = {
     active: boolean;
@@ -25,49 +27,64 @@ export type QueryParams = {
 };
 
 interface NavProps {
-    setParams: React.Dispatch<React.SetStateAction<QueryParams>>;
+    setProjects: React.Dispatch<React.SetStateAction<TProjects>>;
 }
 
-const Nav = ({ setParams }: NavProps): JSX.Element => {
-    const [statusFilter, setStatusFilter] = useImmer({
+//TODO: add apply button
+
+const Nav = ({ setProjects }: NavProps): JSX.Element => {
+    const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
         inactive: false,
-    } as TStatusFilter);
-    const [tagFilter, setTagFilter] = useImmer(undefined as TTagFilter);
-    const [userFilter, setUserFilter] = useImmer(undefined as TUserFilter);
+    });
+    const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
+    const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
 
-    useEffect(parseParams, [statusFilter, tagFilter, userFilter]);
+    useEffect(() => {
+        async function fetchProjects() {
+            const params = {} as QueryParams;
 
-    function parseParams() {
-        const params = {} as QueryParams;
-        if (!statusFilter.active === statusFilter.inactive) {
-            if (statusFilter.active === true) {
-                params.status = true;
+            if (!statusFilter.active === statusFilter.inactive) {
+                if (statusFilter.active === true) {
+                    params.status = true;
+                }
+                if (statusFilter.inactive === true) {
+                    params.status = false;
+                }
             }
-            if (statusFilter.inactive === true) {
-                params.status = false;
+            if (tagFilter) {
+                params.tag = tagFilter;
+            }
+            if (userFilter) {
+                params.user = userFilter;
+            }
+            console.table({ params });
+            try {
+                const response: TProjects = (await axios.get('/projects', { params })).data;
+                console.log(response);
+                setProjects(response);
+            } catch (e) {
+                // TODO: handle error
+                console.log(e);
             }
         }
-        if (tagFilter) {
-            params.tag = tagFilter;
-        }
-        if (userFilter) {
-            params.user = userFilter;
-        }
-        setParams(params);
-    }
+        fetchProjects();
+    }, [statusFilter, tagFilter, userFilter]);
 
     return (
         <nav>
             <h2>Nav</h2>
             <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
+            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
             <Filter
                 tagFilter={tagFilter}
                 setTagFilter={setTagFilter}
                 userFilter={userFilter}
                 setUserFilter={setUserFilter}
             />
+            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
             <Sort />
+            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
         </nav>
     );
 };

@@ -17,7 +17,7 @@ const TagFilter = ({ tagFilter, setTagFilter }: TagFilterProps): JSX.Element => 
     ];
 
     return (
-        <div>
+        <div className="tag-filter">
             <h3>TagFilter</h3>
             <Select options={options} />
         </div>

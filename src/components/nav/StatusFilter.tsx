@@ -15,13 +15,14 @@ const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX
     };
 
     return (
-        <div>
+        <div className="status-filter">
             <h3>Status Filter</h3>
             {/* TODO: at least one checkbox must be selected */}
             <label>
                 <input
                     type="checkbox"
                     name="active"
+                    defaultChecked
                     checked={statusFilter.active}
                     onChange={(e) => handleChange(e.target.name as keyof TStatusFilter)}
                 />
