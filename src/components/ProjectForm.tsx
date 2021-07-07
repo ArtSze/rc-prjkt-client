@@ -12,9 +12,10 @@ interface Props {
 }
 
 // need to create custom components for collaborators and tags within FormFields...
-// formik's fieldArray and react-autoSuggest might be relevant
+// collaborators' autosuggest populated by axios.get('/users')
+// tags' autosuggest populated by axios.get('/tags')
 
-const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props) => {
+const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element => {
     return (
         <Formik
             initialValues={initialValues}
@@ -33,6 +34,9 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props) => {
                 <Field label="Title" placeholder="title" name="title" component={TextField} />
                 <Field label="Description" placeholder="description" name="description" component={TextField} />
                 <Field label="GitHub Link" placeholder="link to GitHub repo" name="githubLink" component={TextField} />
+                {/* autosuggest for collaborators */}
+                {/* autosuggest for tags */}
+                {/* select for active/inactive */}
                 <button type="button" onClick={onCancel}>
                     Cancel
                 </button>
