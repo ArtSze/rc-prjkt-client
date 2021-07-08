@@ -52,7 +52,7 @@ function setParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilte
     return params;
 }
 
-const Nav = ({ setProjects}: NavProps): JSX.Element => {
+const Nav = ({ setProjects }: NavProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
         inactive: false,

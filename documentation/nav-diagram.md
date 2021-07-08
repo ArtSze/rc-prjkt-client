@@ -73,8 +73,8 @@ This filter cannot be used in conjunction with the Tag or User filter.
 
 ```mermaid
 classDiagram
-App <--  Nav
-App <-- MyProjects
+    App <--  Nav
+    App <-- MyProjects
     Nav <--  Sort
     Nav <--  Filter
     Filter <--  TagFilter
@@ -89,21 +89,24 @@ App <-- MyProjects
     }
 
     class Nav{
-        + statusFilter<active, inactive, undefined>
+        + statusFilter
         + filter<tag[] | user>
         + sortMethod
         - [GET] /projects/params (params)
     }
 
     class MyProjects {
-    - [GET] /projects/me ()
+        - [GET] /projects/me ()
     }
 
     class Sort{
-        +sortMethod options <created, updated, batch>
+        +sortMethod <created, updated, batch>
     }
 
+
     class Filter{
+    +currentFilter<tag, user>
+    +filterContents
     }
 
     class TagFilter{
@@ -118,4 +121,3 @@ App <-- MyProjects
     +active<bool>
     +inactive<bool>
     }
-```
