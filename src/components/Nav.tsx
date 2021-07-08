@@ -4,7 +4,7 @@ import StatusFilter from './nav/StatusFilter';
 import Filter from './nav/Filter';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
-import { TProjects } from '../App';
+import { IProject } from '../types';
 import axios from 'axios';
 
 export type TStatusFilter = {
@@ -27,7 +27,7 @@ export type QueryParams = {
 };
 
 interface NavProps {
-    setProjects: React.Dispatch<React.SetStateAction<TProjects>>;
+    setProjects: React.Dispatch<React.SetStateAction<IProject[]>>;
 }
 
 //TODO: add apply button
@@ -60,7 +60,7 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
             }
             console.table({ params });
             try {
-                const response: TProjects = (await axios.get('/projects', { params })).data;
+                const response: IProject[] = (await axios.get('/projects', { params })).data;
                 console.log(response);
                 setProjects(response);
             } catch (e) {

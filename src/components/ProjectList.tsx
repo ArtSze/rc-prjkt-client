@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-import { TProjects } from '../App';
+import React from 'react';
+import { IProject } from '../types';
 
 interface ProjectsListProps {
-    projects: TProjects;
+    projects: IProject[];
 }
 
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     return (
         <div className="project-list">
             <h2>ProjectList</h2>
-            {projects.map((project: any) => {
+            {projects.map((project: IProject) => {
                 return (
                     // TODO: replace with project component
-                    <div key={project._id}>
+                    <div key={String(project._id)}>
                         <p>{project.title}</p>
                         <p>{project.description}</p>
                         <p>{project.githubLink}</p>
