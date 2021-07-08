@@ -4,8 +4,12 @@ import StatusFilter from './nav/StatusFilter';
 import Filter from './nav/Filter';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
+<<<<<<< Updated upstream
 import { IProject } from '../types';
 import axios from 'axios';
+=======
+import { fetchProjects } from '../RCPrjkts';
+>>>>>>> Stashed changes
 
 export type TStatusFilter = {
     active: boolean;
@@ -32,7 +36,27 @@ interface NavProps {
 
 //TODO: add apply button
 
-const Nav = ({ setProjects }: NavProps): JSX.Element => {
+function setParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilter: TUserFilter) {
+    const params = {} as QueryParams;
+    if (!statusFilter.active === statusFilter.inactive) {
+        if (statusFilter.active === true) {
+            params.status = true;
+        }
+        if (statusFilter.inactive === true) {
+            params.status = false;
+        }
+    }
+    if (tagFilter) {
+        params.tag = tagFilter;
+    }
+    if (userFilter) {
+        params.user = userFilter;
+    }
+    console.table({ params });
+    return params;
+}
+
+const Nav = ({ setProjects}: NavProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
         inactive: false,
