@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import Nav from './components/Nav';
 import ProjectList from './components/ProjectList';
 import MyProjects from './components/MyProjects';
+import { useState } from 'react';
 
 export type TTag = {
     value: string;
@@ -20,16 +24,21 @@ export type TProject = {
 
 export type TProjects = Array<TProject>;
 
+const queryClient = new QueryClient();
+
 const App = (): JSX.Element => {
     const [projects, setProjects] = useState([] as TProjects);
 
     return (
-        <div>
-            <h1>RC-Prjkt</h1>
-            <Nav setProjects={setProjects} />
-            <MyProjects setProjects={setProjects} />
-            <ProjectList projects={projects} />
-        </div>
+        <QueryClientProvider client={queryClient}>
+            <div>
+                <h1>RC-Prjkt</h1>
+                <Nav setProjects={setProjects} />
+                <MyProjects setProjects={setProjects} />
+                <ProjectList projects={projects} />
+            </div>
+            <ReactQueryDevtools initialIsOpen />
+        </QueryClientProvider>
     );
 };
 

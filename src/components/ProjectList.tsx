@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { TProjects } from '../App';
 
 interface ProjectsListProps {
-    // TODO: correct type
     projects: TProjects;
 }
 

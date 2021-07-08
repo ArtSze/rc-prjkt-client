@@ -3,18 +3,21 @@ import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { TextField } from './FormFields';
-import { IProject } from '../types';
+import { CollaboratorField } from './CollaboratorField';
+import { IProject } from '../../../types';
+import { ProjectFormEditValues } from '../ProjectFormEdit';
 
 interface Props {
-    onSubmit: (values: IProject) => void;
+    onSubmit: (values: ProjectFormEditValues) => void;
     onCancel: () => void;
-    initialValues: IProject;
+    initialValues: ProjectFormEditValues;
 }
 
 // need to create custom components for collaborators and tags within FormFields...
-// formik's fieldArray and react-autoSuggest might be relevant
+// collaborators' autosuggest populated by axios.get('/users')
+// tags' autosuggest populated by axios.get('/tags')
 
-const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props) => {
+const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element => {
     return (
         <Formik
             initialValues={initialValues}
@@ -26,13 +29,18 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props) => {
                     .max(480, 'Must be 480 characters or less')
                     .notRequired(),
                 githubLink: Yup.string().notRequired(),
-                active: Yup.bool().required(),
+                // need to figure out how to validate collaborators
+                // need to figure out how to validate tags
+                // active: Yup.bool().required(),
             })}
         >
             <Form>
                 <Field label="Title" placeholder="title" name="title" component={TextField} />
                 <Field label="Description" placeholder="description" name="description" component={TextField} />
                 <Field label="GitHub Link" placeholder="link to GitHub repo" name="githubLink" component={TextField} />
+                <Field label="Collaborators" name="collaborators" component={CollaboratorField} />
+                {/* autosuggest for tags */}
+                {/* select for active/inactive */}
                 <button type="button" onClick={onCancel}>
                     Cancel
                 </button>

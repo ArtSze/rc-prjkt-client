@@ -1,12 +1,12 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldProps } from 'formik';
 
-interface TextProps extends FieldProps {
+export interface IFormikLabelProps extends FieldProps {
     label: string;
     placeholder: string;
 }
 
-export const TextField = ({ label, placeholder, field }: TextProps) => (
+export const TextField = ({ label, placeholder, field }: IFormikLabelProps) => (
     <div>
         <label htmlFor={field.name}>{label}</label>
         <Field placeholder={placeholder} {...field} type="text" />
