@@ -3,12 +3,14 @@ import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { TextField } from './FormFields';
-import { IProject } from '../types';
+import { CollaboratorField } from './CollaboratorField';
+import { IProject } from '../../../types';
+import { ProjectFormEditValues } from '../ProjectFormEdit';
 
 interface Props {
-    onSubmit: (values: IProject) => void;
+    onSubmit: (values: ProjectFormEditValues) => void;
     onCancel: () => void;
-    initialValues: IProject;
+    initialValues: ProjectFormEditValues;
 }
 
 // need to create custom components for collaborators and tags within FormFields...
@@ -27,14 +29,16 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                     .max(480, 'Must be 480 characters or less')
                     .notRequired(),
                 githubLink: Yup.string().notRequired(),
-                active: Yup.bool().required(),
+                // need to figure out how to validate collaborators
+                // need to figure out how to validate tags
+                // active: Yup.bool().required(),
             })}
         >
             <Form>
                 <Field label="Title" placeholder="title" name="title" component={TextField} />
                 <Field label="Description" placeholder="description" name="description" component={TextField} />
                 <Field label="GitHub Link" placeholder="link to GitHub repo" name="githubLink" component={TextField} />
-                {/* autosuggest for collaborators */}
+                <Field label="Collaborators" name="collaborators" component={CollaboratorField} />
                 {/* autosuggest for tags */}
                 {/* select for active/inactive */}
                 <button type="button" onClick={onCancel}>
