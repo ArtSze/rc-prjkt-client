@@ -18,9 +18,15 @@ export const TextField = ({ label, placeholder, field }: TextProps) => (
 // Tag needs creatable multi-select... options are of type ITag (so essentially just objects with a value property)
 // Collaborator needs simple multiselect options are objects containgin "first name" and "last name" props
 
+interface IUserFromClient {
+    _id: string;
+    first_name: string;
+    last_name: string;
+}
+
 interface Option {
     label: string;
-    value: string /* make this a user object */;
+    value: IUserFromClient;
 }
 
 interface CustomSelectProps extends FieldProps {
