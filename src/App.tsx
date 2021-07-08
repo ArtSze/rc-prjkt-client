@@ -4,28 +4,12 @@ import ProjectList from './components/ProjectList';
 import MyProjects from './components/MyProjects';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-
-export type TTag = {
-    value: string;
-};
-
-export type TProject = {
-    id: string;
-    title: string;
-    description: string;
-    githubLink: string;
-    owner: string;
-    collaborators: string[];
-    tags: TTag[];
-    active: boolean;
-};
-
-export type TProjects = Array<TProject>;
+import { IProject } from './types';
 
 const queryClient = new QueryClient();
 
 const App = (): JSX.Element => {
-    const [projects, setProjects] = useState([] as TProjects);
+    const [projects, setProjects] = useState<IProject[]>([]);
 
     return (
         <div>

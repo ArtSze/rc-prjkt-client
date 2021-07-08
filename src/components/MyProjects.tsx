@@ -1,15 +1,15 @@
 import React from 'react';
-import { TProjects } from '../App';
+import { IProject } from '../types';
 import axios from 'axios';
 
 interface MyProjectsProps {
-    setProjects: React.Dispatch<React.SetStateAction<TProjects>>;
+    setProjects: React.Dispatch<React.SetStateAction<IProject[]>>;
 }
 
 const MyProjects = ({ setProjects }: MyProjectsProps): JSX.Element => {
     async function fetchProjects() {
         try {
-            const response: TProjects = (await axios.get('/projects/me')).data;
+            const response: IProject[] = (await axios.get('/projects/me')).data;
             console.log(response);
             setProjects(response);
         } catch (e) {

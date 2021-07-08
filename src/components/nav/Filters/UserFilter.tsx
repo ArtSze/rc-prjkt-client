@@ -3,15 +3,11 @@ import { Updater } from 'use-immer';
 import { TUserFilter } from '../../Nav';
 import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
+import { IUser, IUserOptions } from '../../../types';
 
 interface UserFilterProps {
     userFilter: TUserFilter;
     setUserFilter: Updater<TUserFilter>;
-}
-
-interface IOption {
-    value: any;
-    label: string;
 }
 
 const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element => {
@@ -25,8 +21,8 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
             </div>
         );
 
-    if (isSuccess) {
-        const options = data.map((user: any) => {
+    if (isSuccess && data) {
+        const options: IUserOptions = data.map((user: IUser) => {
             return {
                 value: user,
                 label: `${user.first_name} ${user.last_name}`,
