@@ -4,12 +4,8 @@ import StatusFilter from './nav/StatusFilter';
 import Filter from './nav/Filter';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
-<<<<<<< Updated upstream
 import { IProject } from '../types';
 import axios from 'axios';
-=======
-import { fetchProjects } from '../RCPrjkts';
->>>>>>> Stashed changes
 
 export type TStatusFilter = {
     active: boolean;
