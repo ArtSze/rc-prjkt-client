@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import Nav from './components/Nav';
 import ProjectList from './components/ProjectList';
 import MyProjects from './components/MyProjects';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+
 import { IProject } from './types';
 
 const queryClient = new QueryClient();

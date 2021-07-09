@@ -2,9 +2,9 @@ import React from 'react';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { ActiveField, TextField } from './FormFields';
-import { CollaboratorField } from './CollaboratorField';
-import { IProject } from '../../../types';
+import { /* ActiveField */ TextField } from './FormFields';
+// import { CollaboratorField } from './CollaboratorField';
+// import { IProject } from '../../../types';
 import { ProjectFormEditValues } from '../ProjectFormEdit';
 
 interface Props {
@@ -38,8 +38,8 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                 <Field label="Title" placeholder="title" name="title" component={TextField} />
                 <Field label="Description" placeholder="description" name="description" component={TextField} />
                 <Field label="GitHub Link" placeholder="link to GitHub repo" name="githubLink" component={TextField} />
-                <Field label="Collaborators" name="collaborators" component={CollaboratorField} />
-                <Field label="Active" name="active" component={ActiveField} />
+                {/* <Field label="Collaborators" name="collaborators" component={CollaboratorField} /> */}
+                {/* <Field label="Active" name="active" component={ActiveField} /> */}
                 {/* autosuggest for tags */}
                 <button type="button" onClick={onCancel}>
                     Cancel
