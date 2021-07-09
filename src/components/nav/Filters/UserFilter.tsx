@@ -17,7 +17,7 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
         return (
             <div>
                 <h3>Error</h3>
-                <p>error.message</p>;
+                <p>{error.message.toString()}</p>;
             </div>
         );
 

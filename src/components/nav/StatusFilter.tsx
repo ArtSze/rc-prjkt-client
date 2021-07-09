@@ -22,7 +22,6 @@ const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX
                 <input
                     type="checkbox"
                     name="active"
-                    defaultChecked
                     checked={statusFilter.active}
                     onChange={(e) => handleChange(e.target.name as keyof TStatusFilter)}
                 />

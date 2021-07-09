@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Updater } from 'use-immer';
+import React from 'react';
+import { Updater, useImmer } from 'use-immer';
 import { TTagFilter, TUserFilter } from '../Nav';
 import TagFilter from './Filters/TagFilter';
 import UserFilter from './Filters/UserFilter';
@@ -14,7 +14,11 @@ interface FilterProps {
 type FilterOptions = 'tag-filter' | 'user-filter';
 
 const Filter = (props: FilterProps): JSX.Element => {
-    const [filter, setFilter] = useState<FilterOptions>('tag-filter');
+    const [filter, setFilter] = useImmer<FilterOptions>('tag-filter');
+
+    function handleChange(name: FilterOptions) {
+        setFilter(name);
+    }
 
     return (
         <div className="filter">
@@ -31,13 +35,19 @@ const Filter = (props: FilterProps): JSX.Element => {
                         type="radio"
                         name="tag-filter"
                         id="tag-filter"
-                        defaultChecked
                         checked={filter === 'tag-filter'}
+                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
                     />
                     Tag
                 </label>
                 <label htmlFor="user-filter">
-                    <input type="radio" name="user-filter" id="user-filter" checked={filter === 'user-filter'} />
+                    <input
+                        type="radio"
+                        name="user-filter"
+                        id="user-filter"
+                        checked={filter === 'user-filter'}
+                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
+                    />
                     User
                 </label>
             </div>
