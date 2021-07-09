@@ -1,4 +1,6 @@
 import React from 'react';
+import { useMutation } from 'react-query';
+import axios from 'axios';
 
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject } from '../../types';
@@ -10,12 +12,24 @@ export interface ProjectFormEditValues {
     githubLink: string;
     collaborators: ICollabOption;
     // tags: tbd
-    // active: boolean;
+    active: boolean;
 }
 
 const ProjectFormEdit = (projectToEdit: IProject) => {
     const submitEdittedProject = async (values: ProjectFormEditValues) => {
-        // reactquery mutation here
+        try {
+            const data = await axios.post(`http://localhost:4000/projects/${projectToEdit._id}`, {
+                ...projectToEdit,
+                title: values.title,
+                description: values.description,
+                githubLink: values.githubLink,
+                collaborators: values.collaborators,
+                // tags: tbd
+                active: values.active,
+            });
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const onCancel = () => {
