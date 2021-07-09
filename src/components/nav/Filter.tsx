@@ -27,7 +27,13 @@ const Filter = (props: FilterProps): JSX.Element => {
                 }}
             >
                 <label htmlFor="tag-filter">
-                    <input type="radio" name="tag-filter" id="tag-filter" checked={filter === 'tag-filter'} />
+                    <input
+                        type="radio"
+                        name="tag-filter"
+                        id="tag-filter"
+                        defaultChecked
+                        checked={filter === 'tag-filter'}
+                    />
                     Tag
                 </label>
                 <label htmlFor="user-filter">

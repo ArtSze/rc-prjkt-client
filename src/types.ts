@@ -41,6 +41,7 @@ export type ITagOptions = Array<IOption<ITag>>;
 export type IUserOptions = Array<IOption<IUser>>;
 
 export interface IUser {
+    _id: ObjectId;
     rcId: number;
     first_name: string;
     last_name: string;
