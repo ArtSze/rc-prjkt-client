@@ -16,10 +16,6 @@ type FilterOptions = 'tag-filter' | 'user-filter';
 const Filter = (props: FilterProps): JSX.Element => {
     const [filter, setFilter] = useImmer<FilterOptions>('tag-filter');
 
-    function handleChange(name: FilterOptions) {
-        setFilter(name);
-    }
-
     return (
         <div className="filter">
             <h3>Filter By Tag or User</h3>
@@ -36,7 +32,7 @@ const Filter = (props: FilterProps): JSX.Element => {
                         name="tag-filter"
                         id="tag-filter"
                         checked={filter === 'tag-filter'}
-                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
+                        onChange={(e) => setFilter(e.target.name as FilterOptions)}
                     />
                     Tag
                 </label>
@@ -46,7 +42,7 @@ const Filter = (props: FilterProps): JSX.Element => {
                         name="user-filter"
                         id="user-filter"
                         checked={filter === 'user-filter'}
-                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
+                        onChange={(e) => setFilter(e.target.name as FilterOptions)}
                     />
                     User
                 </label>

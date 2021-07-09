@@ -62,25 +62,9 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
 
     useEffect(() => {
         async function fetchProjects() {
-            const params = {} as QueryParams;
-
-            if (!statusFilter.active === statusFilter.inactive) {
-                if (statusFilter.active === true) {
-                    params.status = true;
-                }
-                if (statusFilter.inactive === true) {
-                    params.status = false;
-                }
-            }
-            if (tagFilter) {
-                params.tag = tagFilter;
-            }
-            if (userFilter) {
-                params.user = userFilter;
-            }
-            console.table({ params });
+            const params = setParams(statusFilter, tagFilter, userFilter);
             try {
-                const response: IProject[] = (await axios.get('/projects', { params })).data;
+                const response: IProject[] = (await axios.get('http://localhost:4000/projects', { params })).data;
                 console.log(response);
                 setProjects(response);
             } catch (e) {
