@@ -7,6 +7,7 @@ import { IFormikLabelProps } from './FormFields';
 
 import useUsers from '../../../hooks/useUsers';
 import { IUserFromClient } from './CustomMultiSelect';
+import { IUser } from '../../../types';
 
 export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps) => {
     // const queryClient = useQueryClient();
@@ -20,8 +21,8 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
         return <div>Loading...</div>;
     }
 
-    if (isSuccess) {
-        const collaborators = data.map((u: IUserFromClient) => {
+    if (isSuccess && data) {
+        const collaborators = data.map((u: IUser) => {
             return {
                 label: `${u.first_name} ${u.last_name}`,
                 value: {

@@ -4,13 +4,14 @@ import axios from 'axios';
 
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject } from '../../types';
-import { ICollabOption } from './form-subs/CustomMultiSelect';
+import { IUserFromClient } from './form-subs/CustomMultiSelect';
+import { convertTypeAcquisitionFromJson } from 'typescript';
 
 export interface ProjectFormEditValues {
     title: string;
     description: string;
     githubLink: string;
-    collaborators: ICollabOption;
+    collaborators: IUserFromClient[];
     // tags: tbd
     active: boolean;
 }
@@ -18,7 +19,7 @@ export interface ProjectFormEditValues {
 const ProjectFormEdit = (projectToEdit: IProject) => {
     const submitEdittedProject = async (values: ProjectFormEditValues) => {
         try {
-            const data = await axios.post(`http://localhost:4000/projects/${projectToEdit._id}`, {
+            await axios.post(`http://localhost:4000/projects/${projectToEdit._id}`, {
                 ...projectToEdit,
                 title: values.title,
                 description: values.description,
@@ -33,10 +34,16 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
     };
 
     const onCancel = () => {
-        /* clear form */
+        /* redirect logic to static presentational porject component */
     };
-    const initialValues = {
-        /* IProject needs to be wittled down to ProjectFormEditValues */
+
+    const initialValues: ProjectFormEditValues = {
+        title: projectToEdit.title,
+        description: projectToEdit.description,
+        githubLink: projectToEdit.githubLink,
+        collaborators: projectToEdit.collaborators,
+        // tags: tbd
+        active: projectToEdit.active,
     };
 
     return <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />;
