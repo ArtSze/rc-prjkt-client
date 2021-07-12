@@ -3,9 +3,9 @@ import axios from 'axios';
 import { IUser } from '../types';
 
 const getUsers = async () => {
-    console.log('entered getUser function');
+    // console.log('entered getUser function');
     const { data } = await axios.get('http://localhost:4000/users/');
-    console.log({ data });
+    // console.log({ data });
     return data;
 };
 

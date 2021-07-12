@@ -6,12 +6,12 @@ import CustomMultiSelect from './CustomMultiSelect';
 import { IFormikLabelProps } from './FormFields';
 
 import useUsers from '../../../hooks/useUsers';
-import { IUserFromClient } from './CustomMultiSelect';
 import { IUser } from '../../../types';
+import { format } from 'prettier';
 
 export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps) => {
     // const queryClient = useQueryClient();
-    const { data, isLoading, isError, isSuccess, status } = useUsers();
+    const { data, isLoading, isError, isSuccess } = useUsers();
 
     if (isError) {
         return <div>Error</div>;
@@ -35,13 +35,7 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
         return (
             <div>
                 <label htmlFor={field.name}>{label}</label>
-                <Field
-                    {...field}
-                    component={CustomMultiSelect}
-                    options={collaborators}
-                    isMulti={true}
-                    placeholder={`search for collaborators`}
-                />
+                <Field name={field.name} value={field.value} component={CustomMultiSelect} options={collaborators} />
                 <ErrorMessage name={field.name} />
             </div>
         );

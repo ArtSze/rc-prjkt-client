@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
                 <Nav setProjects={setProjects} />
                 <MyProjects setProjects={setProjects} />
                 <ProjectList projects={projects} />
-                <ReactQueryDevtools initialIsOpen />
+                {/* <ReactQueryDevtools initialIsOpen /> */}
             </QueryClientProvider>
         </div>
     );

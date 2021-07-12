@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldProps } from 'formik';
-import Select from 'react-select';
+import CustomSingleSelect from './CustomSingleSelect';
 
 export interface IFormikLabelProps extends FieldProps {
     label: string;
@@ -10,21 +10,16 @@ export interface IFormikLabelProps extends FieldProps {
 export const TextField = ({ label, placeholder, field }: IFormikLabelProps) => (
     <div>
         <label htmlFor={field.name}>{label}</label>
-        <Field placeholder={placeholder} {...field} type="text" />
+        <Field name={field.name} value={field.value} placeholder={placeholder} type="text" />
         <ErrorMessage name={field.name} />
     </div>
 );
 
-export const ActiveField = ({ label, placeholder, field }: IFormikLabelProps) => {
-    const options = [
-        { value: true, label: 'true' },
-        { value: false, label: 'false' },
-    ];
-
+export const ActiveField = ({ label, field }: IFormikLabelProps) => {
     return (
         <div>
             <label htmlFor={field.name}>{label}</label>
-            <Field {...field} component={Select} options={options} />
+            <Field name={field.name} type="checkbox" checked={field.value} />
             <ErrorMessage name={field.name} />
         </div>
     );

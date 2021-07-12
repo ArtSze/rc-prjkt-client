@@ -3,7 +3,6 @@ import Select, { OptionsType, ValueType } from 'react-select';
 import { FieldProps } from 'formik';
 
 import { ObjectId } from 'mongoose';
-// Collaborator needs simple multiselect options are objects containing "first name" and "last name" props
 
 export interface IUserFromClient {
     _id: ObjectId;
@@ -19,39 +18,32 @@ export interface ICollabOption {
 interface CustomSelectProps extends FieldProps {
     options: OptionsType<ICollabOption>;
     isMulti?: boolean;
-    className?: string;
     placeholder?: string;
 }
 
-const CustomMultiSelect = ({ className, placeholder, field, form, options, isMulti = true }: CustomSelectProps) => {
-    const onChange = (option: ValueType<ICollabOption | ICollabOption[], boolean>) => {
+const CustomMultiSelect = ({ placeholder, field, form, options, isMulti = true }: CustomSelectProps) => {
+    const initSelections = field.value.map((val: IUserFromClient) => {
+        return {
+            label: `${val.first_name} ${val.last_name}`,
+            value: {
+                _id: val._id,
+                first_name: val.first_name,
+                last_name: val.last_name,
+            },
+        };
+    });
+
+    const onChange = (option: ValueType<ICollabOption | ICollabOption[], true>) => {
         form.setFieldValue(
             field.name,
-            isMulti
-                ? (option as ICollabOption[]).map((item: ICollabOption) => item.value)
-                : (option as ICollabOption).value,
+            (option as ICollabOption[]).map((item: ICollabOption) => item.value),
         );
-    };
-
-    const getValue = () => {
-        if (options) {
-            // console.log(options);
-            // console.log({ field });
-            if (!field.value) {
-                return isMulti ? [] : ('' as any);
-            } else {
-                return isMulti
-                    ? options.filter((option) => field.value.indexOf(option.value) >= 0)
-                    : options.find((option) => option.value === field.value);
-            }
-        }
     };
 
     return (
         <Select
-            className={className}
             name={field.name}
-            value={getValue()}
+            value={initSelections}
             onChange={onChange}
             placeholder={placeholder}
             options={options}

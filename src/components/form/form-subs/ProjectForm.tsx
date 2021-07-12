@@ -2,10 +2,11 @@ import React from 'react';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { /* ActiveField */ TextField } from './FormFields';
-// import { CollaboratorField } from './CollaboratorField';
+import { ActiveField, TextField } from './FormFields';
+import { CollaboratorField } from './CollaboratorField';
 // import { IProject } from '../../../types';
 import { ProjectFormEditValues } from '../ProjectFormEdit';
+import { format } from 'prettier';
 
 interface Props {
     onSubmit: (values: ProjectFormEditValues) => Promise<void>;
@@ -13,13 +14,12 @@ interface Props {
     initialValues: ProjectFormEditValues;
 }
 
-// need to create custom components for collaborators and tags within FormFields...
-// collaborators' autosuggest populated by axios.get('/users')
-// tags' autosuggest populated by axios.get('/tags')
+// need to create custom components for tags... autosuggest populated by axios.get('/tags')
 
 const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element => {
     return (
         <Formik
+            enableReinitialize={true}
             initialValues={initialValues}
             onSubmit={onSubmit}
             validationSchema={Yup.object({
@@ -31,15 +31,20 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                 githubLink: Yup.string().notRequired(),
                 // need to figure out how to validate collaborators
                 // need to figure out how to validate tags
-                // active: Yup.bool().required(),
+                active: Yup.bool().notRequired(),
             })}
         >
             <Form>
-                <Field label="Title" placeholder="title" name="title" component={TextField} />
-                <Field label="Description" placeholder="description" name="description" component={TextField} />
-                <Field label="GitHub Link" placeholder="link to GitHub repo" name="githubLink" component={TextField} />
-                {/* <Field label="Collaborators" name="collaborators" component={CollaboratorField} /> */}
-                {/* <Field label="Active" name="active" component={ActiveField} /> */}
+                <Field name="title" label="Title" placeholder={initialValues.title} component={TextField} />
+                <Field name="description" label="Description" placeholder="description" component={TextField} />
+                <Field
+                    name="githubLink"
+                    label="GitHub Link"
+                    placeholder="link to GitHub Repository"
+                    component={TextField}
+                />
+                <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
+                <Field name="active" label="Active" component={ActiveField} />
                 {/* autosuggest for tags */}
                 <button type="button" onClick={onCancel}>
                     Cancel

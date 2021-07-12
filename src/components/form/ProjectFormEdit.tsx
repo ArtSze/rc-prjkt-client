@@ -4,27 +4,21 @@ import axios from 'axios';
 
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject } from '../../types';
-// import { IUserFromClient } from './form-subs/CustomMultiSelect';
+import { IUserFromClient } from './form-subs/CustomMultiSelect';
 
 export interface ProjectFormEditValues {
     title: string;
     description: string;
     githubLink: string;
-    // collaborators: IUserFromClient[];
+    collaborators: IUserFromClient[];
     // tags: tbd
-    // active: boolean;
+    active: boolean;
 }
-
-// todo: initial values do not populate fields as placeholders
-// active select component breaks app
-// active select and collaborator select do not show selected values
-// collaborator select only stores most recent choice
 
 const ProjectFormEdit = (projectToEdit: IProject) => {
     const editMutation = useMutation((body: IProject) => axios.put(`http://localhost:4000/projects/${body._id}`, body));
 
     const submitEdittedProject = async (values: ProjectFormEditValues) => {
-        console.log({ projectToEdit });
         console.log({ values });
 
         editMutation.mutate({
@@ -32,22 +26,9 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
             title: values.title,
             description: values.description,
             githubLink: values.githubLink,
+            collaborators: values.collaborators,
+            active: values.active,
         });
-
-        // try {
-        //     await axios.put(`http://localhost:4000/projects/${projectToEdit._id}`, {
-        //         ...projectToEdit,
-        //         title: values.title,
-        //         description: values.description,
-        //         githubLink: values.githubLink,
-        //         // collaborators: values.collaborators,
-        //         // tags: tbd
-        //         // active: values.active,
-        //     });
-        //     // redirect to presentational form of project and give success feedback
-        // } catch (e) {
-        //     console.log(e);
-        // }
     };
 
     const onCancel = () => {
@@ -55,12 +36,12 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
     };
 
     const initialValues: ProjectFormEditValues = {
-        title: projectToEdit.title,
-        description: projectToEdit.description,
-        githubLink: projectToEdit.githubLink,
-        // collaborators: projectToEdit.collaborators,
+        title: projectToEdit.title || '',
+        description: projectToEdit.description || '',
+        githubLink: projectToEdit.githubLink || '',
+        collaborators: projectToEdit.collaborators || [],
         // tags: tbd
-        // active: projectToEdit.active,
+        active: projectToEdit.active || true,
     };
 
     if (editMutation.isSuccess) return <div>success baby!</div>;
@@ -68,7 +49,6 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
     return (
         <div>
             <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
-            <div></div>
         </div>
     );
 };
