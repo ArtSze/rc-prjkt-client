@@ -17,22 +17,19 @@ export interface ICollabOption {
 
 interface CustomSelectProps extends FieldProps {
     options: OptionsType<ICollabOption>;
+    initSelections?: OptionsType<ICollabOption>;
     isMulti?: boolean;
     placeholder?: string;
 }
 
-const CustomMultiSelect = ({ placeholder, field, form, options, isMulti = true }: CustomSelectProps) => {
-    const initSelections = field.value.map((val: IUserFromClient) => {
-        return {
-            label: `${val.first_name} ${val.last_name}`,
-            value: {
-                _id: val._id,
-                first_name: val.first_name,
-                last_name: val.last_name,
-            },
-        };
-    });
-
+const CustomMultiSelect = ({
+    placeholder,
+    field,
+    form,
+    options,
+    isMulti = true,
+    initSelections,
+}: CustomSelectProps) => {
     const onChange = (option: ValueType<ICollabOption | ICollabOption[], true>) => {
         form.setFieldValue(
             field.name,
@@ -40,10 +37,17 @@ const CustomMultiSelect = ({ placeholder, field, form, options, isMulti = true }
         );
     };
 
+    const getValue = () => {
+        if (!field.value) {
+            return isMulti ? [] : ('' as any);
+        }
+    };
+
     return (
         <Select
             name={field.name}
-            value={initSelections}
+            defaultValue={initSelections}
+            value={field.value ? initSelections : getValue()}
             onChange={onChange}
             placeholder={placeholder}
             options={options}
