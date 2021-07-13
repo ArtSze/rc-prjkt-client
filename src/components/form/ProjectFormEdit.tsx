@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject } from '../../types';
 import { IUserFromClient } from './form-subs/CustomMultiSelect';
+
+interface ProjectFormEditProps {
+    projectToEdit: IProject;
+    setEditProjects: Dispatch<SetStateAction<IProject['_id'][]>>;
+}
 
 export interface ProjectFormEditValues {
     title: string;
@@ -15,7 +20,7 @@ export interface ProjectFormEditValues {
     active: boolean;
 }
 
-const ProjectFormEdit = (projectToEdit: IProject) => {
+const ProjectFormEdit = ({ projectToEdit, setEditProjects }: ProjectFormEditProps): JSX.Element => {
     const editMutation = useMutation((body: IProject) => axios.put(`http://localhost:4000/projects/${body._id}`, body));
 
     const submitEdittedProject = async (values: ProjectFormEditValues) => {
@@ -29,10 +34,12 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
             collaborators: values.collaborators,
             active: values.active,
         });
+
+        setEditProjects((prevState) => prevState.filter((project: IProject['_id']) => project !== projectToEdit._id));
     };
 
     const onCancel = () => {
-        /* redirect logic to static presentational project component */
+        setEditProjects((prevState) => prevState.filter((project: IProject['_id']) => project !== projectToEdit._id));
     };
 
     const initialValues: ProjectFormEditValues = {
