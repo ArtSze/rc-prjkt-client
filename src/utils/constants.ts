@@ -1,4 +1,4 @@
-export const queryKeys = {
+export default {
     users: 'users',
     tags: 'tags',
     projects: 'projects',
