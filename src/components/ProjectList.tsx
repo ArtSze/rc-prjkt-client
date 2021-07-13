@@ -1,6 +1,7 @@
 import React from 'react';
 import { IProject } from '../types';
-import ProjectFormEdit from './form/ProjectFormEdit';
+import ProjectFormAdd from './form/ProjectFormAdd';
+// import ProjectFormEdit from './form/ProjectFormEdit';
 
 interface ProjectsListProps {
     projects: IProject[];
@@ -25,7 +26,7 @@ const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
                     </div>
                 );
             })}
-            <ProjectFormEdit {...projects[0]} />
+            <ProjectFormAdd />
         </div>
     );
 };

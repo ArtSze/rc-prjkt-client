@@ -15,7 +15,7 @@ export interface ITagOption {
     value: ITagFromClient;
 }
 
-interface CustomSelectProps extends FieldProps {
+export interface CustomSelectProps extends FieldProps {
     options: OptionsType<ITagOption>;
     initSelections?: OptionsType<ITagOption>;
     isMulti?: boolean;
