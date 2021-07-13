@@ -4,16 +4,17 @@ import StatusFilter from './nav/StatusFilter';
 import Filter from './nav/Filter';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
-import { IProject } from '../types';
-import axios from 'axios';
+import { IProject, ITag, IUser } from '../types';
+import { axiosInstance } from '../utils/axiosInstance';
+import qs from 'qs';
 
 export type TStatusFilter = {
     active: boolean;
     inactive: boolean;
 };
 
-export type TTagFilter = string[] | undefined;
-export type TUserFilter = number | undefined;
+export type TTagFilter = ITag['value'][] | undefined;
+export type TUserFilter = IUser['rcId'] | undefined;
 
 export type QueryParams = {
     /**
@@ -22,7 +23,7 @@ export type QueryParams = {
      * if statusFilter.active is true and statusFilter.inactive is true, do not send as a query param and retrieve all projects
      */
     status?: boolean;
-    tag?: TTagFilter;
+    tags?: TTagFilter;
     user?: TUserFilter;
 };
 
@@ -43,7 +44,7 @@ function setParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilte
         }
     }
     if (tagFilter) {
-        params.tag = tagFilter;
+        params.tags = tagFilter;
     }
     if (userFilter) {
         params.user = userFilter;
@@ -60,11 +61,16 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
     const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
     const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
 
+    function paramsSerializer(params: string[]) {
+        // parse tag array into format acceptable for axios query params
+        return qs.stringify(params, { arrayFormat: 'repeat' });
+    }
+
     useEffect(() => {
         async function fetchProjects() {
             const params = setParams(statusFilter, tagFilter, userFilter);
             try {
-                const response: IProject[] = (await axios.get('http://localhost:4000/projects', { params })).data;
+                const response: IProject[] = (await axiosInstance.get('/projects', { params, paramsSerializer })).data;
                 console.log(response);
                 setProjects(response);
             } catch (e) {
