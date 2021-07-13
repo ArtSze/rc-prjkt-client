@@ -13,8 +13,17 @@ interface FilterProps {
 
 type FilterOptions = 'tag-filter' | 'user-filter';
 
-const Filter = (props: FilterProps): JSX.Element => {
+const Filter = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: FilterProps): JSX.Element => {
     const [filter, setFilter] = useImmer<FilterOptions>('tag-filter');
+
+    function handleChange(name: FilterOptions) {
+        // handle filter type change
+        setFilter(name);
+
+        // reset the filters for tag and user since the filter type was changed
+        setTagFilter(undefined);
+        setUserFilter(undefined);
+    }
 
     return (
         <div className="filter">
@@ -32,7 +41,7 @@ const Filter = (props: FilterProps): JSX.Element => {
                         name="tag-filter"
                         id="tag-filter"
                         checked={filter === 'tag-filter'}
-                        onChange={(e) => setFilter(e.target.name as FilterOptions)}
+                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
                     />
                     Tag
                 </label>
@@ -42,16 +51,16 @@ const Filter = (props: FilterProps): JSX.Element => {
                         name="user-filter"
                         id="user-filter"
                         checked={filter === 'user-filter'}
-                        onChange={(e) => setFilter(e.target.name as FilterOptions)}
+                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
                     />
                     User
                 </label>
             </div>
 
             {filter === 'tag-filter' ? (
-                <TagFilter tagFilter={props.tagFilter} setTagFilter={props.setTagFilter} />
+                <TagFilter tagFilter={tagFilter} setTagFilter={setTagFilter} />
             ) : (
-                <UserFilter userFilter={props.userFilter} setUserFilter={props.setUserFilter} />
+                <UserFilter userFilter={userFilter} setUserFilter={setUserFilter} />
             )}
         </div>
     );

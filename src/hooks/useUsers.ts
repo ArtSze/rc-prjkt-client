@@ -1,16 +1,16 @@
 import { useQuery, UseQueryResult } from 'react-query';
-import axios from 'axios';
+import { axiosInstance } from '../utils/axiosInstance';
 import { IUser } from '../types';
+import constants from '../utils/constants';
 
-const getUsers = async () => {
-    // console.log('entered getUser function');
-    const { data } = await axios.get('http://localhost:4000/users/');
-    // console.log({ data });
+const getUsers = async (): Promise<IUser[]> => {
+    const defaultData: IUser[] = [];
+    const { data = defaultData } = await axiosInstance.get('/users/');
     return data;
 };
 
 const useUsers = (): UseQueryResult<IUser[], Error> => {
-    return useQuery('users', getUsers);
+    return useQuery(constants.users, getUsers);
 };
 
 export default useUsers;

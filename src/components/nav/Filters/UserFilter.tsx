@@ -11,8 +11,10 @@ interface UserFilterProps {
 }
 
 const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element => {
-    const { data, error, isLoading, isSuccess } = useUsers();
+    const { data: users, error, isLoading, isSuccess } = useUsers();
+
     if (isLoading) return <h3>Loading...</h3>;
+
     if (error)
         return (
             <div>
@@ -21,8 +23,8 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
             </div>
         );
 
-    if (isSuccess && data) {
-        const options: IUserOptions = data.map((user: IUser) => {
+    if (isSuccess && users) {
+        const options: IUserOptions = users.map((user: IUser) => {
             return {
                 value: user,
                 label: `${user.first_name} ${user.last_name}`,
@@ -32,12 +34,19 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
         return (
             <div className="user-filter">
                 <h3>UserFilter</h3>
-                <Select options={options} />
+                {/* QUESTION: does the select component need the value set in state? */}
+                <Select
+                    options={options}
+                    name="user-filter"
+                    onChange={(e) => setUserFilter(e?.value.rcId)}
+                    isClearable
+                    isSearchable
+                />
             </div>
         );
     }
 
-    return <div>Hi</div>;
+    return <div>Error</div>;
 };
 
 export default UserFilter;
