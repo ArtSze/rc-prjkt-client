@@ -1,5 +1,5 @@
 import React from 'react';
-import { TStatusFilter } from '../../App';
+import { TStatusFilter } from '../Nav';
 import { Updater } from 'use-immer';
 
 interface StatusFilterProps {
@@ -15,7 +15,7 @@ const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX
     };
 
     return (
-        <div>
+        <div className="status-filter">
             <h3>Status Filter</h3>
             {/* TODO: at least one checkbox must be selected */}
             <label>
