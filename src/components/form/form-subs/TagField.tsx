@@ -2,23 +2,22 @@ import React from 'react';
 import { ErrorMessage, Field } from 'formik';
 // import { useQueryClient } from 'react-query';
 
-import CustomMultiSelect, { IUserFromClient } from './generic/CustomMultiSelect';
+import CustomCreatableMultiSelect, { ITagFromClient } from './generic/CustomCreatableMultiSelect';
 import { IFormikLabelProps } from './generic/FormFields';
 
-import useUsers from '../../../hooks/useUsers';
+import useTags from '../../../hooks/useTags';
 
-export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps) => {
+export const TagField = ({ label, field }: IFormikLabelProps) => {
     // const queryClient = useQueryClient();
-    const { data, isLoading, isError, isSuccess } = useUsers();
+    const { data, isLoading, isError, isSuccess } = useTags();
 
-    const convertToSelectionFormat = (arr: IUserFromClient[]) => {
-        return arr.map((u) => {
+    const convertToSelectionFormat = (arr: ITagFromClient[]) => {
+        return arr.map((t) => {
             return {
-                label: `${u.first_name} ${u.last_name}`,
+                label: `${t.value}`,
                 value: {
-                    _id: u._id,
-                    first_name: u.first_name,
-                    last_name: u.last_name,
+                    _id: `${t._id}`,
+                    value: `${t.value}`,
                 },
             };
         });
@@ -33,7 +32,7 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
     }
 
     if (isSuccess && data) {
-        const collaborators = convertToSelectionFormat(data);
+        const tags = convertToSelectionFormat(data);
         const initSelections = convertToSelectionFormat(field.value);
 
         return (
@@ -42,8 +41,8 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
                 <Field
                     name={field.name}
                     value={field.value}
-                    component={CustomMultiSelect}
-                    options={collaborators}
+                    component={CustomCreatableMultiSelect}
+                    options={tags}
                     initSelections={initSelections}
                 />
                 <ErrorMessage name={field.name} />

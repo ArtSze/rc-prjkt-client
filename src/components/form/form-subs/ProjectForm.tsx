@@ -2,11 +2,12 @@ import React from 'react';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { ActiveField, TextField } from './FormFields';
+import { ActiveField, TextField } from './generic/FormFields';
 import { CollaboratorField } from './CollaboratorField';
 // import { IProject } from '../../../types';
 import { ProjectFormEditValues } from '../ProjectFormEdit';
 import { format } from 'prettier';
+import { TagField } from './TagField';
 
 interface Props {
     onSubmit: (values: ProjectFormEditValues) => Promise<void>;
@@ -44,8 +45,8 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                     component={TextField}
                 />
                 <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
+                <Field name="tags" label="Tags" component={TagField} />
                 <Field name="active" label="Active" component={ActiveField} />
-                {/* autosuggest for tags */}
                 <button type="button" onClick={onCancel}>
                     Cancel
                 </button>
