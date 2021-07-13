@@ -1,7 +1,8 @@
 import React from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { axiosInstance } from '../../utils/axiosInstance';
+import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
@@ -16,7 +17,13 @@ export interface ProjectFormSubmitValues {
 }
 
 const ProjectFormAdd = () => {
-    const editMutation = useMutation((body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body));
+    const queryClient = useQueryClient();
+
+    const editMutation = useMutation((body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body), {
+        onSuccess: () => {
+            queryClient.invalidateQueries(constants.projects);
+        },
+    });
 
     const submitProjectToAdd = async (values: ProjectFormSubmitValues) => {
         console.log({ values });
@@ -44,7 +51,7 @@ const ProjectFormAdd = () => {
         active: true,
     };
 
-    if (editMutation.isSuccess) return <div>success baby!</div>;
+    // if (editMutation.isSuccess) return <div>success baby!</div>;
 
     return (
         <div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { useMutation } from 'react-query';
-import axios from 'axios';
+import { useMutation, useQueryClient } from 'react-query';
 
+import { axiosInstance } from '../../utils/axiosInstance';
+import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject, IProjectEdit } from '../../types';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
@@ -17,9 +18,12 @@ export interface ProjectFormSubmitValues {
 }
 
 const ProjectFormEdit = (projectToEdit: IProject) => {
-    const editMutation = useMutation((body: IProjectEdit) =>
-        axios.put(`http://localhost:4000/projects/${body._id}`, body),
-    );
+    const queryClient = useQueryClient();
+    const editMutation = useMutation((body: IProjectEdit) => axiosInstance.put(`/projects/`, body), {
+        onSuccess: () => {
+            queryClient.invalidateQueries(constants.projects);
+        },
+    });
 
     const submitEdittedProject = async (values: ProjectFormSubmitValues) => {
         console.log({ values });
