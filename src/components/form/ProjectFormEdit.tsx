@@ -8,7 +8,7 @@ import { IUserFromClient } from './form-subs/CustomMultiSelect';
 
 interface ProjectFormEditProps {
     projectToEdit: IProject;
-    setEditProjects: Dispatch<SetStateAction<IProject['_id'][]>>;
+    setEdit: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ProjectFormEditValues {
@@ -20,7 +20,7 @@ export interface ProjectFormEditValues {
     active: boolean;
 }
 
-const ProjectFormEdit = ({ projectToEdit, setEditProjects }: ProjectFormEditProps): JSX.Element => {
+const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
     const editMutation = useMutation((body: IProject) => axios.put(`http://localhost:4000/projects/${body._id}`, body));
 
     const submitEdittedProject = async (values: ProjectFormEditValues) => {
@@ -35,11 +35,11 @@ const ProjectFormEdit = ({ projectToEdit, setEditProjects }: ProjectFormEditProp
             active: values.active,
         });
 
-        setEditProjects((prevState) => prevState.filter((project: IProject['_id']) => project !== projectToEdit._id));
+        setEdit((prevState: boolean) => !prevState);
     };
 
     const onCancel = () => {
-        setEditProjects((prevState) => prevState.filter((project: IProject['_id']) => project !== projectToEdit._id));
+        setEdit((prevState: boolean) => !prevState);
     };
 
     const initialValues: ProjectFormEditValues = {
