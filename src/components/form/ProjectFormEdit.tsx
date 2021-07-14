@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
+
 import { axiosInstance } from '../../utils/axiosInstance';
 import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
@@ -9,6 +10,14 @@ import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
 
 export interface ProjectFormSubmitValues {
+interface ProjectFormEditProps {
+    projectToEdit: IProject;
+    setEdit: Dispatch<SetStateAction<boolean>>;
+}
+  
+//not needed? merge conflict
+
+export interface ProjectFormEditValues {
     title: string;
     description: string;
     githubLink: string;
@@ -17,6 +26,7 @@ export interface ProjectFormSubmitValues {
     active: boolean;
 }
 
+
 const ProjectFormEdit = (projectToEdit: IProject) => {
     const queryClient = useQueryClient();
     const editMutation = useMutation((body: IProjectEdit) => axiosInstance.put(`/projects/`, body), {
@@ -24,6 +34,7 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
             queryClient.invalidateQueries(constants.projects);
         },
     });
+
 
     const submitEdittedProject = async (values: ProjectFormSubmitValues) => {
         console.log({ values });
@@ -37,10 +48,12 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
             tags: values.tags,
             active: values.active,
         });
+
+        setEdit((prevState: boolean) => !prevState);
     };
 
     const onCancel = () => {
-        /* redirect logic to static presentational project component */
+        setEdit((prevState: boolean) => !prevState);
     };
 
     const initialValues: ProjectFormSubmitValues = {
