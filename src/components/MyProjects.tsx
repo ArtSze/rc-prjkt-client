@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IProject } from '../types';
-import axios from 'axios';
-import { useQuery } from 'react-query';
 import { axiosInstance } from '../utils/axiosInstance';
 
 interface MyProjectsProps {

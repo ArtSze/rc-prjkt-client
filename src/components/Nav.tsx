@@ -28,6 +28,29 @@ interface NavProps {
 
 //TODO: add apply button
 
+<<<<<<< HEAD
+=======
+function setParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilter: TUserFilter) {
+    const params = {} as QueryParams;
+    if (!statusFilter.active === statusFilter.inactive) {
+        if (statusFilter.active === true) {
+            params.status = true;
+        }
+        if (statusFilter.inactive === true) {
+            params.status = false;
+        }
+    }
+    if (tagFilter) {
+        params.tags = tagFilter;
+    }
+    if (userFilter) {
+        params.user = userFilter;
+    }
+    // console.table({ params });
+    return params;
+}
+
+>>>>>>> 0884ad6fb0ec85f5c206f0f2257a7866128e7cad
 const Nav = ({ setProjects }: NavProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
@@ -41,7 +64,7 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
             const params = setParams(statusFilter, tagFilter, userFilter);
             try {
                 const response: IProject[] = (await axiosInstance.get('/projects', { params, paramsSerializer })).data;
-                console.log(response);
+                // console.log(response);
                 setProjects(response);
             } catch (e) {
                 // TODO: handle error
