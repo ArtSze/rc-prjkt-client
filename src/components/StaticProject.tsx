@@ -4,16 +4,14 @@ import { SiGithub, SiZulip } from 'react-icons/si';
 import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag, FaUser } from 'react-icons/fa';
 
-interface ProjectProps {
+interface StaticProjectProps {
     project: IProject;
-    setEditProjects: Dispatch<SetStateAction<IProject['_id'][]>>;
+    setEdit: Dispatch<SetStateAction<boolean>>;
 }
 
-const Projects = ({ project, setEditProjects }: ProjectProps): JSX.Element => {
+const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
     function handleClick() {
-        setEditProjects((prevState: IProject['_id'][]) => {
-            return [...prevState, project._id];
-        });
+        setEdit((prevState: boolean) => !prevState);
     }
 
     return (
@@ -85,4 +83,4 @@ const Projects = ({ project, setEditProjects }: ProjectProps): JSX.Element => {
     );
 };
 
-export default Projects;
+export default StaticProject;
