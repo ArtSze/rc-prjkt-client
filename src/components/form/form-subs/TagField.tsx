@@ -1,6 +1,5 @@
 import React from 'react';
 import { ErrorMessage, Field } from 'formik';
-// import { useQueryClient } from 'react-query';
 
 import CustomCreatableMultiSelect, { ITagFromClient } from './generic/CustomCreatableMultiSelect';
 import { IFormikLabelProps } from './generic/FormFields';
@@ -8,7 +7,6 @@ import { IFormikLabelProps } from './generic/FormFields';
 import useTags from '../../../hooks/useTags';
 
 export const TagField = ({ label, field }: IFormikLabelProps) => {
-    // const queryClient = useQueryClient();
     const { data, isLoading, isError, isSuccess } = useTags();
 
     const convertToSelectionFormat = (arr: ITagFromClient[]) => {

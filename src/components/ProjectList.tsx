@@ -26,7 +26,6 @@ const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
                     </div>
                 );
             })}
-            <ProjectFormAdd />
         </div>
     );
 };

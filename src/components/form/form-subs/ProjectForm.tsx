@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 
 import { ActiveField, TextField } from './generic/FormFields';
 import { CollaboratorField } from './CollaboratorField';
-// import { IProject } from '../../../types';
 import { ProjectFormSubmitValues } from '../ProjectFormEdit';
 import { TagField } from './TagField';
 
@@ -13,8 +12,6 @@ interface Props {
     onCancel: () => void;
     initialValues: ProjectFormSubmitValues;
 }
-
-// need to create custom components for tags... autosuggest populated by axios.get('/tags')
 
 const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element => {
     return (

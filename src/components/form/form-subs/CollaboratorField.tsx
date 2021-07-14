@@ -1,6 +1,5 @@
 import React from 'react';
 import { ErrorMessage, Field } from 'formik';
-// import { useQueryClient } from 'react-query';
 
 import CustomMultiSelect, { IUserFromClient } from './generic/CustomMultiSelect';
 import { IFormikLabelProps } from './generic/FormFields';
@@ -8,7 +7,6 @@ import { IFormikLabelProps } from './generic/FormFields';
 import useUsers from '../../../hooks/useUsers';
 
 export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps) => {
-    // const queryClient = useQueryClient();
     const { data, isLoading, isError, isSuccess } = useUsers();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {

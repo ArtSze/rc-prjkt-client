@@ -51,7 +51,7 @@ const ProjectFormAdd = () => {
         active: true,
     };
 
-    // if (editMutation.isSuccess) return <div>success baby!</div>;
+    if (editMutation.isSuccess) return <div>success!</div>;
 
     return (
         <div>
