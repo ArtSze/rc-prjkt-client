@@ -32,6 +32,24 @@ export interface ITag {
     value: string;
 }
 
+export interface IProjectEdit {
+    _id: ObjectId;
+    title: string;
+    description: string;
+    githubLink: string;
+    owner: IOwner;
+    collaborators: ICollaborator[];
+    tags: ITagEdit[];
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface ITagEdit {
+    _id?: ObjectId;
+    value: string;
+}
+
 export interface IOption<T> {
     value: T;
     label: string;
