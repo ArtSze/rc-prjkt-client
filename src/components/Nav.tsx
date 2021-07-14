@@ -41,7 +41,7 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
             const params = setParams(statusFilter, tagFilter, userFilter);
             try {
                 const response: IProject[] = (await axiosInstance.get('/projects', { params, paramsSerializer })).data;
-                console.log(response);
+                // console.log(response);
                 setProjects(response);
             } catch (e) {
                 // TODO: handle error

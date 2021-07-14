@@ -37,6 +37,7 @@ const CustomMultiSelect = ({
         );
     };
 
+    // this can probably be trimmed down
     const getValue = () => {
         if (!field.value) {
             return isMulti ? [] : ('' as any);
