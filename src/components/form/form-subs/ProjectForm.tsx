@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import { ActiveField, TextField } from './generic/FormFields';
 import { CollaboratorField } from './CollaboratorField';
-import { ProjectFormSubmitValues } from '../ProjectFormEdit';
+import { ProjectFormSubmitValues } from '../ProjectFormAdd';
 import { TagField } from './TagField';
 
 interface Props {

@@ -6,7 +6,6 @@ import ProjectFormAdd from './form/ProjectFormAdd';
 
 import ProjectDisplay from './ProjectDispay';
 
-
 interface ProjectsListProps {
     projects: IProject[];
 }

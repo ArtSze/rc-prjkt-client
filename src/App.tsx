@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-import Nav from './components/Nav';
+import Nav from './components/nav/Nav';
 import ProjectList from './components/ProjectList';
 import MyProjects from './components/MyProjects';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { IProject } from './types';
-
-const queryClient = new QueryClient();
+import useProjects from './hooks/useProjects';
+import Loading from './components/Loading';
+import { QueryParams } from './components/nav/Nav';
 
 const App = (): JSX.Element => {
-    const [projects, setProjects] = useState<IProject[]>([]);
+    const [params, setParams] = useState<QueryParams>({});
+    const { data: projects, isSuccess } = useProjects(params);
 
     return (
         <div>
-            <QueryClientProvider client={queryClient}>
-                <h1>RC-Prjkt</h1>
-                <Nav setProjects={setProjects} />
-                <MyProjects setProjects={setProjects} />
-                <ProjectList projects={projects} />
-                <ReactQueryDevtools initialIsOpen />
-            </QueryClientProvider>
+            <h1>RC-Prjkt</h1>
+            <Nav setParams={setParams} />
+            <MyProjects setParams={setParams} />
+            {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
         </div>
     );
 };

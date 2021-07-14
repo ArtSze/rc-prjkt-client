@@ -1,6 +1,6 @@
 import React from 'react';
 import { Updater, useImmer } from 'use-immer';
-import { TTagFilter, TUserFilter } from '../Nav';
+import { TTagFilter, TUserFilter } from './Nav';
 import TagFilter from './Filters/TagFilter';
 import UserFilter from './Filters/UserFilter';
 

@@ -16,7 +16,7 @@ export interface ProjectFormSubmitValues {
     active: boolean;
 }
 
-const ProjectFormAdd = () => {
+const ProjectFormAdd = (): JSX.Element => {
     const queryClient = useQueryClient();
 
     const editMutation = useMutation((body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body), {

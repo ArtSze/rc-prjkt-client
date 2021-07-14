@@ -1,28 +1,14 @@
 import React from 'react';
-import { IProject } from '../types';
-import { axiosInstance } from '../utils/axiosInstance';
+import { QueryParams } from './nav/Nav';
 
 interface MyProjectsProps {
-    setProjects: React.Dispatch<React.SetStateAction<IProject[]>>;
+    setParams: React.Dispatch<React.SetStateAction<QueryParams>>;
 }
 
-const MyProjects = ({ setProjects }: MyProjectsProps): JSX.Element => {
-    // const { data, isSuccess } = useQuery('myProjects', fetchProjects);
-
-    async function fetchProjects() {
-        try {
-            const { data } = await axiosInstance.get('/projects/me');
-            console.log(data);
-            setProjects(data);
-            // return data;
-        } catch (e) {
-            // TODO: handle error
-            console.log(e);
-        }
-    }
+const MyProjects = ({ setParams }: MyProjectsProps): JSX.Element => {
     return (
         <div>
-            <button onClick={fetchProjects}>My Projects</button>
+            <button onClick={() => setParams({ me: true })}>My Projects</button>
         </div>
     );
 };
