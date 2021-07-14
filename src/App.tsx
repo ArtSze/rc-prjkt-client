@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import Nav from './components/Nav';
-import ProjectList from './components/ProjectList';
-import MyProjects from './components/MyProjects';
+import React from 'react';
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { IProject } from './types';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Auth from './components/Auth';
+import Home from './components/Home';
 
 const queryClient = new QueryClient();
 
 const App = (): JSX.Element => {
-    const [projects, setProjects] = useState<IProject[]>([]);
-
     return (
-        <div>
+        <Router>
             <QueryClientProvider client={queryClient}>
-                <h1>RC-Prjkt</h1>
-                <Nav setProjects={setProjects} />
-                <MyProjects setProjects={setProjects} />
-                <ProjectList projects={projects} />
+                <Route exact path="/">
+                    <Auth />
+                </Route>
+                <Route exact path="/home">
+                    <Home />
+                </Route>
                 <ReactQueryDevtools initialIsOpen />
             </QueryClientProvider>
-        </div>
+        </Router>
     );
 };
 

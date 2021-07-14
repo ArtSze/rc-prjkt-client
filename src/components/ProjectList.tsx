@@ -1,11 +1,10 @@
 import React from 'react';
 import { IProject } from '../types';
 
-import ProjectFormAdd from './form/ProjectFormAdd';
+// import ProjectFormAdd from './form/ProjectFormAdd';
 // import ProjectFormEdit from './form/ProjectFormEdit';
 
 import ProjectDisplay from './ProjectDispay';
-
 
 interface ProjectsListProps {
     projects: IProject[];
