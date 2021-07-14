@@ -6,7 +6,7 @@ import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
 import { IProject, ITag, IUser } from '../types';
 import { axiosInstance } from '../utils/axiosInstance';
-import qs from 'qs';
+import { setParams, paramsSerializer } from '../utils/paramParser';
 
 export type TStatusFilter = {
     active: boolean;
@@ -17,11 +17,6 @@ export type TTagFilter = ITag['value'][] | undefined;
 export type TUserFilter = IUser['rcId'] | undefined;
 
 export type QueryParams = {
-    /**
-     * if statusFilter.active is true, return active projects
-     * if statusFilter.active is false, return inactive projects
-     * if statusFilter.active is true and statusFilter.inactive is true, do not send as a query param and retrieve all projects
-     */
     status?: boolean;
     tags?: TTagFilter;
     user?: TUserFilter;
@@ -33,26 +28,6 @@ interface NavProps {
 
 //TODO: add apply button
 
-function setParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilter: TUserFilter) {
-    const params = {} as QueryParams;
-    if (!statusFilter.active === statusFilter.inactive) {
-        if (statusFilter.active === true) {
-            params.status = true;
-        }
-        if (statusFilter.inactive === true) {
-            params.status = false;
-        }
-    }
-    if (tagFilter) {
-        params.tags = tagFilter;
-    }
-    if (userFilter) {
-        params.user = userFilter;
-    }
-    console.table({ params });
-    return params;
-}
-
 const Nav = ({ setProjects }: NavProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
@@ -60,11 +35,6 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
     });
     const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
     const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
-
-    function paramsSerializer(params: string[]) {
-        // parse tag array into format acceptable for axios query params
-        return qs.stringify(params, { arrayFormat: 'repeat' });
-    }
 
     useEffect(() => {
         async function fetchProjects() {
