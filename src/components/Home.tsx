@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Nav, { QueryParams } from './filter/Filter';
+import Filter, { QueryParams } from './filter/Filter';
 import ProjectList from './ProjectList';
 import MyProjects from './MyProjects';
 import useProjects from '../hooks/useProjects';
@@ -19,8 +19,10 @@ const Home = (): JSX.Element => {
     return (
         <div>
             <h1>RC-Prjkt</h1>
-            <Nav setParams={setParams} />
-            <MyProjects setParams={setParams} />
+            <nav>
+                <Filter setParams={setParams} />
+                <MyProjects setParams={setParams} />
+            </nav>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
         </div>
     );

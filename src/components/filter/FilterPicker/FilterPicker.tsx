@@ -4,7 +4,7 @@ import { TTagFilter, TUserFilter } from '../Filter';
 import TagFilter from './TagFilter';
 import UserFilter from './UserFilter';
 
-interface FilterProps {
+interface FilterPickerProps {
     tagFilter: TTagFilter;
     setTagFilter: Updater<TTagFilter>;
     userFilter: TUserFilter;
@@ -13,7 +13,7 @@ interface FilterProps {
 
 type FilterOptions = 'tag-filter' | 'user-filter';
 
-const Filter = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: FilterProps): JSX.Element => {
+const FilterPicker = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: FilterPickerProps): JSX.Element => {
     const [filter, setFilter] = useImmer<FilterOptions>('tag-filter');
 
     function handleChange(name: FilterOptions) {
@@ -66,4 +66,4 @@ const Filter = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: FilterPr
     );
 };
 
-export default Filter;
+export default FilterPicker;
