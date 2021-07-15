@@ -4,10 +4,15 @@ import ProjectList from './ProjectList';
 import MyProjects from './MyProjects';
 import useProjects from '../hooks/useProjects';
 import Loading from './Loading';
+import errorHandler from '../utils/ErrorHandler';
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({});
-    const { data: projects, isSuccess } = useProjects(params);
+    const { data: projects, isSuccess, error } = useProjects(params);
+
+    if (error) {
+        errorHandler(error);
+    }
 
     return (
         <div>
