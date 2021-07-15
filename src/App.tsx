@@ -10,11 +10,11 @@ const App = (): JSX.Element => {
     return (
         <div>
             <Router>
+                <Route exact path="/">
+                    <Auth />
+                </Route>
                 <Route exact path="/home">
                     <Home />
-                </Route>
-                <Route exact path="/auth">
-                    <Auth />
                 </Route>
                 <Route exact path="/not_found">
                     <NotFound />

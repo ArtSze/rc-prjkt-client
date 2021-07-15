@@ -1,28 +1,25 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import useAuth from '../hooks/useAuth';
+import usePing from '../hooks/usePing';
 
 const Auth = () => {
     const history = useHistory();
-    // const { refetch, isError, isSuccess } = useAuth();
-    // const handleClick = () => {
-    //     refetch();
-    // };
+    const { isError, isSuccess } = usePing();
 
-    // if (isSuccess) {
-    //     history.push('/home');
-    // }
+    if (isSuccess) {
+        history.push('/home');
+    }
 
-    // if (isError) {
-    return (
-        <div>
-            <a href="http://localhost:4000/auth">Click for auth</a>
-            {/* <button type="button" onClick={handleClick}>
-                try again
-            </button> */}
-        </div>
-    );
+    if (isError) {
+        return (
+            <div>
+                <a href="http://localhost:4000/auth">Click for auth</a>
+            </div>
+        );
+    }
+
+    return <div>auth</div>;
 };
 
 export default Auth;
