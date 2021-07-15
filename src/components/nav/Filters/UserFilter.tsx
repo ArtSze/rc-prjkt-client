@@ -1,6 +1,6 @@
 import React from 'react';
 import { Updater } from 'use-immer';
-import { TUserFilter } from '../../Nav';
+import { TUserFilter } from '../Nav';
 import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions } from '../../../types';

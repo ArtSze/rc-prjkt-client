@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-
 import { axiosInstance } from '../../utils/axiosInstance';
 import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
@@ -11,8 +10,7 @@ interface ProjectFormEditProps {
     projectToEdit: IProject;
     setEdit: Dispatch<SetStateAction<boolean>>;
 }
-
-const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps) => {
+const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
     const queryClient = useQueryClient();
     const editMutation = useMutation((body: IProjectEdit) => axiosInstance.put(`/projects/`, body), {
         onSuccess: () => {

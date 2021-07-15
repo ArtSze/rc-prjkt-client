@@ -1,6 +1,6 @@
 import React from 'react';
 import { Updater } from 'use-immer';
-import { TTagFilter } from '../../Nav';
+import { TTagFilter } from '../Nav';
 import Select from 'react-select';
 import useTags from '../../../hooks/useTags';
 import { ITag, ITagOptions } from '../../../types';
