@@ -5,7 +5,7 @@ import constants from '../utils/constants';
 
 const getUsers = async (): Promise<IUser[]> => {
     const defaultData: IUser[] = [];
-    const { data = defaultData } = await axiosInstance.get('/users/');
+    const { data = defaultData } = await axiosInstance.get('/users/', { withCredentials: true });
     return data;
 };
 

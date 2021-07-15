@@ -13,11 +13,11 @@ const App = (): JSX.Element => {
     return (
         <Router>
             <QueryClientProvider client={queryClient}>
-                <Route exact path="/">
-                    <Auth />
-                </Route>
                 <Route exact path="/home">
                     <Home />
+                </Route>
+                <Route exact path="/auth">
+                    <Auth />
                 </Route>
                 <ReactQueryDevtools initialIsOpen />
             </QueryClientProvider>

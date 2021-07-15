@@ -70,7 +70,9 @@ const Nav = ({ setProjects }: NavProps): JSX.Element => {
         async function fetchProjects() {
             const params = setParams(statusFilter, tagFilter, userFilter);
             try {
-                const response: IProject[] = (await axiosInstance.get('/projects', { params, paramsSerializer })).data;
+                const response: IProject[] = (
+                    await axiosInstance.get('/projects', { params, paramsSerializer, withCredentials: true })
+                ).data;
                 // console.log(response);
                 setProjects(response);
             } catch (e) {

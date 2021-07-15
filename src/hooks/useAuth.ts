@@ -3,7 +3,7 @@ import { IUser } from '../types';
 import { axiosInstance } from '../utils/axiosInstance';
 
 const getAuth = async (): Promise<IUser> => {
-    const { data } = await axiosInstance.get('/auth');
+    const { data } = await axiosInstance.get('/auth', { withCredentials: true });
     return data;
 };
 

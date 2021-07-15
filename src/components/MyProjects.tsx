@@ -11,7 +11,7 @@ const MyProjects = ({ setProjects }: MyProjectsProps): JSX.Element => {
 
     async function fetchProjects() {
         try {
-            const { data } = await axiosInstance.get('/projects/me');
+            const { data } = await axiosInstance.get('/projects/me', { withCredentials: true });
             console.log(data);
             setProjects(data);
             // return data;

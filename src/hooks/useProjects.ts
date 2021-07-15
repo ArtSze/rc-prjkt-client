@@ -5,7 +5,10 @@ import constants from '../utils/constants';
 
 const getProjects = async (): Promise<IProject[]> => {
     const defaultData: IProject[] = [];
-    const { data = defaultData } = await axiosInstance.get('/projects/');
+    console.log('getproj');
+    const response = await axiosInstance.get('/projects/', { withCredentials: true });
+    console.log({ response });
+    const data = response.data || defaultData;
     return data;
 };
 
