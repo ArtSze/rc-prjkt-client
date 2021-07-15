@@ -1,7 +1,7 @@
 import React from 'react';
 import Sort from './Sort';
 import StatusFilter from './StatusFilter';
-import Filter from './Filter';
+import FilterPicker from './FilterPicker/FilterPicker';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../../types';
@@ -22,13 +22,13 @@ export type QueryParams = {
     me?: boolean;
 };
 
-interface NavProps {
+interface FilterProps {
     setParams: React.Dispatch<React.SetStateAction<QueryParams>>;
 }
 
 //TODO: add apply button
 
-const Nav = ({ setParams }: NavProps): JSX.Element => {
+const Filter = ({ setParams }: FilterProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
         active: true,
         inactive: false,
@@ -46,7 +46,7 @@ const Nav = ({ setParams }: NavProps): JSX.Element => {
             <h2>Nav</h2>
             <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
             <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
-            <Filter
+            <FilterPicker
                 tagFilter={tagFilter}
                 setTagFilter={setTagFilter}
                 userFilter={userFilter}
@@ -59,4 +59,4 @@ const Nav = ({ setParams }: NavProps): JSX.Element => {
     );
 };
 
-export default Nav;
+export default Filter;

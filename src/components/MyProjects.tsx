@@ -1,5 +1,5 @@
 import React from 'react';
-import { QueryParams } from './nav/Nav';
+import { QueryParams } from './filter/Filter';
 
 interface MyProjectsProps {
     setParams: React.Dispatch<React.SetStateAction<QueryParams>>;

@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { TStatusFilter, TTagFilter, TUserFilter, QueryParams } from '../components/nav/Nav';
+import { TStatusFilter, TTagFilter, TUserFilter, QueryParams } from '../components/filter/Filter';
 
 export function createParams(statusFilter: TStatusFilter, tagFilter: TTagFilter, userFilter: TUserFilter): QueryParams {
     // parse UI state into format for axios params
