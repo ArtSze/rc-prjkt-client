@@ -4,7 +4,15 @@ import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-const queryClient = new QueryClient();
+import errorHandler from './utils/ErrorHandler';
+
+export const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            onError: errorHandler,
+        },
+    },
+});
 
 ReactDOM.render(
     <React.StrictMode>
