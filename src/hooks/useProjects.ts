@@ -3,7 +3,8 @@ import { axiosInstance } from '../utils/axiosInstance';
 import { IProject } from '../types';
 import constants from '../utils/constants';
 import { paramsSerializer } from '../utils/paramParser';
-import { QueryParams } from '../components/nav/Nav';
+import { QueryParams } from '../components/filter/Filter';
+import { AxiosError } from 'axios';
 
 const getProjects = async (params: QueryParams): Promise<IProject[]> => {
     const defaultData: IProject[] = [];
@@ -14,7 +15,7 @@ const getProjects = async (params: QueryParams): Promise<IProject[]> => {
     });
     return data;
 };
-const useProjects = (params: QueryParams): UseQueryResult<IProject[], Error> => {
+const useProjects = (params: QueryParams): UseQueryResult<IProject[], AxiosError> => {
     return useQuery([constants.projects, params], () => getProjects(params), { keepPreviousData: true });
 };
 
