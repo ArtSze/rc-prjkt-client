@@ -1,11 +1,15 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import usePing from '../hooks/usePing';
+import { usePrefetchTags } from '../hooks/useTags';
+import { usePrefetchUsers } from '../hooks/useUsers';
 
-const Auth = () => {
+const Auth = (): JSX.Element => {
     const history = useHistory();
     const { isError, isSuccess } = usePing();
+    usePrefetchTags();
+    usePrefetchUsers();
 
     if (isSuccess) {
         history.push('/home');
@@ -19,7 +23,7 @@ const Auth = () => {
         );
     }
 
-    return <div>auth</div>;
+    return <h1>RC-Prjkt</h1>;
 };
 
 export default Auth;

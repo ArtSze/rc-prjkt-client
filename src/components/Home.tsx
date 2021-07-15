@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import Nav, { QueryParams } from './nav/Nav';
+import Nav, { QueryParams } from './filter/Filter';
 import ProjectList from './ProjectList';
 import MyProjects from './MyProjects';
 import useProjects from '../hooks/useProjects';
 import Loading from './Loading';
-import errorHandler from '../utils/ErrorHandler';
+import errorHandler from '../utils/errorHandler';
+import { usePrefetchUsers } from '../hooks/useUsers';
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({});
     const { data: projects, isSuccess, error } = useProjects(params);
+    usePrefetchUsers();
 
     if (error) {
         errorHandler(error);
