@@ -15,7 +15,7 @@ const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div>
             {projects.map((project: IProject) => {
                 return (
                     <div key={project._id.toString()}>

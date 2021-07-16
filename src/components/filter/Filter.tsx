@@ -6,6 +6,9 @@ import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
+import { classNames } from 'react-select/src/utils';
+import { useStyles } from '../../static/styles';
+import { Paper, Toolbar, Button, Tab, Tabs, AppBar, Typography, Container } from '@material-ui/core';
 
 export type TStatusFilter = {
     active: boolean;
@@ -35,6 +38,7 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     });
     const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
     const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
+    const classes = useStyles();
 
     useEffect(() => {
         const params = createParams(statusFilter, tagFilter, userFilter);
@@ -42,20 +46,18 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     }, [statusFilter, tagFilter, userFilter]);
 
     return (
-        <nav>
-            <h2>Nav</h2>
-            <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
-            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
-            <FilterPicker
-                tagFilter={tagFilter}
-                setTagFilter={setTagFilter}
-                userFilter={userFilter}
-                setUserFilter={setUserFilter}
-            />
-            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
-            <Sort />
-            <hr style={{ marginBottom: '20px', marginTop: '20px' }} />
-        </nav>
+        <Paper className={classes.filter}>
+            <div className={classes.filters}>
+                <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
+                <FilterPicker
+                    tagFilter={tagFilter}
+                    setTagFilter={setTagFilter}
+                    userFilter={userFilter}
+                    setUserFilter={setUserFilter}
+                />
+                <Sort />
+            </div>
+        </Paper>
     );
 };
 

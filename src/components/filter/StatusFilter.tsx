@@ -1,6 +1,7 @@
 import React from 'react';
 import { TStatusFilter } from './Filter';
 import { Updater } from 'use-immer';
+import { Typography } from '@material-ui/core';
 
 interface StatusFilterProps {
     statusFilter: TStatusFilter;
@@ -16,7 +17,7 @@ const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX
 
     return (
         <div className="status-filter">
-            <h3>Status Filter</h3>
+            <Typography variant="subtitle2">Status Filter</Typography>
             {/* TODO: at least one checkbox must be selected */}
             <label>
                 <input

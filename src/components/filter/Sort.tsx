@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
 import { useImmer } from 'use-immer';
@@ -20,7 +21,7 @@ const Sort = (): JSX.Element => {
 
     return (
         <div>
-            <h3>Sort</h3>
+            <Typography variant="subtitle2">Tag Filter</Typography>
             <Select options={options} value={sort} onChange={setSort} />
         </div>
     );
