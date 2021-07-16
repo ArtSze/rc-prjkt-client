@@ -3,6 +3,8 @@ import { IProject } from '../types';
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag, FaUser } from 'react-icons/fa';
+import { Paper } from '@material-ui/core';
+import { useStyles } from '../static/styles';
 
 interface StaticProjectProps {
     project: IProject;
@@ -10,12 +12,14 @@ interface StaticProjectProps {
 }
 
 const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
+    const classes = useStyles();
+
     function handleClick() {
         setEdit((prevState: boolean) => !prevState);
     }
 
     return (
-        <div className="project">
+        <Paper className={classes.project}>
             <div className="project-title">
                 <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Title</span>
                 <span>{project.title}</span>
@@ -78,8 +82,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Status</span>
                 <span>{project.active ? 'Active' : 'Inactive'}</span>
             </div>
-            <hr />
-        </div>
+        </Paper>
     );
 };
 

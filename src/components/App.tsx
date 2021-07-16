@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
-import Auth from './components/Auth';
-import Home from './components/Home';
-import NotFound from './components/ErrorPages/NotFound';
-import BadRequest from './components/ErrorPages/BadRequest';
+import Auth from './Auth';
+import Home from './Home';
+import NotFound from './ErrorPages/NotFound';
+import BadRequest from './ErrorPages/BadRequest';
 
 const App = (): JSX.Element => {
     return (
-        <div>
+        <Container>
             <Router>
                 <Route exact path="/">
                     <Auth />
@@ -23,7 +24,7 @@ const App = (): JSX.Element => {
                     <BadRequest />
                 </Route>
             </Router>
-        </div>
+        </Container>
     );
 };
 
