@@ -6,7 +6,6 @@ import Loading from './Loading';
 import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
-import { AppBar, Tab, Tabs, Typography } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import Footer from './Footer';
 
@@ -32,7 +31,7 @@ const Home = (): JSX.Element => {
                     <Tab label="My Projects" className={classes.button} onClick={() => setAllProjects(false)} />
                 </Tabs>
             </AppBar> */}
-            <Nav setParams={setParams} setAllProjects={setAllProjects} />
+            <Nav setParams={setParams} allProjects={allProjects} setAllProjects={setAllProjects} />
             {allProjects && <Filter setParams={setParams} />}
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
             <Footer />

@@ -1,27 +1,46 @@
-import React, { useState } from 'react';
-import MyProjects from './MyProjects';
+import React from 'react';
 import { QueryParams } from './filter/Filter';
-import { Toolbar, Button, Tab, Tabs, AppBar, Typography } from '@material-ui/core';
+import { Button, Tab, Tabs, AppBar, Typography, Divider } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
 
 interface NavProps {
+    allProjects: boolean;
     setParams: React.Dispatch<React.SetStateAction<QueryParams>>;
     setAllProjects: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Nav = ({ setAllProjects, setParams }: NavProps): JSX.Element => {
+const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
     const classes = useStyles();
 
-    // TODO: fix tab indicator not showing
     return (
         <AppBar className={classes.appBar} position="fixed">
-            <Typography variant="h6">
-                <img alt="logo" style={{ width: '50px', height: '50px' }} src={logo}></img>RC-Prjkt
-            </Typography>
-            <Tabs>
-                <Tab label="All Projects" onClick={() => setAllProjects(true)} />
-                <MyProjects setParams={setParams} setAllProjects={setAllProjects} />
-            </Tabs>
+            <div className={classes.appBarLeft}>
+                <img alt="logo" style={{ width: '30px', height: '30px', marginRight: '20px' }} src={logo}></img>
+                <Typography variant="h6" color="primary">
+                    RC-Prjkt
+                </Typography>
+            </div>
+            <div className={classes.appBarRight}>
+                <Button style={{ margin: '5px 25px 5px 5px' }} variant="contained" color="primary">
+                    Add Project
+                </Button>
+                <Tabs
+                    value={allProjects ? 0 : 1}
+                    classes={{ indicator: classes.tallIndicator }}
+                    textColor="primary"
+                    indicatorColor="primary"
+                >
+                    <Tab label="All Projects" onClick={() => setAllProjects(true)} />
+                    <Tab
+                        label="My Projects"
+                        onClick={() => {
+                            setAllProjects(false);
+                            setParams({ me: true });
+                        }}
+                    />
+                    ;
+                </Tabs>
+            </div>
         </AppBar>
     );
 };
