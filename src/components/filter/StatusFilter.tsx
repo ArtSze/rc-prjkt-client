@@ -1,42 +1,37 @@
 import React from 'react';
-import { TStatusFilter } from './Filter';
+import { StatusChoices } from './Filter';
 import { Updater } from 'use-immer';
+import Select from 'react-select';
 import { Typography } from '@material-ui/core';
+import { useStyles } from '../../static/styles';
+import { IOption } from '../../types';
 
 interface StatusFilterProps {
-    statusFilter: TStatusFilter;
-    setStatusFilter: Updater<TStatusFilter>;
+    statusFilter: StatusChoices;
+    setStatusFilter: Updater<StatusChoices>;
 }
 
 const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX.Element => {
-    const handleChange = (name: keyof TStatusFilter) => {
-        setStatusFilter((draft) => {
-            draft[name] = !draft[name];
-        });
-    };
+    const options: IOption<StatusChoices>[] = [
+        { value: StatusChoices['Active'], label: 'Active' },
+        { value: StatusChoices['Inactive'], label: 'Inactive' },
+        { value: StatusChoices['All'], label: 'All' },
+    ];
+
+    const classes = useStyles();
 
     return (
-        <div className="status-filter">
-            <Typography variant="subtitle2">Status Filter</Typography>
-            {/* TODO: at least one checkbox must be selected */}
-            <label>
-                <input
-                    type="checkbox"
-                    name="active"
-                    checked={statusFilter.active}
-                    onChange={(e) => handleChange(e.target.name as keyof TStatusFilter)}
-                />
-                Active
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    name="inactive"
-                    checked={statusFilter.inactive}
-                    onChange={(e) => handleChange(e.target.name as keyof TStatusFilter)}
-                />
-                Inactive
-            </label>
+        <div className={classes.smallFilter}>
+            <Typography variant="subtitle2">Status</Typography>
+            <Select
+                defaultValue={options[0]}
+                options={options}
+                name="status-filter"
+                onChange={(e) => {
+                    console.log(e?.value);
+                    setStatusFilter(e?.value as StatusChoices);
+                }}
+            />
         </div>
     );
 };
