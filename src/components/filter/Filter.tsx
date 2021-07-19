@@ -6,14 +6,14 @@ import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
-import { classNames } from 'react-select/src/utils';
 import { useStyles } from '../../static/styles';
-import { Paper, Toolbar, Button, Tab, Tabs, AppBar, Typography, Container } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 
-export type TStatusFilter = {
-    active: boolean;
-    inactive: boolean;
-};
+export enum StatusChoices {
+    'Active' = 'active',
+    'Inactive' = 'inactive',
+    'All' = 'all',
+}
 
 export type TTagFilter = ITag['value'][] | undefined;
 export type TUserFilter = IUser['rcId'] | undefined;
@@ -32,10 +32,7 @@ interface FilterProps {
 //TODO: add apply button
 
 const Filter = ({ setParams }: FilterProps): JSX.Element => {
-    const [statusFilter, setStatusFilter] = useImmer<TStatusFilter>({
-        active: true,
-        inactive: false,
-    });
+    const [statusFilter, setStatusFilter] = useImmer<StatusChoices>(StatusChoices['Active']);
     const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
     const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
     const classes = useStyles();
@@ -46,18 +43,19 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     }, [statusFilter, tagFilter, userFilter]);
 
     return (
-        <Paper className={classes.filter}>
-            <div className={classes.filters}>
-                <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
+        <>
+            <div className={classes.filterBar}>
                 <FilterPicker
                     tagFilter={tagFilter}
                     setTagFilter={setTagFilter}
                     userFilter={userFilter}
                     setUserFilter={setUserFilter}
                 />
+                <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
                 <Sort />
             </div>
-        </Paper>
+            <Divider variant="fullWidth" style={{ marginBottom: '20px' }} />
+        </>
     );
 };
 

@@ -29,7 +29,7 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
 
         return (
             <div className="user-filter">
-                <Typography variant="subtitle2">Tag Filter</Typography>
+                <Typography variant="subtitle2">User Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
                     options={options}
