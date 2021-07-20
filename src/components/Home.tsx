@@ -7,7 +7,7 @@ import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
 import { useStyles } from '../static/styles';
-import Footer from './Footer';
+
 import { Collapse } from '@material-ui/core';
 import { useEffect } from 'react';
 
@@ -29,7 +29,6 @@ const Home = (): JSX.Element => {
                 <Filter setParams={setParams} />
             </Collapse>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
-            <Footer />
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container, ThemeProvider } from '@material-ui/core';
 import { theme } from '../static/theme';
 
+import Footer from './Footer';
 import Auth from './Auth';
 import Home from './Home';
 import NotFound from './ErrorPages/NotFound';
@@ -27,6 +28,7 @@ const App = (): JSX.Element => {
                     </Route>
                 </Router>
             </Container>
+            <Footer />
         </ThemeProvider>
     );
 };

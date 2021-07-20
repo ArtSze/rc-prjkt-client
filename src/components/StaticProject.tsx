@@ -41,7 +41,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     const ownerProject = project as IProjectOwnerCheck;
 
     return (
-        <Paper className={classes.staticProject} variant="outlined">
+        <Paper className={classes.staticProject} /* variant="outlined" */>
             <div className={classes.staticProjectPhoto}>
                 <img style={{ width: '7rem', height: '7rem', borderRadius: '.25rem' }} src={project.owner.image_path} />
             </div>
@@ -74,34 +74,43 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                         )}
                                     </div>
                                 </span>
-                                <span className={classes.staticProjectOwnerName}>
-                                    <Typography variant="body1">{`${project.owner.first_name} ${project.owner.last_name}`}</Typography>
-                                    <Typography variant="body2">{`(${project.owner.batch})`}</Typography>
-                                </span>
+                                {ownerProject.isOwner ? (
+                                    <>
+                                        <Typography
+                                            className={classes.staticProjectOwnerName}
+                                            variant="body1"
+                                        >{`owned project`}</Typography>
+                                        <IconContext.Provider value={{ color: 'blue', className: 'global-class-name' }}>
+                                            <a onClick={handleClick} href="#">
+                                                <BsPencilSquare size={25} className={classes.iconLink} />
+                                            </a>
+                                        </IconContext.Provider>
+                                        <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
+                                            <a onClick={() => deleteMutation.mutate(project)} href="#">
+                                                <BsTrash size={25} className={classes.iconLink} />
+                                            </a>
+                                        </IconContext.Provider>
+                                    </>
+                                ) : (
+                                    <span className={classes.staticProjectOwnerName}>
+                                        <Typography variant="body1">{`${project.owner.first_name} ${project.owner.last_name}`}</Typography>
+                                        <Typography variant="body2">{`(${project.owner.batch})`}</Typography>
+                                    </span>
+                                )}
                             </span>
 
                             <span>
                                 <IconContext.Provider value={{ color: 'black', className: 'global-class-name' }}>
                                     <a href={project.githubLink}>
-                                        <SiGithub size={30} className={classes.iconLink} />
+                                        <SiGithub size={25} className={classes.iconLink} />
                                     </a>
                                     <a
                                         rel="noreferrer"
                                         target="_blank"
                                         href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
                                     >
-                                        <SiZulip size={30} className={classes.iconLink} />
+                                        <SiZulip size={25} className={classes.iconLink} />
                                     </a>
-                                    {ownerProject.isOwner && (
-                                        <>
-                                            <a onClick={handleClick} href="#">
-                                                <BsPencilSquare size={30} className={classes.iconLink} />
-                                            </a>
-                                            <a onClick={() => deleteMutation.mutate(project)} href="#">
-                                                <BsTrash size={30} />
-                                            </a>
-                                        </>
-                                    )}
                                 </IconContext.Provider>
                             </span>
                         </span>
