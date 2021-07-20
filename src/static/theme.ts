@@ -1,3 +1,4 @@
+import { lightGreen } from '@material-ui/core/colors';
 import { createTheme } from '@material-ui/core/styles';
 
 const rcColors = {
@@ -17,7 +18,7 @@ export const theme = createTheme({
             main: rcColors.green,
         },
         secondary: {
-            main: rcColors.purple,
+            main: rcColors.lightGreen,
         },
         info: {
             main: rcColors.blue,

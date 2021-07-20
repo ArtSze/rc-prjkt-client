@@ -3,8 +3,22 @@ import { theme } from './theme';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: '100px',
+        marginTop: '70px',
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
     },
+    footer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '2rem',
+        background: 'rgb(238, 247, 241)',
+    },
+    // footerLinks: {
+    //     display: 'flex',
+    //     justifyItems: 'center',
+    // },
     appBar: {
         flexDirection: 'row',
         alignContent: 'center',
@@ -49,9 +63,10 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: '.75rem',
         paddingTop: '.75rem',
         paddingBottom: '.75rem',
-        background: '#e3f0d3',
+        background: 'rgb(238, 247, 241)',
         display: 'flex',
         alignItems: 'center',
+        borderRadius: '0px',
     },
     staticProjectInfo: {
         display: 'flex',
@@ -93,6 +108,7 @@ export const useStyles = makeStyles((theme) => ({
     staticProjectOwnerName: {
         display: 'flex',
         marginLeft: '1rem',
+        marginRight: '.5rem',
         alignItems: 'center',
     },
     staticProjectValue: {
@@ -117,21 +133,5 @@ export const useStyles = makeStyles((theme) => ({
     },
     iconLink: {
         marginLeft: '.3rem',
-    },
-    filterBar: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginBottom: '20px',
-    },
-    bigFilter: {
-        flex: 3,
-    },
-    smallFilter: {
-        marginLeft: '10px',
-        flex: 1,
-    },
-    tallIndicator: {
-        height: '5px',
     },
 }));

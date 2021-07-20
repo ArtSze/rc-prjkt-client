@@ -7,20 +7,24 @@ import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
 import { useStyles } from '../static/styles';
-import Footer from './Footer';
+
 import { Collapse } from '@material-ui/core';
 import { useEffect } from 'react';
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({});
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const { data: projects, isSuccess, error } = useProjects(params);
+    const { data: projects, isSuccess, error, refetch } = useProjects(params);
     usePrefetchUsers();
     const classes = useStyles();
 
     if (error) {
         errorHandler(error);
     }
+
+    useEffect(() => {
+        refetch();
+    }, [allProjects]);
 
     return (
         <div className={classes.root}>
@@ -29,7 +33,6 @@ const Home = (): JSX.Element => {
                 <Filter setParams={setParams} />
             </Collapse>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
-            <Footer />
         </div>
     );
 };

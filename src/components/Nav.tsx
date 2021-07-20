@@ -30,7 +30,13 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                     textColor="primary"
                     indicatorColor="primary"
                 >
-                    <Tab label="All Projects" onClick={() => setAllProjects(true)} />
+                    <Tab
+                        label="All Projects"
+                        onClick={() => {
+                            setAllProjects(true);
+                            setParams({ status: true });
+                        }}
+                    />
                     <Tab
                         label="My Projects"
                         onClick={() => {
