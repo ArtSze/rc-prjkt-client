@@ -108,7 +108,7 @@ export const useStyles = makeStyles((theme) => ({
     staticProjectOwnerName: {
         display: 'flex',
         marginLeft: '1rem',
-        marginRight: '1rem',
+        marginRight: '.5rem',
         alignItems: 'center',
     },
     staticProjectValue: {

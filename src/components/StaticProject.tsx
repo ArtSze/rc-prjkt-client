@@ -43,7 +43,15 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     return (
         <Paper className={classes.staticProject} /* variant="outlined" */>
             <div className={classes.staticProjectPhoto}>
-                <img style={{ width: '7rem', height: '7rem', borderRadius: '.25rem' }} src={project.owner.image_path} />
+                <img
+                    style={{
+                        width: '7rem',
+                        height: '7rem',
+                        borderRadius: '.15rem',
+                        boxShadow: '.05rem .05rem .2rem gray',
+                    }}
+                    src={project.owner.image_path}
+                />
             </div>
             <div className={classes.staticProjectInfo}>
                 <div className={classes.staticProjectAboveDivider}>
@@ -82,12 +90,12 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                         >{`owned project`}</Typography>
                                         <IconContext.Provider value={{ color: 'blue', className: 'global-class-name' }}>
                                             <a onClick={handleClick} href="#">
-                                                <BsPencilSquare size={25} className={classes.iconLink} />
+                                                <BsPencilSquare size={17} className={classes.iconLink} />
                                             </a>
                                         </IconContext.Provider>
                                         <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
                                             <a onClick={() => deleteMutation.mutate(project)} href="#">
-                                                <BsTrash size={25} className={classes.iconLink} />
+                                                <BsTrash size={17} className={classes.iconLink} />
                                             </a>
                                         </IconContext.Provider>
                                     </>
