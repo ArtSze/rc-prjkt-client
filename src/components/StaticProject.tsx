@@ -1,9 +1,15 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { IProject } from '../types';
+import { IProject, IProjectOwnerCheck } from '../types';
+import { axiosInstance } from '../utils/axiosInstance';
+import { useMutation, useQueryClient } from 'react-query';
+import constants from '../utils/constants';
+
+import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
-import { BsPencilSquare } from 'react-icons/bs';
+import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 import { FaTag, FaUser } from 'react-icons/fa';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography, Chip } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
 
 interface StaticProjectProps {
@@ -12,75 +18,157 @@ interface StaticProjectProps {
 }
 
 const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
+    const queryClient = useQueryClient();
     const classes = useStyles();
 
     function handleClick() {
         setEdit((prevState: boolean) => !prevState);
     }
 
+    const deleteMutation = useMutation(
+        (project: IProject) =>
+            axiosInstance.delete(`projects/${project._id}`, {
+                data: project,
+                withCredentials: true,
+            }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(constants.projects);
+            },
+        },
+    );
+
+    const ownerProject = project as IProjectOwnerCheck;
+
     return (
-        <Paper className={classes.project}>
-            <div className="project-title">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Title</span>
-                <span>{project.title}</span>
-                <span style={{ marginRight: '30px' }}></span>
-                <a style={{ marginRight: '3px' }} href={project.githubLink}>
-                    <SiGithub />
-                </a>
-                <a
-                    style={{ marginRight: '3px' }}
-                    rel="noreferrer"
-                    target="_blank"
-                    href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
-                >
-                    <SiZulip />
-                </a>
-                <a onClick={handleClick} href="#">
-                    <BsPencilSquare />
-                </a>
+        <Paper className={classes.staticProject} variant="outlined">
+            <div className={classes.staticProjectPhoto}>
+                <img style={{ width: '7rem', height: '7rem', borderRadius: '.25rem' }} src={project.owner.image_path} />
             </div>
-            <div className="project-owner">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Owner</span>
-                <img style={{ width: '25px', height: '25px' }} src={project.owner.image_path} />
-                <span>{project.owner.first_name + ' ' + project.owner.last_name}</span>
-            </div>
-            <div className="project-description">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Description</span>
-                <span>{project.description}</span>
-            </div>
-            <div className="project-collaborators">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Collaborators</span>
-                {project.collaborators.length ? (
-                    project.collaborators.map((collaborator) => {
-                        return (
-                            <span style={{ marginRight: '5px' }} key={collaborator._id.toString()}>
-                                <FaUser style={{ marginRight: '3px' }} />
-                                {collaborator.first_name + ' ' + collaborator.last_name}
+            <div className={classes.staticProjectInfo}>
+                <div className={classes.staticProjectAboveDivider}>
+                    <div className={classes.staticProjectRow}>
+                        <span className={classes.staticProjectRowSplit}>
+                            <span className={classes.staticProjectTitleStatus}>
+                                <span>
+                                    <Typography variant="h6">{project.title}</Typography>
+                                </span>
+                                <span>
+                                    <div>
+                                        {project.active ? (
+                                            <Typography
+                                                variant="body2"
+                                                style={{ color: 'green' }}
+                                                className={classes.staticProjectValue}
+                                            >
+                                                active
+                                            </Typography>
+                                        ) : (
+                                            <Typography
+                                                variant="body2"
+                                                style={{ color: 'red' }}
+                                                className={classes.staticProjectValue}
+                                            >
+                                                inactive
+                                            </Typography>
+                                        )}
+                                    </div>
+                                </span>
+                                <span className={classes.staticProjectOwnerName}>
+                                    <Typography variant="body1">{`${project.owner.first_name} ${project.owner.last_name}`}</Typography>
+                                    <Typography variant="body2">{`(${project.owner.batch})`}</Typography>
+                                </span>
                             </span>
-                        );
-                    })
-                ) : (
-                    <span style={{ fontStyle: 'italic', color: 'gray' }}>No Collaborators</span>
-                )}
-            </div>
-            <div className="project-tags">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Tags</span>
-                {project.tags.length ? (
-                    project.tags.map((tag) => {
-                        return (
-                            <span style={{ marginRight: '5px' }} key={tag._id.toString()}>
-                                <FaTag style={{ marginRight: '3px' }} />
-                                {tag.value}
+
+                            <span>
+                                <IconContext.Provider value={{ color: 'black', className: 'global-class-name' }}>
+                                    <a href={project.githubLink}>
+                                        <SiGithub size={30} className={classes.iconLink} />
+                                    </a>
+                                    <a
+                                        rel="noreferrer"
+                                        target="_blank"
+                                        href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
+                                    >
+                                        <SiZulip size={30} className={classes.iconLink} />
+                                    </a>
+                                    {ownerProject.isOwner && (
+                                        <>
+                                            <a onClick={handleClick} href="#">
+                                                <BsPencilSquare size={30} className={classes.iconLink} />
+                                            </a>
+                                            <a onClick={() => deleteMutation.mutate(project)} href="#">
+                                                <BsTrash size={30} />
+                                            </a>
+                                        </>
+                                    )}
+                                </IconContext.Provider>
                             </span>
-                        );
-                    })
-                ) : (
-                    <span style={{ fontStyle: 'italic', color: 'gray' }}>No Tags</span>
-                )}
-            </div>
-            <div className="project-status">
-                <span style={{ marginRight: '5px', fontWeight: 'bold' }}>Status</span>
-                <span>{project.active ? 'Active' : 'Inactive'}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <Divider style={{ width: '97%', marginLeft: '1rem', marginRight: '1rem' }} />
+                <div className={classes.staticProjectBelowDivider}>
+                    <div className={classes.staticProjectRow}>
+                        {/* <Typography variant="body2">description:</Typography> */}
+                        <span /* className={classes.staticProjectValue} */>
+                            <Typography variant="body2">{project.description}</Typography>
+                        </span>
+                    </div>
+                    <div className={classes.staticProjectRow}>
+                        <span className={classes.chipContainer}>
+                            <span className={classes.chipSub}>
+                                <Typography variant="body2">collaborators:</Typography>
+                                {project.collaborators.length ? (
+                                    <span className={classes.staticProjectValue}>
+                                        {project.collaborators.map((collaborator) => {
+                                            return (
+                                                <Chip
+                                                    key={collaborator._id.toString()}
+                                                    variant="outlined"
+                                                    icon={<FaUser />}
+                                                    label={`${collaborator.first_name} ${collaborator.last_name}`}
+                                                    className={classes.singleChip}
+                                                    // size="small"
+                                                />
+                                            );
+                                        })}
+                                    </span>
+                                ) : (
+                                    <span className={classes.staticProjectValue}>
+                                        <Typography variant="body2" style={{ color: 'gray' }}>
+                                            No Collaborators
+                                        </Typography>
+                                    </span>
+                                )}
+                            </span>
+                            <span className={classes.chipSub}>
+                                <Typography variant="body2">tags:</Typography>
+                                {project.tags.length ? (
+                                    <span className={classes.staticProjectValue}>
+                                        {project.tags.map((tag) => {
+                                            return (
+                                                <Chip
+                                                    key={tag._id.toString()}
+                                                    variant="outlined"
+                                                    icon={<FaTag />}
+                                                    label={`${tag.value}`}
+                                                    className={classes.singleChip}
+                                                    // size="small"
+                                                />
+                                            );
+                                        })}
+                                    </span>
+                                ) : (
+                                    <span className={classes.staticProjectValue}>
+                                        <Typography style={{ color: 'gray' }}>No Tags</Typography>
+                                    </span>
+                                )}
+                            </span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </Paper>
     );
