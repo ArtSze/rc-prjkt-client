@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
+import { theme } from './theme';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '100px',
     },
@@ -10,11 +11,37 @@ export const useStyles = makeStyles({
         justifyContent: 'space-between',
         paddingLeft: '4rem',
         paddingRight: '4rem',
+        background: 'rgb(238, 247, 241)',
     },
-    navButtons: {
+    appBarLeft: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifySelf: 'left',
+        alignSelf: 'center',
+        marginLeft: '50px',
+    },
+    appBarRight: {
+        display: 'flex',
+        flexDirection: 'row',
         justifySelf: 'right',
+        alignSelf: 'center',
     },
-
+    filterBar: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: '20px',
+    },
+    bigFilter: {
+        flex: 3,
+    },
+    smallFilter: {
+        marginLeft: '10px',
+        flex: 1,
+    },
+    tallIndicator: {
+        height: '5px',
+    },
     button: {
         margin: '.75rem',
     },
@@ -91,4 +118,20 @@ export const useStyles = makeStyles({
     iconLink: {
         marginLeft: '.3rem',
     },
-});
+    filterBar: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: '20px',
+    },
+    bigFilter: {
+        flex: 3,
+    },
+    smallFilter: {
+        marginLeft: '10px',
+        flex: 1,
+    },
+    tallIndicator: {
+        height: '5px',
+    },
+}));

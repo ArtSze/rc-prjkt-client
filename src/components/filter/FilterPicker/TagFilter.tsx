@@ -5,6 +5,7 @@ import Select from 'react-select';
 import useTags from '../../../hooks/useTags';
 import { ITag, ITagOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
+import { Typography } from '@material-ui/core';
 
 interface TagFilterProps {
     tagFilter: TTagFilter;
@@ -34,7 +35,7 @@ const TagFilter = ({ tagFilter, setTagFilter }: TagFilterProps): JSX.Element => 
 
         return (
             <div className="tag-filter">
-                <h3>TagFilter</h3>
+                <Typography variant="subtitle2">Tag Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
                     options={options}

@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
-import Filter, { QueryParams } from './filter/Filter';
-import MyProjects from './MyProjects';
-import { AppBar, Typography, Toolbar, Button } from '@material-ui/core';
+import React from 'react';
+import { QueryParams } from './filter/Filter';
+import { Button, Tab, Tabs, AppBar, Typography, Divider } from '@material-ui/core';
 import { useStyles } from '../static/styles';
+import logo from '../static/images/rc-logo.png';
 
 interface NavProps {
+    allProjects: boolean;
     setParams: React.Dispatch<React.SetStateAction<QueryParams>>;
+    setAllProjects: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Nav = ({ setParams }: NavProps): JSX.Element => {
-    const [allProjects, setAllProjects] = useState<boolean>(false);
+const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <>
-            <Toolbar className={classes.navButtons}>
-                <Button className={classes.button} variant="contained" onClick={() => setAllProjects(true)}>
-                    All Projects
+        <AppBar className={classes.appBar} position="fixed">
+            <div className={classes.appBarLeft}>
+                <img alt="logo" style={{ width: '30px', height: '30px', marginRight: '20px' }} src={logo}></img>
+                <Typography variant="h6" color="primary">
+                    RC-Prjkt
+                </Typography>
+            </div>
+            <div className={classes.appBarRight}>
+                <Button style={{ margin: '5px 25px 5px 5px' }} variant="contained" color="primary">
+                    Add Project
                 </Button>
-                <Button className={classes.button} variant="contained" onClick={() => setAllProjects(false)}>
-                    My Projects
-                </Button>
-                {/* <MyProjects setParams={setParams} /> */}
-            </Toolbar>
-            {allProjects && <Filter setParams={setParams} />}
-        </>
+                <Tabs
+                    value={allProjects ? 0 : 1}
+                    classes={{ indicator: classes.tallIndicator }}
+                    textColor="primary"
+                    indicatorColor="primary"
+                >
+                    <Tab label="All Projects" onClick={() => setAllProjects(true)} />
+                    <Tab
+                        label="My Projects"
+                        onClick={() => {
+                            setAllProjects(false);
+                            setParams({ me: true });
+                        }}
+                    />
+                    ;
+                </Tabs>
+            </div>
+        </AppBar>
     );
 };
 

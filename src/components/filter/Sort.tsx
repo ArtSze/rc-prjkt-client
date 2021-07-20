@@ -1,7 +1,10 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
 import { useImmer } from 'use-immer';
+import { useStyles } from '../../static/styles';
 import { IOption } from '../../types';
+import { MdSort } from 'react-icons/md';
 
 enum SortMethods {
     'Last Updated' = 'last updated',
@@ -17,10 +20,11 @@ const Sort = (): JSX.Element => {
     ];
 
     const [sort, setSort] = useImmer<IOption<SortMethods> | null>(options[2]);
+    const classes = useStyles();
 
     return (
-        <div>
-            <h3>Sort</h3>
+        <div className={classes.smallFilter}>
+            <Typography variant="subtitle2">Sort</Typography>
             <Select options={options} value={sort} onChange={setSort} />
         </div>
     );

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { QueryParams } from './filter/Filter';
+import Filter, { QueryParams } from './filter/Filter';
 import ProjectList from './ProjectList';
 import useProjects from '../hooks/useProjects';
 import Loading from './Loading';
 import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
-import { AppBar, Typography } from '@material-ui/core';
-import logo from '../static/images/rc-logo.png';
 import { useStyles } from '../static/styles';
+import Footer from './Footer';
+import { Collapse } from '@material-ui/core';
+import { useEffect } from 'react';
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({});
+    const [allProjects, setAllProjects] = useState<boolean>(true);
     const { data: projects, isSuccess, error } = useProjects(params);
     usePrefetchUsers();
     const classes = useStyles();
@@ -21,14 +23,13 @@ const Home = (): JSX.Element => {
     }
 
     return (
-        <div>
-            <AppBar className={classes.appBar} position="fixed">
-                <Typography variant="h6">
-                    <img alt="logo" style={{ width: '50px', height: '50px' }} src={logo}></img>RC-Prjkt
-                </Typography>
-                <Nav setParams={setParams} />
-            </AppBar>
+        <div className={classes.root}>
+            <Nav setParams={setParams} allProjects={allProjects} setAllProjects={setAllProjects} />
+            <Collapse in={allProjects}>
+                <Filter setParams={setParams} />
+            </Collapse>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
+            <Footer />
         </div>
     );
 };

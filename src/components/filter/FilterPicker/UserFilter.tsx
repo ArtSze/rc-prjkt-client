@@ -5,6 +5,7 @@ import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
+import { Typography } from '@material-ui/core';
 
 interface UserFilterProps {
     userFilter: TUserFilter;
@@ -28,7 +29,7 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
 
         return (
             <div className="user-filter">
-                <h3>UserFilter</h3>
+                <Typography variant="subtitle2">User Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
                     options={options}

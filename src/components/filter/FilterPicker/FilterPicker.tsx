@@ -1,8 +1,11 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { Updater, useImmer } from 'use-immer';
 import { TTagFilter, TUserFilter } from '../Filter';
 import TagFilter from './TagFilter';
 import UserFilter from './UserFilter';
+import { FaTag, FaUser } from 'react-icons/fa';
+import { useStyles } from '../../../static/styles';
 
 interface FilterPickerProps {
     tagFilter: TTagFilter;
@@ -11,57 +14,45 @@ interface FilterPickerProps {
     setUserFilter: Updater<TUserFilter>;
 }
 
-type FilterOptions = 'tag-filter' | 'user-filter';
-
 const FilterPicker = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: FilterPickerProps): JSX.Element => {
-    const [filter, setFilter] = useImmer<FilterOptions>('tag-filter');
+    const [isFilterTag, setIsFilterTag] = useImmer<boolean>(true);
 
-    function handleChange(name: FilterOptions) {
+    function handleChange() {
         // handle filter type change
-        setFilter(name);
+        console.log('before', isFilterTag);
+        setIsFilterTag((prevState) => !prevState);
+        console.log('after', isFilterTag);
 
         // reset the filters for tag and user since the filter type was changed
         setTagFilter(undefined);
         setUserFilter(undefined);
     }
 
-    return (
-        <div className="filter">
-            <h3>Filter By Tag or User</h3>
-            <div
-                className="filter-radio-input"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setFilter(e.target.name as FilterOptions);
-                    // TODO: reset tag and user filters on change
-                }}
-            >
-                <label htmlFor="tag-filter">
-                    <input
-                        type="radio"
-                        name="tag-filter"
-                        id="tag-filter"
-                        checked={filter === 'tag-filter'}
-                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
-                    />
-                    Tag
-                </label>
-                <label htmlFor="user-filter">
-                    <input
-                        type="radio"
-                        name="user-filter"
-                        id="user-filter"
-                        checked={filter === 'user-filter'}
-                        onChange={(e) => handleChange(e.target.name as FilterOptions)}
-                    />
-                    User
-                </label>
-            </div>
+    const classes = useStyles();
 
-            {filter === 'tag-filter' ? (
+    return (
+        <div className={classes.bigFilter}>
+            {isFilterTag ? (
                 <TagFilter tagFilter={tagFilter} setTagFilter={setTagFilter} />
             ) : (
                 <UserFilter userFilter={userFilter} setUserFilter={setUserFilter} />
             )}
+            {/* <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isFilterTag}
+                        name={isFilterTag ? 'tag-filter' : 'user-filter'}
+                        checkedIcon={<FaTag />}
+                        icon={<FaUser />}
+                        onChange={handleChange}
+                    />
+                }
+                label={isFilterTag ? 'Click to filter by User' : 'Click to filter by Tags'}
+            /> */}
+            <Button size="small" style={{ marginTop: '5px' }} onClick={handleChange} variant="outlined">
+                {isFilterTag ? <FaUser style={{ marginRight: '5px' }} /> : <FaTag style={{ marginRight: '5px' }} />}
+                {isFilterTag ? 'Filter by User' : 'Filter by Tags'}
+            </Button>
         </div>
     );
 };
