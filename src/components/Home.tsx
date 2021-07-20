@@ -14,13 +14,17 @@ import { useEffect } from 'react';
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({});
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const { data: projects, isSuccess, error } = useProjects(params);
+    const { data: projects, isSuccess, error, refetch } = useProjects(params);
     usePrefetchUsers();
     const classes = useStyles();
 
     if (error) {
         errorHandler(error);
     }
+
+    useEffect(() => {
+        refetch();
+    }, [allProjects]);
 
     return (
         <div className={classes.root}>
