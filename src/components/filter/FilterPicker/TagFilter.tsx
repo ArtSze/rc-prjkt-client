@@ -1,9 +1,10 @@
 import React from 'react';
 import { Updater } from 'use-immer';
-import { TTagFilter } from '../../Nav';
+import { TTagFilter } from '../Filter';
 import Select from 'react-select';
 import useTags from '../../../hooks/useTags';
 import { ITag, ITagOptions } from '../../../types';
+import errorHandler from '../../../utils/errorHandler';
 
 interface TagFilterProps {
     tagFilter: TTagFilter;
@@ -21,13 +22,7 @@ const TagFilter = ({ tagFilter, setTagFilter }: TagFilterProps): JSX.Element => 
 
     if (isLoading) return <h3>Loading...</h3>;
 
-    if (error)
-        return (
-            <div>
-                <h3>Error</h3>
-                <p>{error.message.toString()}</p>;
-            </div>
-        );
+    if (error) errorHandler(error);
 
     if (isSuccess && tags) {
         const options: ITagOptions = tags.map((tag: ITag) => {

@@ -16,14 +16,17 @@ export interface ProjectFormSubmitValues {
     active: boolean;
 }
 
-const ProjectFormAdd = () => {
+const ProjectFormAdd = (): JSX.Element => {
     const queryClient = useQueryClient();
 
-    const editMutation = useMutation((body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body), {
-        onSuccess: () => {
-            queryClient.invalidateQueries(constants.projects);
+    const editMutation = useMutation(
+        (body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body, { withCredentials: true }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(constants.projects);
+            },
         },
-    });
+    );
 
     const submitProjectToAdd = async (values: ProjectFormSubmitValues) => {
         console.log({ values });

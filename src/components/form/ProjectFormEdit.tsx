@@ -1,43 +1,28 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-
-
 import { axiosInstance } from '../../utils/axiosInstance';
 import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject, IProjectEdit } from '../../types';
-import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
-import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
+import { ProjectFormSubmitValues } from './ProjectFormAdd';
 
-export interface ProjectFormSubmitValues {
 interface ProjectFormEditProps {
     projectToEdit: IProject;
     setEdit: Dispatch<SetStateAction<boolean>>;
 }
-  
-//not needed? merge conflict
-
-export interface ProjectFormEditValues {
-    title: string;
-    description: string;
-    githubLink: string;
-    collaborators: IUserFromClient[];
-    tags: ITagFromClient[];
-    active: boolean;
-}
-
-
-const ProjectFormEdit = (projectToEdit: IProject) => {
+const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
     const queryClient = useQueryClient();
-    const editMutation = useMutation((body: IProjectEdit) => axiosInstance.put(`/projects/`, body), {
-        onSuccess: () => {
-            queryClient.invalidateQueries(constants.projects);
+    const editMutation = useMutation(
+        (body: IProjectEdit) => axiosInstance.put(`/projects/${projectToEdit._id}`, body, { withCredentials: true }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(constants.projects);
+            },
         },
-    });
-
+    );
 
     const submitEdittedProject = async (values: ProjectFormSubmitValues) => {
-        console.log({ values });
+        // console.log({ values });
 
         editMutation.mutate({
             ...projectToEdit,
@@ -49,6 +34,7 @@ const ProjectFormEdit = (projectToEdit: IProject) => {
             active: values.active,
         });
 
+        // maybe incorporate visual feedback for successful submission?
         setEdit((prevState: boolean) => !prevState);
     };
 

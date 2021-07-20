@@ -1,9 +1,10 @@
 import React from 'react';
 import { Updater } from 'use-immer';
-import { TUserFilter } from '../../Nav';
+import { TUserFilter } from '../Filter';
 import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions } from '../../../types';
+import errorHandler from '../../../utils/errorHandler';
 
 interface UserFilterProps {
     userFilter: TUserFilter;
@@ -15,13 +16,7 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
 
     if (isLoading) return <h3>Loading...</h3>;
 
-    if (error)
-        return (
-            <div>
-                <h3>Error</h3>
-                <p>{error.message.toString()}</p>;
-            </div>
-        );
+    if (error) errorHandler(error);
 
     if (isSuccess && users) {
         const options: IUserOptions = users.map((user: IUser) => {
