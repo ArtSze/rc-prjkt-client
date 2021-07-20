@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { IProjectOwnerCheck } from '../types';
+import { IProject } from '../types';
 import ProjectFormEdit from './form/ProjectFormEdit';
 import StaticProject from './StaticProject';
 
 interface ProjectsDisplayProps {
-    project: IProjectOwnerCheck;
+    project: IProject;
 }
 
 const ProjectDisplay = ({ project }: ProjectsDisplayProps): JSX.Element => {

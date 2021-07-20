@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { IProjectOwnerCheck } from '../types';
+import { IProject, IProjectOwnerCheck } from '../types';
 import { axiosInstance } from '../utils/axiosInstance';
 import { useMutation, useQueryClient } from 'react-query';
 import constants from '../utils/constants';
@@ -13,7 +13,7 @@ import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
 
 interface StaticProjectProps {
-    project: IProjectOwnerCheck;
+    project: IProject;
     setEdit: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -26,7 +26,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     }
 
     const deleteMutation = useMutation(
-        (project: IProjectOwnerCheck) =>
+        (project: IProject) =>
             axiosInstance.delete(`projects/${project._id}`, {
                 data: project,
                 withCredentials: true,
@@ -37,6 +37,8 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
             },
         },
     );
+
+    const ownerProject = project as IProjectOwnerCheck;
 
     return (
         <Paper className={classes.staticProject} variant="outlined">
@@ -90,12 +92,16 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                     >
                                         <SiZulip size={30} className={classes.iconLink} />
                                     </a>
-                                    <a onClick={handleClick} href="#">
-                                        <BsPencilSquare size={30} className={classes.iconLink} />
-                                    </a>
-                                    <a onClick={() => deleteMutation.mutate(project)} href="#">
-                                        <BsTrash size={30} />
-                                    </a>
+                                    {ownerProject.isOwner && (
+                                        <>
+                                            <a onClick={handleClick} href="#">
+                                                <BsPencilSquare size={30} className={classes.iconLink} />
+                                            </a>
+                                            <a onClick={() => deleteMutation.mutate(project)} href="#">
+                                                <BsTrash size={30} />
+                                            </a>
+                                        </>
+                                    )}
                                 </IconContext.Provider>
                             </span>
                         </span>
