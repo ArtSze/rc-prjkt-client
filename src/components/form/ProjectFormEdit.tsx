@@ -12,14 +12,17 @@ interface ProjectFormEditProps {
 }
 const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
     const queryClient = useQueryClient();
-    const editMutation = useMutation((body: IProjectEdit) => axiosInstance.put(`/projects/`, body), {
-        onSuccess: () => {
-            queryClient.invalidateQueries(constants.projects);
+    const editMutation = useMutation(
+        (body: IProjectEdit) => axiosInstance.put(`/projects/${projectToEdit._id}`, body, { withCredentials: true }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(constants.projects);
+            },
         },
-    });
+    );
 
     const submitEdittedProject = async (values: ProjectFormSubmitValues) => {
-        console.log({ values });
+        // console.log({ values });
 
         editMutation.mutate({
             ...projectToEdit,

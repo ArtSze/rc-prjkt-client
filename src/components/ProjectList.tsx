@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProject } from '../types';
+import { IProjectOwnerCheck } from '../types';
 import { useStyles } from '../static/styles';
 
 // import ProjectFormAdd from './form/ProjectFormAdd';
@@ -8,7 +8,7 @@ import { useStyles } from '../static/styles';
 import ProjectDisplay from './ProjectDispay';
 
 interface ProjectsListProps {
-    projects: IProject[];
+    projects: IProjectOwnerCheck[];
 }
 
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
@@ -16,7 +16,7 @@ const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
 
     return (
         <div className={classes.root}>
-            {projects.map((project: IProject) => {
+            {projects.map((project: IProjectOwnerCheck) => {
                 return (
                     <div key={project._id.toString()}>
                         <ProjectDisplay project={project} />

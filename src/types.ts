@@ -27,6 +27,10 @@ export interface IProject {
     updatedAt: Date;
 }
 
+export interface IProjectOwnerCheck extends IProject {
+    isOwner: boolean;
+}
+
 export interface ITag {
     _id: ObjectId;
     value: string;
