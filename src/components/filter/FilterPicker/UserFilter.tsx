@@ -6,6 +6,7 @@ import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
 import { Typography } from '@material-ui/core';
+import { UserControl, Menu, Placeholder, UserSingleValue } from '../../select/SelectComponents';
 
 interface UserFilterProps {
     userFilter: TUserFilter;
@@ -32,9 +33,11 @@ const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element
                 <Typography variant="subtitle2">User Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
+                    components={{ Control: UserControl, Menu, Placeholder, SingleValue: UserSingleValue }}
                     options={options}
                     name="user-filter"
                     onChange={(e) => setUserFilter(e?.value.rcId)}
+                    placeholder="Select user..."
                     isClearable
                     isSearchable
                 />

@@ -13,7 +13,6 @@ export const rcColors = {
     red: 'rgb(217, 90, 136)',
     backgroundRed: '#fedce9',
     borderRed: '#d95a88',
-    dark: '#626a6a;',
 };
 
 export const theme = createTheme({
@@ -23,7 +22,7 @@ export const theme = createTheme({
             main: rcColors.green,
         },
         secondary: {
-            main: rcColors.backgroundGreen,
+            main: rcColors.purple,
         },
         info: {
             main: rcColors.blue,
@@ -35,7 +34,7 @@ export const theme = createTheme({
             main: rcColors.red,
         },
         success: {
-            main: rcColors.purple,
+            main: rcColors.pink,
         },
     },
 });

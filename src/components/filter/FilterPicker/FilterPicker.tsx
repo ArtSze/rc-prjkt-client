@@ -4,7 +4,7 @@ import { Updater, useImmer } from 'use-immer';
 import { TTagFilter, TUserFilter } from '../Filter';
 import TagFilter from './TagFilter';
 import UserFilter from './UserFilter';
-import { FaTag, FaUser } from 'react-icons/fa';
+import { FaTags, FaUser } from 'react-icons/fa';
 import { useStyles } from '../../../static/styles';
 
 interface FilterPickerProps {
@@ -37,20 +37,8 @@ const FilterPicker = ({ tagFilter, setTagFilter, userFilter, setUserFilter }: Fi
             ) : (
                 <UserFilter userFilter={userFilter} setUserFilter={setUserFilter} />
             )}
-            {/* <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={isFilterTag}
-                        name={isFilterTag ? 'tag-filter' : 'user-filter'}
-                        checkedIcon={<FaTag />}
-                        icon={<FaUser />}
-                        onChange={handleChange}
-                    />
-                }
-                label={isFilterTag ? 'Click to filter by User' : 'Click to filter by Tags'}
-            /> */}
             <Button size="small" style={{ marginTop: '5px' }} onClick={handleChange} variant="outlined">
-                {isFilterTag ? <FaUser style={{ marginRight: '5px' }} /> : <FaTag style={{ marginRight: '5px' }} />}
+                {isFilterTag ? <FaUser style={{ marginRight: '5px' }} /> : <FaTags style={{ marginRight: '5px' }} />}
                 {isFilterTag ? 'Filter by User' : 'Filter by Tags'}
             </Button>
         </div>

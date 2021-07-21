@@ -6,6 +6,7 @@ import useTags from '../../../hooks/useTags';
 import { ITag, ITagOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
 import { Typography } from '@material-ui/core';
+import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../../select/SelectComponents';
 
 interface TagFilterProps {
     tagFilter: TTagFilter;
@@ -38,16 +39,20 @@ const TagFilter = ({ tagFilter, setTagFilter }: TagFilterProps): JSX.Element => 
                 <Typography variant="subtitle2">Tag Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
+                    components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
                     options={options}
                     name="tag-filter"
                     onChange={(e) => handleChange(e as ITagOptions)}
+                    placeholder="Select tags..."
                     isMulti
                     isClearable
                     isSearchable
+                    styles={multiStyles}
                 />
             </div>
         );
     }
+
     return <div>Error</div>;
 };
 

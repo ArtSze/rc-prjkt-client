@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         paddingLeft: '4rem',
         paddingRight: '4rem',
-        background: 'rgb(238, 247, 241)',
+        backgroundColor: theme.palette.primary.light,
     },
     appBarLeft: {
         display: 'flex',
