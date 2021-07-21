@@ -4,7 +4,6 @@ import Select from 'react-select';
 import { useImmer } from 'use-immer';
 import { useStyles } from '../../static/styles';
 import { IOption } from '../../types';
-import { MdSort } from 'react-icons/md';
 import { Menu, SingleValue, SortControl } from '../select/SelectComponents';
 
 enum SortMethods {

@@ -1,12 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
-import useUsers from '../../../hooks/useUsers';
-import { IUser, IUserOptions, IOption } from '../../../types';
-import errorHandler from '../../../utils/errorHandler';
-import { useStore, AppState } from '../../Home';
-import { useStyles } from '../../../static/styles';
+import useUsers from '../../hooks/useUsers';
+import { IUser, IUserOptions, IOption } from '../../types';
+import errorHandler from '../../utils/errorHandler';
+import { useStore, AppState } from '../Home';
+import { useStyles } from '../../static/styles';
 import { Typography } from '@material-ui/core';
-import { UserControl, Menu, Placeholder, UserSingleValue } from '../../select/SelectComponents';
+import { UserControl, Menu, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
 const UserFilter = (): JSX.Element => {
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);

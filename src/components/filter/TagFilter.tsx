@@ -1,13 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
-import { useStore, AppState } from './../../Home';
-import useTags from '../../../hooks/useTags';
-import errorHandler from '../../../utils/errorHandler';
-import { useStyles } from '../../../static/styles';
-import { TTagFilter } from '../Filter';
-import { ITag, ITagOptions } from '../../../types';
+import { useStore, AppState } from '../Home';
+import useTags from '../../hooks/useTags';
+import errorHandler from '../../utils/errorHandler';
+import { useStyles } from '../../static/styles';
+import { TTagFilter } from './Filter';
+import { ITag, ITagOptions } from '../../types';
 import { Typography } from '@material-ui/core';
-import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../../select/SelectComponents';
+import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
