@@ -5,6 +5,32 @@ import { FaUser, FaTag, FaTags } from 'react-icons/fa';
 import { rcColors } from '../../static/theme';
 import { MdSort } from 'react-icons/md';
 
+export const Option = (props: any) => {
+    const style = {
+        display: 'flex',
+        alignItems: 'center',
+    };
+    console.log({ props });
+    return (
+        <components.Option {...props}>
+            <div style={style}>
+                <Avatar
+                    alt={props.label}
+                    src={props.value.image_path}
+                    variant="circle"
+                    style={{
+                        width: '24px',
+                        height: '24px',
+                        marginLeft: '2px',
+                        marginRight: '5px',
+                    }}
+                />
+                <Typography variant="body2">{props.children}</Typography>
+            </div>
+        </components.Option>
+    );
+};
+
 export const Menu = (props: any) => {
     return (
         <components.Menu {...props}>

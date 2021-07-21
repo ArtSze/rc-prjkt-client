@@ -6,7 +6,7 @@ import errorHandler from '../../utils/errorHandler';
 import { useStore, AppState } from '../Home';
 import { useStyles } from '../../static/styles';
 import { Typography } from '@material-ui/core';
-import { UserControl, Menu, Placeholder, UserSingleValue } from '../select/SelectComponents';
+import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
 const UserFilter = (): JSX.Element => {
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);
@@ -38,7 +38,7 @@ const UserFilter = (): JSX.Element => {
                 <Typography variant="subtitle2">Owner Filter</Typography>
                 <Select
                     value={getValue()}
-                    components={{ Control: UserControl, Menu, Placeholder, SingleValue: UserSingleValue }}
+                    components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
                     options={options}
                     name="user-filter"
                     onChange={(e) => setUserFilter(e?.value.rcId)}
