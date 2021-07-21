@@ -51,8 +51,12 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly',
         marginBottom: '20px',
     },
-    bigFilter: {
-        flex: 3,
+    tagFilter: {
+        flex: 5,
+    },
+    userFilter: {
+        marginLeft: '10px',
+        flex: 2,
     },
     smallFilter: {
         marginLeft: '10px',

@@ -14,7 +14,6 @@ export const Menu = (props: any) => {
 };
 
 export const SingleValue = (props: any) => {
-    console.log({ props });
     return (
         <components.SingleValue {...props}>
             <Typography variant="body2">{props.children}</Typography>
@@ -67,7 +66,6 @@ export const TagControl = (props: any) => {
 };
 
 export const UserSingleValue = (props: any) => {
-    console.log({ props });
     const style = {
         margin: '3px',
         padding: '3px',

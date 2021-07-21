@@ -1,12 +1,10 @@
 import React from 'react';
-import { Updater } from 'use-immer';
-import { TUserFilter } from '../Filter';
 import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions, IOption } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
-import { useStore, AppState } from './../../Home';
-
+import { useStore, AppState } from '../../Home';
+import { useStyles } from '../../../static/styles';
 import { Typography } from '@material-ui/core';
 import { UserControl, Menu, Placeholder, UserSingleValue } from '../../select/SelectComponents';
 
@@ -28,14 +26,16 @@ const UserFilter = (): JSX.Element => {
             };
         });
 
+        const classes = useStyles();
         const getValue = (): IOption<IUser> => {
             const option = options.filter((u) => u.value.rcId === userFilter);
             return option[0];
         };
 
+        // TODO: change from user filter to owner filter?
         return (
-            <div className="user-filter">
-                <Typography variant="subtitle2">User Filter</Typography>
+            <div className={classes.userFilter}>
+                <Typography variant="subtitle2">Owner Filter</Typography>
                 <Select
                     value={getValue()}
                     components={{ Control: UserControl, Menu, Placeholder, SingleValue: UserSingleValue }}

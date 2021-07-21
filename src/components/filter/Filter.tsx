@@ -10,6 +10,8 @@ import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
 import { useStyles } from '../../static/styles';
 import { Divider } from '@material-ui/core';
+import UserFilter from './FilterPicker/UserFilter';
+import TagFilter from './FilterPicker/TagFilter';
 
 export enum StatusChoices {
     'Active' = 'active',
@@ -43,12 +45,14 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     useEffect(() => {
         const params = createParams(statusFilter, tagFilter, userFilter);
         setParams(params);
+        console.log({ params });
     }, [statusFilter, tagFilter, userFilter]);
 
     return (
         <>
             <div className={classes.filterBar}>
-                <FilterPicker />
+                <TagFilter />
+                <UserFilter />
                 <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
                 <Sort />
             </div>
