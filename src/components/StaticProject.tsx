@@ -9,7 +9,7 @@ import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 import { FaTag, FaUser } from 'react-icons/fa';
-import { Paper, Typography, Chip } from '@material-ui/core';
+import { Paper, Typography, Chip, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
 
@@ -105,10 +105,18 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                         </IconContext.Provider>
                                     </>
                                 ) : (
-                                    <span className={classes.staticProjectOwnerName}>
+                                    <Link
+                                        href="#"
+                                        color="inherit"
+                                        onClick={() => {
+                                            setUserFilter(project.owner.rcId);
+                                            console.log({ ...project.owner });
+                                        }}
+                                        className={classes.staticProjectOwnerName}
+                                    >
                                         <Typography variant="body1">{`${project.owner.first_name} ${project.owner.last_name}`}</Typography>
                                         <Typography variant="body2">{`(${project.owner.batch})`}</Typography>
-                                    </span>
+                                    </Link>
                                 )}
                             </span>
 
