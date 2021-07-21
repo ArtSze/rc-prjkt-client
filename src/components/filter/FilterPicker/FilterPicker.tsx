@@ -7,6 +7,7 @@ import { useStore, AppState } from '../../Home';
 
 import { Button } from '@material-ui/core';
 import { FaTag, FaUser } from 'react-icons/fa';
+import { FaTags, FaUser } from 'react-icons/fa';
 import { useStyles } from '../../../static/styles';
 
 const FilterPicker = (): JSX.Element => {

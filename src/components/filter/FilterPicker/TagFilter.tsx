@@ -1,7 +1,5 @@
 import React from 'react';
-import { Updater } from 'use-immer';
 import Select from 'react-select';
-
 import { useStore, AppState } from './../../Home';
 import useTags from '../../../hooks/useTags';
 import errorHandler from '../../../utils/errorHandler';
@@ -10,6 +8,7 @@ import { TTagFilter } from '../Filter';
 import { ITag, ITagOptions } from '../../../types';
 
 import { Typography } from '@material-ui/core';
+import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../../select/SelectComponents';
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
@@ -39,16 +38,20 @@ const TagFilter = (): JSX.Element => {
                 <Typography variant="subtitle2">Tag Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
+                    components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
                     options={options}
                     name="tag-filter"
                     onChange={(e) => handleChange(e as ITagOptions)}
+                    placeholder="Select tags..."
                     isMulti
                     isClearable
                     isSearchable
+                    styles={multiStyles}
                 />
             </div>
         );
     }
+
     return <div>Error</div>;
 };
 

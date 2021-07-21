@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { Typography } from '@material-ui/core';
 import { useStyles } from '../../static/styles';
 import { IOption } from '../../types';
+import { Menu, SingleValue } from '../select/SelectComponents';
 
 interface StatusFilterProps {
     statusFilter: StatusChoices;
@@ -25,6 +26,7 @@ const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX
             <Typography variant="subtitle2">Status</Typography>
             <Select
                 defaultValue={options[0]}
+                components={{ Menu, SingleValue }}
                 options={options}
                 name="status-filter"
                 onChange={(e) => {

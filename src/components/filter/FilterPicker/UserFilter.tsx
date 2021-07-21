@@ -8,6 +8,7 @@ import errorHandler from '../../../utils/errorHandler';
 import { useStore, AppState } from './../../Home';
 
 import { Typography } from '@material-ui/core';
+import { UserControl, Menu, Placeholder, UserSingleValue } from '../../select/SelectComponents';
 
 const UserFilter = (): JSX.Element => {
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);
@@ -35,12 +36,13 @@ const UserFilter = (): JSX.Element => {
         return (
             <div className="user-filter">
                 <Typography variant="subtitle2">User Filter</Typography>
-                {/* QUESTION: does the select component need the value set in state? */}
                 <Select
                     value={getValue()}
+                    components={{ Control: UserControl, Menu, Placeholder, SingleValue: UserSingleValue }}
                     options={options}
                     name="user-filter"
                     onChange={(e) => setUserFilter(e?.value.rcId)}
+                    placeholder="Select user..."
                     isClearable
                     isSearchable
                 />
