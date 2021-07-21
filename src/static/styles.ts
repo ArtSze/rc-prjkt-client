@@ -13,7 +13,11 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         marginTop: '2rem',
+        padding: '10px',
         background: 'rgb(238, 247, 241)',
+        bottom: 0,
+        width: '100%',
+        position: 'fixed',
     },
     // footerLinks: {
     //     display: 'flex',

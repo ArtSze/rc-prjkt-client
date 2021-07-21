@@ -1,7 +1,6 @@
-import { lightGreen } from '@material-ui/core/colors';
 import { createTheme } from '@material-ui/core/styles';
 
-const rcColors = {
+export const rcColors = {
     pink: '#BD5179',
     green: '#23A050',
     orange: '#D23E56',
