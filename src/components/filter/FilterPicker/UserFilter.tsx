@@ -3,7 +3,7 @@ import { Updater } from 'use-immer';
 import { TUserFilter } from '../Filter';
 import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
-import { IUser, IUserOptions } from '../../../types';
+import { IUser, IUserOptions, IOption } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
 import { useStore, AppState } from './../../Home';
 
@@ -11,6 +11,7 @@ import { Typography } from '@material-ui/core';
 
 const UserFilter = (): JSX.Element => {
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const userFilter = useStore((state: AppState) => state.userFilter);
 
     const { data: users, error, isLoading, isSuccess } = useUsers();
 
@@ -26,11 +27,17 @@ const UserFilter = (): JSX.Element => {
             };
         });
 
+        const getValue = (): IOption<IUser> => {
+            const option = options.filter((u) => u.value.rcId === userFilter);
+            return option[0];
+        };
+
         return (
             <div className="user-filter">
                 <Typography variant="subtitle2">User Filter</Typography>
                 {/* QUESTION: does the select component need the value set in state? */}
                 <Select
+                    value={getValue()}
                     options={options}
                     name="user-filter"
                     onChange={(e) => setUserFilter(e?.value.rcId)}

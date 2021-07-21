@@ -6,6 +6,7 @@ import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
+import { useStore } from '../Home';
 
 export interface ProjectFormSubmitValues {
     title: string;
@@ -17,6 +18,8 @@ export interface ProjectFormSubmitValues {
 }
 
 const ProjectFormAdd = (): JSX.Element => {
+    const setAddForm = useStore((state) => state.setAddForm);
+
     const queryClient = useQueryClient();
 
     const editMutation = useMutation(
@@ -24,6 +27,7 @@ const ProjectFormAdd = (): JSX.Element => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(constants.projects);
+                setAddForm();
             },
         },
     );
@@ -42,7 +46,7 @@ const ProjectFormAdd = (): JSX.Element => {
     };
 
     const onCancel = () => {
-        /* redirect logic to static presentational project component */
+        setAddForm();
     };
 
     const initialValues: ProjectFormSubmitValues = {
@@ -53,8 +57,6 @@ const ProjectFormAdd = (): JSX.Element => {
         tags: [],
         active: true,
     };
-
-    if (editMutation.isSuccess) return <div>success!</div>;
 
     return (
         <div>
