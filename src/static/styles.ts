@@ -139,4 +139,15 @@ export const useStyles = makeStyles((theme) => ({
     iconLink: {
         marginLeft: '.3rem',
     },
+    auth: {
+        border: 'solid',
+        borderWidth: '5px',
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '25px',
+    },
 }));
