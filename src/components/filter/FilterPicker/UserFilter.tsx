@@ -5,14 +5,13 @@ import Select from 'react-select';
 import useUsers from '../../../hooks/useUsers';
 import { IUser, IUserOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
+import { useStore, AppState } from './../../Home';
+
 import { Typography } from '@material-ui/core';
 
-interface UserFilterProps {
-    userFilter: TUserFilter;
-    setUserFilter: Updater<TUserFilter>;
-}
+const UserFilter = (): JSX.Element => {
+    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
 
-const UserFilter = ({ userFilter, setUserFilter }: UserFilterProps): JSX.Element => {
     const { data: users, error, isLoading, isSuccess } = useUsers();
 
     if (isLoading) return <h3>Loading...</h3>;

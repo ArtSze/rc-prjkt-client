@@ -4,10 +4,10 @@ export interface ICollaborator {
     _id: ObjectId;
     first_name: string;
     last_name: string;
+    rcId: number;
 }
 
 export interface IOwner extends ICollaborator {
-    rcId: number;
     zulip_id: number;
     image_path: string;
     batch: string;

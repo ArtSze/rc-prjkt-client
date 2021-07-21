@@ -1,18 +1,19 @@
 import React from 'react';
 import { Updater } from 'use-immer';
-import { TTagFilter } from '../Filter';
 import Select from 'react-select';
+
+import { useStore, AppState } from './../../Home';
 import useTags from '../../../hooks/useTags';
-import { ITag, ITagOptions } from '../../../types';
 import errorHandler from '../../../utils/errorHandler';
+
+import { TTagFilter } from '../Filter';
+import { ITag, ITagOptions } from '../../../types';
+
 import { Typography } from '@material-ui/core';
 
-interface TagFilterProps {
-    tagFilter: TTagFilter;
-    setTagFilter: Updater<TTagFilter>;
-}
+const TagFilter = (): JSX.Element => {
+    const setTagFilter = useStore((state: AppState) => state.setTagFilter);
 
-const TagFilter = ({ tagFilter, setTagFilter }: TagFilterProps): JSX.Element => {
     const { data: tags, error, isLoading, isSuccess } = useTags();
 
     function handleChange(selectFilter: ITagOptions) {

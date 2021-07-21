@@ -6,6 +6,7 @@ import { ObjectId } from 'mongoose';
 
 export interface IUserFromClient {
     _id: ObjectId;
+    rcId: number;
     first_name: string;
     last_name: string;
 }

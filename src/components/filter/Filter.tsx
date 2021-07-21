@@ -4,6 +4,8 @@ import StatusFilter from './StatusFilter';
 import FilterPicker from './FilterPicker/FilterPicker';
 import { useImmer } from 'use-immer';
 import { useEffect } from 'react';
+import { useStore, AppState } from '../Home';
+
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
 import { useStyles } from '../../static/styles';
@@ -33,8 +35,9 @@ interface FilterProps {
 
 const Filter = ({ setParams }: FilterProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<StatusChoices>(StatusChoices['Active']);
-    const [tagFilter, setTagFilter] = useImmer<TTagFilter>(undefined);
-    const [userFilter, setUserFilter] = useImmer<TUserFilter>(undefined);
+    const tagFilter = useStore((state: AppState) => state.tagFilter);
+    const userFilter = useStore((state: AppState) => state.userFilter);
+
     const classes = useStyles();
 
     useEffect(() => {
@@ -45,12 +48,7 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     return (
         <>
             <div className={classes.filterBar}>
-                <FilterPicker
-                    tagFilter={tagFilter}
-                    setTagFilter={setTagFilter}
-                    userFilter={userFilter}
-                    setUserFilter={setUserFilter}
-                />
+                <FilterPicker />
                 <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
                 <Sort />
             </div>

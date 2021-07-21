@@ -3,6 +3,7 @@ import { IProject, IProjectOwnerCheck } from '../types';
 import { axiosInstance } from '../utils/axiosInstance';
 import { useMutation, useQueryClient } from 'react-query';
 import constants from '../utils/constants';
+import { useStore, AppState } from './Home';
 
 import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
@@ -21,7 +22,11 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     const queryClient = useQueryClient();
     const classes = useStyles();
 
-    function handleClick() {
+    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const setTagFilter = useStore((state: AppState) => state.setTagFilter);
+    const tagFilter = useStore((state: AppState) => state.tagFilter);
+
+    function toggleEdit() {
         setEdit((prevState: boolean) => !prevState);
     }
 
@@ -89,7 +94,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                             variant="body1"
                                         >{`owned project`}</Typography>
                                         <IconContext.Provider value={{ color: 'blue', className: 'global-class-name' }}>
-                                            <a onClick={handleClick} href="#">
+                                            <a onClick={toggleEdit} href="#">
                                                 <BsPencilSquare size={17} className={classes.iconLink} />
                                             </a>
                                         </IconContext.Provider>
@@ -147,6 +152,10 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                                     icon={<FaUser />}
                                                     label={`${collaborator.first_name} ${collaborator.last_name}`}
                                                     className={classes.singleChip}
+                                                    onClick={() => {
+                                                        setUserFilter(collaborator.rcId);
+                                                        console.log({ collaborator });
+                                                    }}
                                                     // size="small"
                                                 />
                                             );
@@ -172,7 +181,10 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                                     icon={<FaTag />}
                                                     label={`${tag.value}`}
                                                     className={classes.singleChip}
-                                                    // size="small"
+                                                    onClick={() => {
+                                                        setTagFilter([tag.value]);
+                                                        console.log(tagFilter);
+                                                    }}
                                                 />
                                             );
                                         })}
