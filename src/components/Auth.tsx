@@ -10,7 +10,7 @@ import Container from '@material-ui/core/Container';
 
 const Auth = (): JSX.Element => {
     const history = useHistory();
-    const { isError, isSuccess } = usePing();
+    const { isSuccess } = usePing();
     usePrefetchTags();
     usePrefetchUsers();
     const classes = useStyles();

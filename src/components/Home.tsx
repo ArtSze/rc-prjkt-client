@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Filter, { QueryParams } from './filter/Filter';
-import { useImmer } from 'use-immer';
 import create from 'zustand';
 
 import ProjectList from './ProjectList';
