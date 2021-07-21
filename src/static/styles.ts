@@ -3,8 +3,9 @@ import { theme } from './theme';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: '70px',
+        margin: '70px 0 0 0',
         display: 'flex',
+        width: '100%',
         flexDirection: 'column',
         minHeight: '100vh',
     },
