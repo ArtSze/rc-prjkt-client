@@ -1,9 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
-const BadRequest = () => {
-    const history = useHistory();
-
+const BadRequest = (): JSX.Element => {
     return <div>400: Bad Request</div>;
 };
 

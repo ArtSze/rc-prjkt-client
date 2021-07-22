@@ -1,9 +1,5 @@
 import React from 'react';
 import { IProject } from '../types';
-import { useStyles } from '../static/styles';
-
-// import ProjectFormAdd from './form/ProjectFormAdd';
-// import ProjectFormEdit from './form/ProjectFormEdit';
 
 import ProjectDisplay from './ProjectDispay';
 
@@ -12,8 +8,6 @@ interface ProjectsListProps {
 }
 
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
-    const classes = useStyles();
-
     return (
         <div>
             {projects.map((project: IProject) => {

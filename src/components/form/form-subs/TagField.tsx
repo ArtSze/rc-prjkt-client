@@ -5,8 +5,9 @@ import CustomCreatableMultiSelect, { ITagFromClient } from './generic/CustomCrea
 import { IFormikLabelProps } from './generic/FormFields';
 
 import useTags from '../../../hooks/useTags';
+import Loading from '../../Loading';
 
-export const TagField = ({ label, field }: IFormikLabelProps) => {
+export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const { data, isLoading, isError, isSuccess } = useTags();
 
     const convertToSelectionFormat = (arr: ITagFromClient[]) => {
@@ -26,7 +27,7 @@ export const TagField = ({ label, field }: IFormikLabelProps) => {
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     if (isSuccess && data) {
@@ -47,4 +48,6 @@ export const TagField = ({ label, field }: IFormikLabelProps) => {
             </div>
         );
     }
+
+    return <div>Error</div>;
 };

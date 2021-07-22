@@ -7,7 +7,7 @@ import { IFormikLabelProps } from './generic/FormFields';
 import useUsers from '../../../hooks/useUsers';
 import Loading from '../../Loading';
 
-export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps): JSX.Element => {
+export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const { data, isLoading, isError, isSuccess } = useUsers();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
