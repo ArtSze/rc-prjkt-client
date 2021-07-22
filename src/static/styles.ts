@@ -136,9 +136,6 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: '.2rem',
         paddingLeft: '.2rem',
     },
-    iconLink: {
-        marginLeft: '.3rem',
-    },
     auth: {
         border: 'solid',
         borderWidth: '5px',

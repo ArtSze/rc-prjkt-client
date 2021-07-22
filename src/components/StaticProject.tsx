@@ -8,8 +8,8 @@ import { useStore, AppState } from './Home';
 import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
-import { FaTag, FaUser } from 'react-icons/fa';
-import { Paper, Typography, Chip, Link } from '@material-ui/core';
+import { FaTag } from 'react-icons/fa';
+import { Paper, Typography, Chip, Link, Avatar, IconButton } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
 
@@ -94,20 +94,20 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                             variant="body1"
                                         >{`owned project`}</Typography>
                                         <IconContext.Provider value={{ color: 'blue', className: 'global-class-name' }}>
-                                            <a onClick={toggleEdit} href="#">
-                                                <BsPencilSquare size={17} className={classes.iconLink} />
-                                            </a>
+                                            <IconButton onClick={toggleEdit}>
+                                                <BsPencilSquare size={17} />
+                                            </IconButton>
                                         </IconContext.Provider>
                                         <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
-                                            <a onClick={() => deleteMutation.mutate(project)} href="#">
-                                                <BsTrash size={17} className={classes.iconLink} />
-                                            </a>
+                                            <IconButton onClick={() => deleteMutation.mutate(project)}>
+                                                <BsTrash size={17} />
+                                            </IconButton>
                                         </IconContext.Provider>
                                     </>
                                 ) : (
                                     <Link
-                                        href="#"
                                         color="inherit"
+                                        style={{ cursor: 'pointer' }}
                                         onClick={() => {
                                             setUserFilter(project.owner.rcId);
                                             console.log({ ...project.owner });
@@ -121,18 +121,16 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                             </span>
 
                             <span>
-                                <IconContext.Provider value={{ color: 'black', className: 'global-class-name' }}>
-                                    <a href={project.githubLink}>
-                                        <SiGithub size={25} className={classes.iconLink} />
-                                    </a>
-                                    <a
-                                        rel="noreferrer"
-                                        target="_blank"
-                                        href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
-                                    >
-                                        <SiZulip size={25} className={classes.iconLink} />
-                                    </a>
-                                </IconContext.Provider>
+                                <IconButton href={project.githubLink}>
+                                    <SiGithub />
+                                </IconButton>
+                                <IconButton
+                                    rel="noreferrer"
+                                    target="_blank"
+                                    href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
+                                >
+                                    <SiZulip />
+                                </IconButton>
                             </span>
                         </span>
                     </div>
@@ -156,15 +154,18 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                             return (
                                                 <Chip
                                                     key={collaborator._id.toString()}
-                                                    variant="outlined"
-                                                    icon={<FaUser />}
+                                                    avatar={
+                                                        <Avatar
+                                                            alt={`${collaborator.first_name} ${collaborator.last_name}`}
+                                                            src={collaborator.image_path}
+                                                        ></Avatar>
+                                                    }
                                                     label={`${collaborator.first_name} ${collaborator.last_name}`}
                                                     className={classes.singleChip}
                                                     onClick={() => {
                                                         setUserFilter(collaborator.rcId);
                                                         console.log({ collaborator });
                                                     }}
-                                                    // size="small"
                                                 />
                                             );
                                         })}
@@ -185,7 +186,6 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                             return (
                                                 <Chip
                                                     key={tag._id.toString()}
-                                                    variant="outlined"
                                                     icon={<FaTag />}
                                                     label={`${tag.value}`}
                                                     className={classes.singleChip}

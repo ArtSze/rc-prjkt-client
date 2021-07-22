@@ -7,6 +7,7 @@ import ProjectForm from './form-subs/ProjectForm';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
 import { useStore } from '../Home';
+import { Divider, Typography } from '@material-ui/core';
 
 export interface ProjectFormSubmitValues {
     title: string;
@@ -60,7 +61,9 @@ const ProjectFormAdd = (): JSX.Element => {
 
     return (
         <div>
+            <Typography variant="h5">Add New Project</Typography>
             <ProjectForm onSubmit={submitProjectToAdd} initialValues={initialValues} onCancel={onCancel} />
+            <Divider variant="fullWidth" style={{ marginTop: '20px', marginBottom: '20px' }} />
         </div>
     );
 };
