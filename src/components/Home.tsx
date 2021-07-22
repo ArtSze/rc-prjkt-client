@@ -9,7 +9,7 @@ import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
 import { TTagFilter } from './filter/Filter';
-import { TUserFilter } from './filter/Filter';
+import { TOwnerFilter } from './filter/Filter';
 
 import { useStyles } from '../static/styles';
 import { Collapse } from '@material-ui/core';
@@ -19,20 +19,20 @@ import ProjectFormAdd from './form/ProjectFormAdd';
 
 export interface AppState {
     tagFilter: TTagFilter;
-    userFilter: TUserFilter;
+    ownerFilter: TOwnerFilter;
     addForm: boolean;
     setTagFilter: (tags: ITag['value'][] | undefined) => void;
-    setUserFilter: (rcId: IUser['rcId'] | undefined) => void;
+    setOwnerFilter: (rcId: IUser['rcId'] | undefined) => void;
     setAddForm: () => void;
 }
 export const useStore = create<AppState>((set) => ({
     tagFilter: undefined,
-    userFilter: undefined,
+    ownerFilter: undefined,
     addForm: false,
     setTagFilter: (tags) => set({ tagFilter: tags }),
-    setUserFilter: (rcId) => {
+    setOwnerFilter: (rcId) => {
         set({
-            userFilter: rcId,
+            ownerFilter: rcId,
         });
     },
     setAddForm: () =>

@@ -22,7 +22,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     const queryClient = useQueryClient();
     const classes = useStyles();
 
-    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
 
@@ -109,7 +109,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                         color="inherit"
                                         style={{ cursor: 'pointer' }}
                                         onClick={() => {
-                                            setUserFilter(project.owner.rcId);
+                                            setOwnerFilter(project.owner.rcId);
                                             console.log({ ...project.owner });
                                         }}
                                         className={classes.staticProjectOwnerName}
@@ -163,7 +163,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                                     label={`${collaborator.first_name} ${collaborator.last_name}`}
                                                     className={classes.singleChip}
                                                     onClick={() => {
-                                                        setUserFilter(collaborator.rcId);
+                                                        setOwnerFilter(collaborator.rcId);
                                                         console.log({ collaborator });
                                                     }}
                                                 />

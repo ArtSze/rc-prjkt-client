@@ -8,10 +8,10 @@ import { useStyles } from '../../static/styles';
 import { Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
-const UserFilter = (): JSX.Element => {
+const OwnerFilter = (): JSX.Element => {
     const classes = useStyles();
-    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
-    const userFilter = useStore((state: AppState) => state.userFilter);
+    const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
+    const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const { data: users, error, isSuccess } = useUsers();
 
     if (error) errorHandler(error);
@@ -25,20 +25,20 @@ const UserFilter = (): JSX.Element => {
         });
 
         const getValue = (): IOption<IUser> => {
-            const option = options.filter((u) => u.value.rcId === userFilter);
+            const option = options.filter((u) => u.value.rcId === ownerFilter);
             return option[0];
         };
 
         // TODO: change from user filter to owner filter?
         return (
-            <div className={classes.userFilter}>
+            <div className={classes.ownerFilter}>
                 <Typography variant="subtitle2">Owner Filter</Typography>
                 <Select
                     value={getValue()}
                     components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
                     options={options}
                     name="user-filter"
-                    onChange={(e) => setUserFilter(e?.value.rcId)}
+                    onChange={(e) => setOwnerFilter(e?.value.rcId)}
                     placeholder="Select user..."
                     isClearable
                     isSearchable
@@ -48,7 +48,7 @@ const UserFilter = (): JSX.Element => {
     }
 
     return (
-        <div className={classes.userFilter}>
+        <div className={classes.ownerFilter}>
             <Typography variant="subtitle2">Owner Filter</Typography>
             <Select
                 components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
@@ -61,4 +61,4 @@ const UserFilter = (): JSX.Element => {
     );
 };
 
-export default UserFilter;
+export default OwnerFilter;
