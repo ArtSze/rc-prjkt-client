@@ -20,10 +20,6 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         position: 'fixed',
     },
-    // footerLinks: {
-    //     display: 'flex',
-    //     justifyItems: 'center',
-    // },
     appBar: {
         flexDirection: 'row',
         alignContent: 'center',

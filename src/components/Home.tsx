@@ -18,7 +18,7 @@ import { ITag, IUser } from '../types';
 import ProjectFormAdd from './form/ProjectFormAdd';
 
 export interface AppState {
-    tagFilter: TTagFilter;
+    tagFilter: string[] | undefined;
     userFilter: TUserFilter;
     addForm: boolean;
     setTagFilter: (tags: ITag['value'][] | undefined) => void;
