@@ -1,13 +1,12 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldProps } from 'formik';
-import CustomSingleSelect from './CustomSingleSelect';
 
 export interface IFormikLabelProps extends FieldProps {
     label: string;
     placeholder?: string;
 }
 
-export const TextField = ({ label, placeholder, field }: IFormikLabelProps) => (
+export const TextField = ({ label, placeholder, field }: IFormikLabelProps): JSX.Element => (
     <div>
         <label htmlFor={field.name}>{label}</label>
         <Field name={field.name} value={field.value} placeholder={placeholder} type="text" />
@@ -15,7 +14,7 @@ export const TextField = ({ label, placeholder, field }: IFormikLabelProps) => (
     </div>
 );
 
-export const ActiveField = ({ label, field }: IFormikLabelProps) => {
+export const ActiveField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     return (
         <div>
             <label htmlFor={field.name}>{label}</label>
