@@ -1,24 +1,28 @@
-import { lightGreen } from '@material-ui/core/colors';
 import { createTheme } from '@material-ui/core/styles';
 
-const rcColors = {
+export const rcColors = {
     pink: '#BD5179',
     green: '#23A050',
+    backgroundGreen: '#eef7f1',
+    borderGreen: '#3dc06c',
     orange: '#D23E56',
     blue: '#3C89C3',
+    backgroundBlue: '#d9efff',
+    borderBlue: '@4d9bd8',
     purple: '#815FA5',
     red: 'rgb(217, 90, 136)',
-    dark: '#626a6a;',
-    lightGreen: 'rgb(238, 247, 241)',
+    backgroundRed: '#fedce9',
+    borderRed: '#d95a88',
 };
 
 export const theme = createTheme({
     palette: {
         primary: {
+            light: rcColors.backgroundGreen,
             main: rcColors.green,
         },
         secondary: {
-            main: rcColors.lightGreen,
+            main: rcColors.purple,
         },
         info: {
             main: rcColors.blue,
@@ -30,7 +34,7 @@ export const theme = createTheme({
             main: rcColors.red,
         },
         success: {
-            main: rcColors.purple,
+            main: rcColors.pink,
         },
     },
 });

@@ -3,8 +3,9 @@ import { theme } from './theme';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: '70px',
+        margin: '70px 0 0 0',
         display: 'flex',
+        width: '100%',
         flexDirection: 'column',
         minHeight: '100vh',
     },
@@ -13,19 +14,19 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         marginTop: '2rem',
+        padding: '10px',
         background: 'rgb(238, 247, 241)',
+        bottom: 0,
+        width: '100%',
+        position: 'fixed',
     },
-    // footerLinks: {
-    //     display: 'flex',
-    //     justifyItems: 'center',
-    // },
     appBar: {
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',
         paddingLeft: '4rem',
         paddingRight: '4rem',
-        background: 'rgb(238, 247, 241)',
+        backgroundColor: theme.palette.primary.light,
     },
     appBarLeft: {
         display: 'flex',
@@ -46,8 +47,12 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly',
         marginBottom: '20px',
     },
-    bigFilter: {
-        flex: 3,
+    tagFilter: {
+        flex: 5,
+    },
+    userFilter: {
+        marginLeft: '10px',
+        flex: 2,
     },
     smallFilter: {
         marginLeft: '10px',
@@ -133,5 +138,16 @@ export const useStyles = makeStyles((theme) => ({
     },
     iconLink: {
         marginLeft: '.3rem',
+    },
+    auth: {
+        border: 'solid',
+        borderWidth: '5px',
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '25px',
     },
 }));

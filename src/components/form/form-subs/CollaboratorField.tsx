@@ -17,6 +17,7 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
                     _id: u._id,
                     first_name: u.first_name,
                     last_name: u.last_name,
+                    rcId: u.rcId,
                 },
             };
         });
