@@ -5,11 +5,11 @@ export interface ICollaborator {
     first_name: string;
     last_name: string;
     rcId: number;
+    image_path: string;
 }
 
 export interface IOwner extends ICollaborator {
     zulip_id: number;
-    image_path: string;
     batch: string;
     batchEndDate: Date;
 }
