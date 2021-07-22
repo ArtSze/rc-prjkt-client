@@ -5,8 +5,9 @@ import CustomMultiSelect, { IUserFromClient } from './generic/CustomMultiSelect'
 import { IFormikLabelProps } from './generic/FormFields';
 
 import useUsers from '../../../hooks/useUsers';
+import Loading from '../../Loading';
 
-export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps) => {
+export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps): JSX.Element => {
     const { data, isLoading, isError, isSuccess } = useUsers();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
@@ -18,17 +19,19 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
                     first_name: u.first_name,
                     last_name: u.last_name,
                     rcId: u.rcId,
+                    image_path: u.image_path,
                 },
             };
         });
     };
 
+    // TODO: replace isError with error handler?
     if (isError) {
         return <div>Error</div>;
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     if (isSuccess && data) {
@@ -49,4 +52,6 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
             </div>
         );
     }
+
+    return <div>Error</div>;
 };

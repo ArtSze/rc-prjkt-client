@@ -1,16 +1,15 @@
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
-import { components, OptionTypeBase, StylesConfig } from 'react-select';
+import { CommonProps, components, OptionTypeBase, StylesConfig } from 'react-select';
 import { FaUser, FaTag, FaTags } from 'react-icons/fa';
 import { rcColors } from '../../static/theme';
 import { MdSort } from 'react-icons/md';
 
-export const Option = (props: any) => {
+export const Option = (props: any): JSX.Element => {
     const style = {
         display: 'flex',
         alignItems: 'center',
     };
-    console.log({ props });
     return (
         <components.Option {...props}>
             <div style={style}>
@@ -31,7 +30,7 @@ export const Option = (props: any) => {
     );
 };
 
-export const Menu = (props: any) => {
+export const Menu = (props: any): JSX.Element => {
     return (
         <components.Menu {...props}>
             <Typography variant="body2">{props.children}</Typography>
@@ -39,7 +38,7 @@ export const Menu = (props: any) => {
     );
 };
 
-export const SingleValue = (props: any) => {
+export const SingleValue = (props: any): JSX.Element => {
     return (
         <components.SingleValue {...props}>
             <Typography variant="body2">{props.children}</Typography>
@@ -47,7 +46,7 @@ export const SingleValue = (props: any) => {
     );
 };
 
-export const Placeholder = (props: any) => {
+export const Placeholder = (props: any): JSX.Element => {
     return (
         <components.Placeholder {...props}>
             <Typography variant="body2">{props.selectProps.placeholder}</Typography>
@@ -55,7 +54,7 @@ export const Placeholder = (props: any) => {
     );
 };
 
-export const SortControl = (props: any) => {
+export const SortControl = (props: any): JSX.Element => {
     const style = { height: '16px', alignSelf: 'center', marginLeft: '10px', cursor: 'pointer' };
     return (
         <components.Control {...props}>
@@ -67,7 +66,7 @@ export const SortControl = (props: any) => {
     );
 };
 
-export const UserControl = (props: any) => {
+export const UserControl = (props: any): JSX.Element => {
     const style = { height: '16px', alignSelf: 'center', marginLeft: '10px', cursor: 'pointer' };
     return (
         <components.Control {...props}>
@@ -79,7 +78,7 @@ export const UserControl = (props: any) => {
     );
 };
 
-export const TagControl = (props: any) => {
+export const TagControl = (props: any): JSX.Element => {
     const style = { height: '16px', alignSelf: 'center', marginLeft: '10px', cursor: 'pointer' };
     return (
         <components.Control {...props}>
@@ -91,7 +90,7 @@ export const TagControl = (props: any) => {
     );
 };
 
-export const UserSingleValue = (props: any) => {
+export const UserSingleValue = (props: any): JSX.Element => {
     const style = {
         margin: '3px',
         padding: '3px',
@@ -121,7 +120,34 @@ export const UserSingleValue = (props: any) => {
         </components.SingleValue>
     );
 };
-export const TagMultiValueLabel = (props: any) => {
+export const UserMultiValueLabel = (props: any): JSX.Element => {
+    const style = {
+        display: 'flex',
+        alignItems: 'center',
+    };
+    return (
+        <components.MultiValueLabel {...props}>
+            <div style={style}>
+                <Avatar
+                    alt={props.data.value.first_name}
+                    src={props.data.value.image_path}
+                    variant="circle"
+                    style={{
+                        width: '24px',
+                        height: '24px',
+                        marginLeft: '2px',
+                        marginRight: '3px',
+                    }}
+                />
+                <Typography style={{ padding: '1px' }} variant="body2">
+                    {props.data.label}
+                </Typography>
+            </div>
+        </components.MultiValueLabel>
+    );
+};
+
+export const TagMultiValueLabel = (props: any): JSX.Element => {
     const style = {
         display: 'flex',
         alignItems: 'center',
@@ -138,26 +164,7 @@ export const TagMultiValueLabel = (props: any) => {
     );
 };
 
-const border = rcColors.borderRed;
-const background = rcColors.backgroundRed;
-
 export const multiStyles: StylesConfig<OptionTypeBase, boolean> = {
-    // control (styles) => ({ ...styles, backgroundColor: 'white' }),
-    // option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    //     return {
-    //         ...styles,
-    //         backgroundColor: isDisabled ? null : isSelected ? data.color : isFocused ? background : null,
-    //         color: isDisabled ? '#ccc' : isSelected ? background : data.color,
-    //         cursor: isDisabled ? 'not-allowed' : 'default',
-    //         ':active': {
-    //             ...styles[':active'],
-    //             backgroundColor: !isDisabled && (isSelected ? data.color : background),
-    //         },
-    //     };
-    // },
-    // input: (styles) => ({ ...styles, ...dot() }),
-    // placeholder: (styles) => ({ ...styles, ...dot() }),
-    // singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
-    multiValue: (styles, { data }) => ({ ...styles, borderRadius: '16px' }),
+    multiValue: (styles) => ({ ...styles, borderRadius: '16px' }),
     multiValueRemove: (styles) => ({ ...styles, borderBottomRightRadius: '16px', borderTopRightRadius: '16px' }),
 };
