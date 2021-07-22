@@ -12,7 +12,7 @@ import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '
 const TagFilter = (): JSX.Element => {
     const classes = useStyles();
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-    const { data: tags, error, isLoading, isSuccess } = useTags();
+    const { data: tags, error, isSuccess } = useTags();
 
     function handleChange(selectFilter: ITagOptions) {
         const tags: TTagFilter = selectFilter.map((tagOption) => tagOption.value.value);
