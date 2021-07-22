@@ -190,7 +190,9 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                                     label={`${tag.value}`}
                                                     className={classes.singleChip}
                                                     onClick={() => {
-                                                        setTagFilter([tag.value]);
+                                                        tagFilter
+                                                            ? setTagFilter([...tagFilter, tag.value])
+                                                            : setTagFilter([tag.value]);
                                                         console.log(tagFilter);
                                                     }}
                                                 />

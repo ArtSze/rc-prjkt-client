@@ -3,7 +3,7 @@ import { QueryParams } from './filter/Filter';
 import { Button, Tab, Tabs, AppBar, Typography } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
-import { useStore } from './Home';
+import { useStore, AppState } from './Home';
 
 interface NavProps {
     allProjects: boolean;
@@ -11,6 +11,8 @@ interface NavProps {
     setAllProjects: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
+    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const setAddForm = useStore((state) => state.setAddForm);
 
     const classes = useStyles();
@@ -43,6 +45,8 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         onClick={() => {
                             setAllProjects(true);
                             setParams({ status: true });
+                            setUserFilter(undefined);
+                            setTagFilter(undefined);
                         }}
                     />
                     <Tab
