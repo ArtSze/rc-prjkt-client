@@ -10,8 +10,8 @@ import { Typography } from '@material-ui/core';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
 
 const TagFilter = (): JSX.Element => {
+    const classes = useStyles();
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-
     const { data: tags, error, isLoading, isSuccess } = useTags();
 
     function handleChange(selectFilter: ITagOptions) {
@@ -19,9 +19,6 @@ const TagFilter = (): JSX.Element => {
         // set tags to undefined if there are no tags to filter by
         tags.length > 0 ? setTagFilter(tags) : setTagFilter(undefined);
     }
-
-    const classes = useStyles();
-    if (isLoading) return <h3>Loading...</h3>;
 
     if (error) errorHandler(error);
 
@@ -51,7 +48,17 @@ const TagFilter = (): JSX.Element => {
         );
     }
 
-    return <div>Error</div>;
+    return (
+        <Select
+            components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
+            name="tag-filter"
+            placeholder="Select tags..."
+            isMulti
+            isClearable
+            isSearchable
+            styles={multiStyles}
+        />
+    );
 };
 
 export default TagFilter;

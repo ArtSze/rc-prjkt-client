@@ -9,12 +9,10 @@ import { Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
 const UserFilter = (): JSX.Element => {
+    const classes = useStyles();
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);
     const userFilter = useStore((state: AppState) => state.userFilter);
-
-    const { data: users, error, isLoading, isSuccess } = useUsers();
-
-    if (isLoading) return <h3>Loading...</h3>;
+    const { data: users, error, isSuccess } = useUsers();
 
     if (error) errorHandler(error);
 
@@ -26,7 +24,6 @@ const UserFilter = (): JSX.Element => {
             };
         });
 
-        const classes = useStyles();
         const getValue = (): IOption<IUser> => {
             const option = options.filter((u) => u.value.rcId === userFilter);
             return option[0];
@@ -50,7 +47,18 @@ const UserFilter = (): JSX.Element => {
         );
     }
 
-    return <div>Error</div>;
+    return (
+        <div className={classes.userFilter}>
+            <Typography variant="subtitle2">Owner Filter</Typography>
+            <Select
+                components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
+                name="user-filter"
+                placeholder="Select user..."
+                isClearable
+                isSearchable
+            />
+        </div>
+    );
 };
 
 export default UserFilter;
