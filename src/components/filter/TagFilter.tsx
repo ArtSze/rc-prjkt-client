@@ -5,14 +5,18 @@ import useTags from '../../hooks/useTags';
 import errorHandler from '../../utils/errorHandler';
 import { useStyles } from '../../static/styles';
 import { TTagFilter } from './Filter';
-import { ITag, ITagOptions } from '../../types';
+import { ITag, ITagOptions, IOption } from '../../types';
 import { Typography } from '@material-ui/core';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
 
 const TagFilter = (): JSX.Element => {
     const classes = useStyles();
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-    const { data: tags, error, isSuccess } = useTags();
+
+    const tagFilter = useStore((state: AppState) => state.tagFilter);
+
+    const { data: tags, error, isLoading, isSuccess } = useTags();
+
 
     function handleChange(selectFilter: ITagOptions) {
         const tags: TTagFilter = selectFilter.map((tagOption) => tagOption.value.value);
@@ -30,10 +34,15 @@ const TagFilter = (): JSX.Element => {
             };
         });
 
+        const getValue = () => {
+            return options.filter((t) => tagFilter?.includes(t.value.value));
+        };
+
         return (
             <div className={classes.tagFilter}>
                 <Typography variant="subtitle2">Tag Filter</Typography>
                 <Select
+                    value={getValue()}
                     components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
                     options={options}
                     name="tag-filter"

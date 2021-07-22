@@ -18,8 +18,13 @@ import { ITag, IUser } from '../types';
 import ProjectFormAdd from './form/ProjectFormAdd';
 
 export interface AppState {
+<<<<<<< HEAD
     tagFilter: TTagFilter;
     ownerFilter: TOwnerFilter;
+=======
+    tagFilter: string[] | undefined;
+    userFilter: TUserFilter;
+>>>>>>> 49a0c2e650b6c568930f106dab1f44866a823f02
     addForm: boolean;
     setTagFilter: (tags: ITag['value'][] | undefined) => void;
     setOwnerFilter: (rcId: IUser['rcId'] | undefined) => void;

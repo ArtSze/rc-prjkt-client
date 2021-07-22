@@ -10,9 +10,20 @@ import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../sele
 
 const OwnerFilter = (): JSX.Element => {
     const classes = useStyles();
+<<<<<<< HEAD:src/components/filter/OwnerFilter.tsx
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const { data: users, error, isSuccess } = useUsers();
+=======
+    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const userFilter = useStore((state: AppState) => state.userFilter);
+
+    const classes = useStyles();
+
+    const { data: users, error, isLoading, isSuccess } = useUsers();
+
+    if (isLoading) return <h3>Loading...</h3>;
+>>>>>>> 49a0c2e650b6c568930f106dab1f44866a823f02:src/components/filter/UserFilter.tsx
 
     if (error) errorHandler(error);
 
