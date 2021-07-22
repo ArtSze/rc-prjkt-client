@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
-import { components, OptionTypeBase, StylesConfig } from 'react-select';
+import { CommonProps, components, OptionTypeBase, StylesConfig } from 'react-select';
 import { FaUser, FaTag, FaTags } from 'react-icons/fa';
 import { MdSort } from 'react-icons/md';
 
