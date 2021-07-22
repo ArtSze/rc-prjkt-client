@@ -17,7 +17,6 @@ const TagFilter = (): JSX.Element => {
 
     const { data: tags, error, isLoading, isSuccess } = useTags();
 
-
     function handleChange(selectFilter: ITagOptions) {
         const tags: TTagFilter = selectFilter.map((tagOption) => tagOption.value.value);
         // set tags to undefined if there are no tags to filter by
