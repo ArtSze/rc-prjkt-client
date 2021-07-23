@@ -12,7 +12,9 @@ const Auth = (): JSX.Element => {
     const history = useHistory();
     const { isSuccess } = usePing();
     usePrefetchTags();
-    usePrefetchUsers();
+    usePrefetchUsers({
+        omitSelf: 'false',
+    });
     const classes = useStyles();
 
     if (isSuccess) {

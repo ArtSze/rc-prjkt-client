@@ -2,8 +2,7 @@ import React from 'react';
 import { StatusChoices } from './Filter';
 import { Updater } from 'use-immer';
 import Select from 'react-select';
-import { Typography } from '@material-ui/core';
-import { useStyles } from '../../static/styles';
+import { Grid, Typography } from '@material-ui/core';
 import { IOption } from '../../types';
 import { Menu, SingleValue } from '../select/SelectComponents';
 
@@ -19,10 +18,8 @@ const StatusFilter = ({ setStatusFilter }: StatusFilterProps): JSX.Element => {
         { value: StatusChoices['All'], label: 'All' },
     ];
 
-    const classes = useStyles();
-
     return (
-        <div className={classes.smallFilter}>
+        <Grid item xs={12} sm={6} md={6} lg={2}>
             <Typography variant="subtitle2">Status</Typography>
             <Select
                 defaultValue={options[0]}
@@ -34,7 +31,7 @@ const StatusFilter = ({ setStatusFilter }: StatusFilterProps): JSX.Element => {
                     setStatusFilter(e?.value as StatusChoices);
                 }}
             />
-        </div>
+        </Grid>
     );
 };
 

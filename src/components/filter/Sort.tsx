@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
 import { useStyles } from '../../static/styles';
@@ -22,12 +22,13 @@ const Sort = (): JSX.Element => {
 
     const classes = useStyles();
 
+
     const getValue = () => {
         return options.filter((sort) => sortFilter?.includes(sort.value));
     };
 
     return (
-        <div className={classes.smallFilter}>
+        <Grid item xs={12} sm={6} md={6} lg={3}>
             <Typography variant="subtitle2">Sort</Typography>
             <Select
                 options={options}
@@ -37,7 +38,7 @@ const Sort = (): JSX.Element => {
                     if (e) setSortFilter(e.value);
                 }}
             />
-        </div>
+        </Grid>
     );
 };
 

@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 import { useStore, AppState, SortMethods } from '../Home';
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
-import { useStyles } from '../../static/styles';
-import { Divider } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import OwnerFilter from './OwnerFilter';
 import TagFilter from './TagFilter';
 import { useImmer } from 'use-immer';
@@ -38,8 +37,6 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const sortFilter = useStore((state: AppState) => state.sortFilter);
 
-    const classes = useStyles();
-
     useEffect(() => {
         const params = createParams(statusFilter, tagFilter, ownerFilter, sortFilter);
         setParams(params);
@@ -48,13 +45,13 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
 
     return (
         <>
-            <div className={classes.filterBar}>
+            <Grid container spacing={1}>
                 <TagFilter />
                 <OwnerFilter />
                 <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
                 <Sort />
-            </div>
-            <Divider variant="fullWidth" style={{ marginBottom: '20px' }} />
+            </Grid>
+            <Divider variant="fullWidth" style={{ marginTop: '20px', marginBottom: '20px' }} />
         </>
     );
 };

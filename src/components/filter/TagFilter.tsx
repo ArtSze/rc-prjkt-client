@@ -3,14 +3,12 @@ import Select from 'react-select';
 import { useStore, AppState } from '../Home';
 import useTags from '../../hooks/useTags';
 import errorHandler from '../../utils/errorHandler';
-import { useStyles } from '../../static/styles';
 import { TTagFilter } from './Filter';
 import { ITag, ITagOptions } from '../../types';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
 
 const TagFilter = (): JSX.Element => {
-    const classes = useStyles();
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
 
     const tagFilter = useStore((state: AppState) => state.tagFilter);
@@ -38,7 +36,7 @@ const TagFilter = (): JSX.Element => {
         };
 
         return (
-            <div className={classes.tagFilter}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
                 <Typography variant="subtitle2">Tag Filter</Typography>
                 <Select
                     value={getValue()}
@@ -52,20 +50,23 @@ const TagFilter = (): JSX.Element => {
                     isSearchable
                     styles={multiStyles}
                 />
-            </div>
+            </Grid>
         );
     }
 
     return (
-        <Select
-            components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
-            name="tag-filter"
-            placeholder="Select tags..."
-            isMulti
-            isClearable
-            isSearchable
-            styles={multiStyles}
-        />
+        <Grid item xs={12} sm={6} md={6} lg={4}>
+            <Typography variant="subtitle2">Tag Filter</Typography>
+            <Select
+                components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
+                name="tag-filter"
+                placeholder="Select tags..."
+                isMulti
+                isClearable
+                isSearchable
+                styles={multiStyles}
+            />
+        </Grid>
     );
 };
 
