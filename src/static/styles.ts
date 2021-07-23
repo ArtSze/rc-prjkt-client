@@ -64,6 +64,29 @@ export const useStyles = makeStyles((theme) => ({
     button: {
         margin: '.75rem',
     },
+    projectFormContainer: {
+        marginBottom: '.75rem',
+        paddingTop: '.75rem',
+        paddingBottom: '.75rem',
+        background: 'rgb(238, 247, 241)',
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: '0px',
+    },
+    projectForm: {
+        // display: 'flex',
+        // flexDirection: 'column',
+    },
+    projectFormEditFields: {
+        display: 'flex',
+        marginLeft: '1rem',
+    },
+    formRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexBasis: '100%',
+    },
     staticProject: {
         marginBottom: '.75rem',
         paddingTop: '.75rem',

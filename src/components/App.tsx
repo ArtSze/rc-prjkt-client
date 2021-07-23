@@ -6,8 +6,8 @@ import { theme } from '../static/theme';
 import Footer from './Footer';
 import Auth from './Auth';
 import Home from './Home';
-import NotFound from './ErrorPages/NotFound';
-import BadRequest from './ErrorPages/BadRequest';
+import NotFound from './error_pages/NotFound';
+import BadRequest from './error_pages/BadRequest';
 
 const App = (): JSX.Element => {
     return (

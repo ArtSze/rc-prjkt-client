@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
-import { useQueryClient } from 'react-query';
 
 import { useStore, AppState } from './Home';
 
@@ -11,7 +10,7 @@ import { FaTag } from 'react-icons/fa';
 import { Paper, Typography, Chip, Link, Avatar, IconButton } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
-import DeleteConfirmationModal from './DeleteConfirmationModal';
+import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
 
 interface StaticProjectProps {
     project: IProject;
@@ -19,7 +18,6 @@ interface StaticProjectProps {
 }
 
 const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
-    const queryClient = useQueryClient();
     const classes = useStyles();
 
     const setUserFilter = useStore((state: AppState) => state.setUserFilter);

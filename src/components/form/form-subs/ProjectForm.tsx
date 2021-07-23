@@ -7,6 +7,8 @@ import { CollaboratorField } from './CollaboratorField';
 import { ProjectFormSubmitValues } from '../ProjectFormAdd';
 import { TagField } from './TagField';
 
+import { useStyles } from '../../../static/styles';
+
 interface Props {
     onSubmit: (values: ProjectFormSubmitValues) => Promise<void>;
     onCancel: () => void;
@@ -14,6 +16,8 @@ interface Props {
 }
 
 const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element => {
+    const classes = useStyles();
+
     return (
         <Formik
             enableReinitialize={true}
@@ -31,7 +35,7 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                 active: Yup.bool().notRequired(),
             })}
         >
-            <Form>
+            <Form className={classes.projectForm}>
                 <Field name="title" label="Title" placeholder="title" component={TextField} />
                 <Field name="description" label="Description" placeholder="description" component={TextField} />
                 <Field

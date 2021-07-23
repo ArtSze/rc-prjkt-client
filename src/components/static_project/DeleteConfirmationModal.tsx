@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
 // import { useDeleteProjects } from '../mutations/useDeleteProject';
-import { axiosInstance } from '../utils/axiosInstance';
-import { IProject } from '../types';
-import constants from '../utils/constants';
+import { axiosInstance } from '../../utils/axiosInstance';
+import { IProject } from '../../types';
+import constants from '../../utils/constants';
 
 import {
     Dialog,
