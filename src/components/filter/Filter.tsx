@@ -2,7 +2,7 @@ import React from 'react';
 import Sort from './Sort';
 import StatusFilter from './StatusFilter';
 import { useEffect } from 'react';
-import { useStore, AppState } from '../Home';
+import { useStore, AppState, SortMethods } from '../Home';
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
 import { Divider, Grid } from '@material-ui/core';
@@ -23,6 +23,7 @@ export type QueryParams = {
     status?: boolean;
     tags?: TTagFilter;
     user?: TOwnerFilter;
+    sort: SortMethods;
     me?: boolean;
 };
 
@@ -34,12 +35,13 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<StatusChoices>(StatusChoices['Active']);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
+    const sortFilter = useStore((state: AppState) => state.sortFilter);
 
     useEffect(() => {
-        const params = createParams(statusFilter, tagFilter, ownerFilter);
+        const params = createParams(statusFilter, tagFilter, ownerFilter, sortFilter);
         setParams(params);
         console.log({ params });
-    }, [statusFilter, tagFilter, ownerFilter]);
+    }, [statusFilter, tagFilter, ownerFilter, sortFilter]);
 
     return (
         <>

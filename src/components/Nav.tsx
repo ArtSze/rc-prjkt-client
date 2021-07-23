@@ -3,7 +3,7 @@ import { QueryParams } from './filter/Filter';
 import { Button, Tab, Tabs, AppBar, Typography } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
-import { useStore, AppState } from './Home';
+import { useStore, AppState, SortMethods } from './Home';
 
 interface NavProps {
     allProjects: boolean;
@@ -44,7 +44,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         label="All Projects"
                         onClick={() => {
                             setAllProjects(true);
-                            setParams({ status: true });
+                            setParams({ status: true, sort: SortMethods['Latest Batch'] });
                             setOwnerFilter(undefined);
                             setTagFilter(undefined);
                         }}
@@ -53,7 +53,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         label="My Projects"
                         onClick={() => {
                             setAllProjects(false);
-                            setParams({ me: true });
+                            setParams({ me: true, sort: SortMethods['Latest Batch'] });
                         }}
                     />
                     ;
