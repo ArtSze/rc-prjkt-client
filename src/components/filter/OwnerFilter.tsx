@@ -4,24 +4,19 @@ import useUsers from '../../hooks/useUsers';
 import { IUser, IUserOptions, IOption } from '../../types';
 import errorHandler from '../../utils/errorHandler';
 import { useStore, AppState } from '../Home';
-import { useStyles } from '../../static/styles';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
 const OwnerFilter = (): JSX.Element => {
-    const classes = useStyles();
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const {
         data: users,
         error,
-        isLoading,
         isSuccess,
     } = useUsers({
         omitSelf: 'false',
     });
-
-    if (isLoading) return <h3>Loading...</h3>;
 
     if (error) errorHandler(error);
 
@@ -39,7 +34,7 @@ const OwnerFilter = (): JSX.Element => {
         };
 
         return (
-            <div className={classes.ownerFilter}>
+            <Grid item xs={12} sm={12} md={6} lg={3}>
                 <Typography variant="subtitle2">Owner Filter</Typography>
                 <Select
                     value={getValue()}
@@ -51,12 +46,12 @@ const OwnerFilter = (): JSX.Element => {
                     isClearable
                     isSearchable
                 />
-            </div>
+            </Grid>
         );
     }
 
     return (
-        <div className={classes.ownerFilter}>
+        <Grid item xs={12} sm={12} md={6} lg={3}>
             <Typography variant="subtitle2">Owner Filter</Typography>
             <Select
                 components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
@@ -65,7 +60,7 @@ const OwnerFilter = (): JSX.Element => {
                 isClearable
                 isSearchable
             />
-        </div>
+        </Grid>
     );
 };
 
