@@ -21,7 +21,7 @@ const Sort = (): JSX.Element => {
     const [sort, setSort] = useImmer<IOption<SortMethods> | null>(options[2]);
 
     return (
-        <Grid item xs={12} sm={6} md={6} lg={2}>
+        <Grid item xs={12} sm={6} md={6} lg={3}>
             <Typography variant="subtitle2">Sort</Typography>
             <Select
                 options={options}
