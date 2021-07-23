@@ -39,14 +39,13 @@ const CustomMultiSelect = ({
     isMulti = true,
     initSelections,
 }: CustomSelectProps): JSX.Element => {
-    const onChange = (option: ValueType<ICollabOption | ICollabOption[], true>) => {
+    const onChange = (option: ValueType<ICollabOption, true>) => {
         form.setFieldValue(
             field.name,
             (option as ICollabOption[]).map((item: ICollabOption) => item.value),
         );
     };
 
-    // this can probably be trimmed down
     const getValue = () => {
         if (!field.value) {
             return isMulti ? [] : ('' as any);
@@ -64,6 +63,11 @@ const CustomMultiSelect = ({
             options={options}
             isMulti={isMulti}
             styles={multiStyles}
+            isOptionSelected={(option) => {
+                const valIds = field.value.map((val: IUserFromClient) => val._id);
+                return valIds.includes(option.value._id);
+            }}
+            hideSelectedOptions={true}
         />
     );
 };

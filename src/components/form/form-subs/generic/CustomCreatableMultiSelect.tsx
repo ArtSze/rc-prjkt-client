@@ -50,8 +50,6 @@ const CustomMultiSelect = ({
         form.setFieldValue(field.name, [...field.value, newValue.value]);
     };
 
-    // TODO: correct any type - it looks like this component is only used for tags, so the default could be an empty array and string logic is no longer needed?
-    // this can probably be trimmed down
     const getValue = () => {
         if (!field.value) {
             return isMulti ? [] : ('' as any);
@@ -71,6 +69,11 @@ const CustomMultiSelect = ({
             isMulti={isMulti}
             isClearable
             styles={multiStyles}
+            hideSelectedOptions={true}
+            isOptionSelected={(option) => {
+                const valIds = field.value.map((val: ITagFromClient) => val._id);
+                return valIds.includes(option.value._id);
+            }}
         />
     );
 };

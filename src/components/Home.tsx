@@ -48,7 +48,10 @@ const Home = (): JSX.Element => {
 
     const { data: projects, isSuccess, error, refetch } = useProjects(params);
 
-    usePrefetchUsers();
+    usePrefetchUsers({
+        omitSelf: 'false',
+    });
+
     const classes = useStyles();
 
     if (error) {
