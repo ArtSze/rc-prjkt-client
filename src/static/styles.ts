@@ -120,6 +120,7 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         marginLeft: '1rem',
         alignItems: 'center',
+        flexWrap: 'wrap',
     },
     staticProjectDescription: {
         marginBottom: '1.5rem',
@@ -136,6 +137,7 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: '3rem',
     },
     singleChip: {
+        marginBottom: '.15rem',
         marginRight: '.2rem',
         paddingLeft: '.2rem',
     },
