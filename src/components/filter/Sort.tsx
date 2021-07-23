@@ -1,8 +1,7 @@
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
 import { useImmer } from 'use-immer';
-import { useStyles } from '../../static/styles';
 import { IOption } from '../../types';
 import { Menu, SingleValue, SortControl } from '../select/SelectComponents';
 
@@ -20,10 +19,9 @@ const Sort = (): JSX.Element => {
     ];
 
     const [sort, setSort] = useImmer<IOption<SortMethods> | null>(options[2]);
-    const classes = useStyles();
 
     return (
-        <div className={classes.smallFilter}>
+        <Grid item xs={12} sm={6} md={6} lg={3}>
             <Typography variant="subtitle2">Sort</Typography>
             <Select
                 options={options}
@@ -31,7 +29,7 @@ const Sort = (): JSX.Element => {
                 value={sort}
                 onChange={setSort}
             />
-        </div>
+        </Grid>
     );
 };
 

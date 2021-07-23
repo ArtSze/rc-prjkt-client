@@ -41,23 +41,6 @@ export const useStyles = makeStyles((theme) => ({
         justifySelf: 'right',
         alignSelf: 'center',
     },
-    filterBar: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginBottom: '20px',
-    },
-    tagFilter: {
-        flex: 5,
-    },
-    userFilter: {
-        marginLeft: '10px',
-        flex: 2,
-    },
-    smallFilter: {
-        marginLeft: '10px',
-        flex: 1,
-    },
     tallIndicator: {
         height: '5px',
     },
