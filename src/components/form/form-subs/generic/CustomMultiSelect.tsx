@@ -40,18 +40,10 @@ const CustomMultiSelect = ({
     initSelections,
 }: CustomSelectProps): JSX.Element => {
     const onChange = (option: ValueType<ICollabOption, true>) => {
-        // const valIds = field.value.map((val: IUserFromClient) => val._id);
-        // const validOpts = option.filter((opt) => !valIds.includes(opt.value._id));
-
-        // console.log(field.value);
-        // console.log({ validOpts });
-        // if (validOpts.includes(option[option.length - 1])) {
-
         form.setFieldValue(
             field.name,
             (option as ICollabOption[]).map((item: ICollabOption) => item.value),
         );
-        // }
     };
 
     const getValue = () => {
@@ -73,8 +65,7 @@ const CustomMultiSelect = ({
             styles={multiStyles}
             isOptionSelected={(option) => {
                 const valIds = field.value.map((val: IUserFromClient) => val._id);
-                const validOpts = option.filter((opt: any) => !valIds.includes(opt.value._id));
-                return validOpts.includes(option);
+                return valIds.includes(option.value._id);
             }}
             hideSelectedOptions={true}
         />
