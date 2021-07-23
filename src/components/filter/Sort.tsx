@@ -1,7 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
-import { useStyles } from '../../static/styles';
 import { IOption } from '../../types';
 import { AppState, useStore } from '../Home';
 import { Menu, SingleValue, SortControl } from '../select/SelectComponents';
@@ -20,15 +19,12 @@ const Sort = (): JSX.Element => {
         { value: SortMethods['Oldest Batch'], label: 'Oldest Batch' },
     ];
 
-    const classes = useStyles();
-
-
     const getValue = () => {
         return options.filter((sort) => sortFilter?.includes(sort.value));
     };
 
     return (
-        <Grid item xs={12} sm={6} md={6} lg={3}>
+        <Grid item xs={12} sm={6} md={6} lg={2}>
             <Typography variant="subtitle2">Sort</Typography>
             <Select
                 options={options}
