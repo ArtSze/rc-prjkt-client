@@ -50,7 +50,7 @@ export const useStyles = makeStyles((theme) => ({
     tagFilter: {
         flex: 5,
     },
-    userFilter: {
+    ownerFilter: {
         marginLeft: '10px',
         flex: 2,
     },

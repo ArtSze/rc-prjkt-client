@@ -11,7 +11,7 @@ interface NavProps {
     setAllProjects: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
-    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
+    const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const setAddForm = useStore((state) => state.setAddForm);
 
@@ -45,7 +45,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         onClick={() => {
                             setAllProjects(true);
                             setParams({ status: true });
-                            setUserFilter(undefined);
+                            setOwnerFilter(undefined);
                             setTagFilter(undefined);
                         }}
                     />

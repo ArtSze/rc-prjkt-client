@@ -12,7 +12,7 @@ interface StatusFilterProps {
     setStatusFilter: Updater<StatusChoices>;
 }
 
-const StatusFilter = ({ statusFilter, setStatusFilter }: StatusFilterProps): JSX.Element => {
+const StatusFilter = ({ setStatusFilter }: StatusFilterProps): JSX.Element => {
     const options: IOption<StatusChoices>[] = [
         { value: StatusChoices['Active'], label: 'Active' },
         { value: StatusChoices['Inactive'], label: 'Inactive' },
