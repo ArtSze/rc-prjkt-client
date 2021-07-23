@@ -44,7 +44,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         label="All Projects"
                         onClick={() => {
                             setAllProjects(true);
-                            setParams({ status: true, sort: SortMethods['Batch'] });
+                            setParams({ status: true, sort: SortMethods['Latest Batch'] });
                             setOwnerFilter(undefined);
                             setTagFilter(undefined);
                         }}
@@ -53,7 +53,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         label="My Projects"
                         onClick={() => {
                             setAllProjects(false);
-                            setParams({ me: true, sort: SortMethods['Batch'] });
+                            setParams({ me: true, sort: SortMethods['Latest Batch'] });
                         }}
                     />
                     ;

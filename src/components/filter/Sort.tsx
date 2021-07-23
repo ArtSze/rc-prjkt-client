@@ -13,8 +13,11 @@ const Sort = (): JSX.Element => {
 
     const options: IOption<SortMethods>[] = [
         { value: SortMethods['Last Updated'], label: 'Last Updated' },
-        { value: SortMethods['Created'], label: 'Created' },
-        { value: SortMethods['Batch'], label: 'Batch' },
+        { value: SortMethods['First Updated'], label: 'First Updated' },
+        { value: SortMethods['Last Created'], label: 'Last Created' },
+        { value: SortMethods['First Created'], label: 'First Created' },
+        { value: SortMethods['Latest Batch'], label: 'Latest Batch' },
+        { value: SortMethods['Oldest Batch'], label: 'Oldest Batch' },
     ];
 
     const classes = useStyles();

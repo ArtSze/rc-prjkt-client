@@ -18,8 +18,11 @@ import ProjectFormAdd from './form/ProjectFormAdd';
 
 export enum SortMethods {
     'Last Updated' = 'last updated',
-    'Created' = 'created',
-    'Batch' = 'batch',
+    'First Updated' = 'first updated',
+    'Last Created' = 'last created',
+    'First Created' = 'first created',
+    'Latest Batch' = 'latest batch',
+    'Oldest Batch' = 'oldest batch',
 }
 
 export interface AppState {
@@ -33,7 +36,7 @@ export interface AppState {
     setAddForm: () => void;
 }
 export const useStore = create<AppState>((set) => ({
-    sortFilter: SortMethods['Batch'],
+    sortFilter: SortMethods['Latest Batch'],
     tagFilter: undefined,
     ownerFilter: undefined,
     addForm: false,
@@ -51,7 +54,7 @@ export const useStore = create<AppState>((set) => ({
 }));
 
 const Home = (): JSX.Element => {
-    const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Batch'] });
+    const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Latest Batch'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
     const addForm = useStore((state) => state.addForm);
 
