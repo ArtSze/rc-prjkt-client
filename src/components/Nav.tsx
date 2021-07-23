@@ -54,8 +54,6 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                         onClick={() => {
                             setAllProjects(false);
                             setParams({ me: true });
-                            setUserFilter(undefined);
-                            setTagFilter(undefined);
                         }}
                     />
                     ;
