@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
-import { axiosInstance } from '../utils/axiosInstance';
-import { useMutation, useQueryClient } from 'react-query';
-import constants from '../utils/constants';
+import { useQueryClient } from 'react-query';
+
 import { useStore, AppState } from './Home';
 
 import { IconContext } from 'react-icons';
@@ -12,6 +11,7 @@ import { FaTag } from 'react-icons/fa';
 import { Paper, Typography, Chip, Link, Avatar, IconButton } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { useStyles } from '../static/styles';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 interface StaticProjectProps {
     project: IProject;
@@ -29,19 +29,6 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     function toggleEdit() {
         setEdit((prevState: boolean) => !prevState);
     }
-
-    const deleteMutation = useMutation(
-        (project: IProject) =>
-            axiosInstance.delete(`projects/${project._id}`, {
-                data: project,
-                withCredentials: true,
-            }),
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries(constants.projects);
-            },
-        },
-    );
 
     const ownerProject = project as IProjectOwnerCheck;
 
@@ -98,11 +85,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                                 <BsPencilSquare size={17} />
                                             </IconButton>
                                         </IconContext.Provider>
-                                        <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
-                                            <IconButton onClick={() => deleteMutation.mutate(project)}>
-                                                <BsTrash size={17} />
-                                            </IconButton>
-                                        </IconContext.Provider>
+                                        <DeleteConfirmationModal {...project} />
                                     </>
                                 ) : (
                                     <Link
@@ -139,72 +122,74 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 <Divider style={{ width: '97%', marginLeft: '1rem', marginRight: '1rem' }} />
                 <div className={classes.staticProjectBelowDivider}>
                     <div className={classes.staticProjectRow}>
-                        {/* <Typography variant="body2">description:</Typography> */}
-                        <span /* className={classes.staticProjectValue} */>
+                        <span className={classes.staticProjectDescription}>
                             <Typography variant="body2">{project.description}</Typography>
                         </span>
                     </div>
                     <div className={classes.staticProjectRow}>
-                        <span className={classes.chipContainer}>
-                            <span className={classes.chipSub}>
-                                <Typography variant="body2">collaborators:</Typography>
-                                {project.collaborators.length ? (
-                                    <span className={classes.staticProjectValue}>
-                                        {project.collaborators.map((collaborator) => {
-                                            return (
-                                                <Chip
-                                                    key={collaborator._id.toString()}
-                                                    avatar={
-                                                        <Avatar
-                                                            alt={`${collaborator.first_name} ${collaborator.last_name}`}
-                                                            src={collaborator.image_path}
-                                                        ></Avatar>
-                                                    }
-                                                    label={`${collaborator.first_name} ${collaborator.last_name}`}
-                                                    className={classes.singleChip}
-                                                    onClick={() => {
-                                                        setUserFilter(collaborator.rcId);
-                                                        console.log({ collaborator });
-                                                    }}
-                                                />
-                                            );
-                                        })}
-                                    </span>
-                                ) : (
-                                    <span className={classes.staticProjectValue}>
-                                        <Typography variant="body2" style={{ color: 'gray' }}>
-                                            No Collaborators
-                                        </Typography>
-                                    </span>
-                                )}
-                            </span>
-                            <span className={classes.chipSub}>
-                                <Typography variant="body2">tags:</Typography>
-                                {project.tags.length ? (
-                                    <span className={classes.staticProjectValue}>
-                                        {project.tags.map((tag) => {
-                                            return (
-                                                <Chip
-                                                    key={tag._id.toString()}
-                                                    icon={<FaTag />}
-                                                    label={`${tag.value}`}
-                                                    className={classes.singleChip}
-                                                    onClick={() => {
-                                                        tagFilter
-                                                            ? setTagFilter([...tagFilter, tag.value])
-                                                            : setTagFilter([tag.value]);
-                                                        console.log(tagFilter);
-                                                    }}
-                                                />
-                                            );
-                                        })}
-                                    </span>
-                                ) : (
-                                    <span className={classes.staticProjectValue}>
-                                        <Typography style={{ color: 'gray' }}>No Tags</Typography>
-                                    </span>
-                                )}
-                            </span>
+                        {/* <span className={classes.chipContainer}> */}
+
+                        <span className={classes.chipSub}>
+                            <Typography variant="body2">tags:</Typography>
+                            {project.tags.length ? (
+                                <span className={classes.staticProjectValue}>
+                                    {project.tags.map((tag) => {
+                                        return (
+                                            <Chip
+                                                key={tag._id.toString()}
+                                                icon={<FaTag />}
+                                                label={`${tag.value}`}
+                                                className={classes.singleChip}
+                                                onClick={() => {
+                                                    tagFilter
+                                                        ? setTagFilter([...tagFilter, tag.value])
+                                                        : setTagFilter([tag.value]);
+                                                    console.log(tagFilter);
+                                                }}
+                                            />
+                                        );
+                                    })}
+                                </span>
+                            ) : (
+                                <span className={classes.staticProjectValue}>
+                                    <Typography style={{ color: 'gray' }}>No Tags</Typography>
+                                </span>
+                            )}
+                        </span>
+                        {/* </span> */}
+                    </div>
+                    <div className={classes.staticProjectRow}>
+                        <span className={classes.chipSub}>
+                            <Typography variant="body2">collaborators:</Typography>
+                            {project.collaborators.length ? (
+                                <span className={classes.staticProjectValue}>
+                                    {project.collaborators.map((collaborator) => {
+                                        return (
+                                            <Chip
+                                                key={collaborator._id.toString()}
+                                                avatar={
+                                                    <Avatar
+                                                        alt={`${collaborator.first_name} ${collaborator.last_name}`}
+                                                        src={collaborator.image_path}
+                                                    ></Avatar>
+                                                }
+                                                label={`${collaborator.first_name} ${collaborator.last_name}`}
+                                                className={classes.singleChip}
+                                                onClick={() => {
+                                                    setUserFilter(collaborator.rcId);
+                                                    console.log({ collaborator });
+                                                }}
+                                            />
+                                        );
+                                    })}
+                                </span>
+                            ) : (
+                                <span className={classes.staticProjectValue}>
+                                    <Typography variant="body2" style={{ color: 'gray' }}>
+                                        No Collaborators
+                                    </Typography>
+                                </span>
+                            )}
                         </span>
                     </div>
                 </div>

@@ -121,6 +121,9 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft: '1rem',
         alignItems: 'center',
     },
+    staticProjectDescription: {
+        marginBottom: '1.5rem',
+    },
     chipContainer: {
         display: 'flex',
         flexBasis: '100%',
