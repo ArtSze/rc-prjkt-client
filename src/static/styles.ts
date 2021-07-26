@@ -30,25 +30,13 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifySelf: 'left',
         alignSelf: 'center',
-        marginLeft: theme.spacing(2),
+        marginLeft: theme.spacing(4),
     },
     appBarRight: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'right',
         alignContent: 'center',
-    },
-    navDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'flex',
-        },
-    },
-    navMobile: {
-        display: 'flex',
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
     },
     tallIndicator: {
         height: '5px',
