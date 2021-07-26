@@ -87,6 +87,13 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexBasis: '100%',
     },
+    formError: {
+        background: 'rgb(255, 157, 157)',
+        paddingLeft: '.5rem',
+        paddingRight: '.5rem',
+        borderRadius: '.3rem',
+        marginLeft: '1.5rem',
+    },
     staticProject: {
         marginBottom: '.75rem',
         paddingTop: '.75rem',
