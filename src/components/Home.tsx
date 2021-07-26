@@ -36,7 +36,7 @@ export interface AppState {
     setAddForm: () => void;
 }
 export const useStore = create<AppState>((set) => ({
-    sortFilter: SortMethods['Latest Batch'],
+    sortFilter: SortMethods['Last Updated'],
     tagFilter: undefined,
     ownerFilter: undefined,
     addForm: false,
@@ -54,7 +54,7 @@ export const useStore = create<AppState>((set) => ({
 }));
 
 const Home = (): JSX.Element => {
-    const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Latest Batch'] });
+    const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
     const addForm = useStore((state) => state.addForm);
 
