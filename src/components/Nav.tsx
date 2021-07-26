@@ -66,8 +66,6 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                             onClick={() => {
                                 setAllProjects(false);
                                 setParams({ me: true, sort: SortMethods['Last Updated'] });
-                                setOwnerFilter(undefined);
-                                setTagFilter(undefined);
                             }}
                         />
                     </Tooltip>
