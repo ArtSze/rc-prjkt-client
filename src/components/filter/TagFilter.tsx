@@ -15,11 +15,11 @@ const TagFilter = (): JSX.Element => {
 
     const { data: tags, error, isSuccess } = useTags();
 
-    function handleChange(selectFilter: ITagOptions) {
+    const handleChange = (selectFilter: ITagOptions) => {
         const tags: TTagFilter = selectFilter.map((tagOption) => tagOption.value.value);
         // set tags to undefined if there are no tags to filter by
         tags.length > 0 ? setTagFilter(tags) : setTagFilter(undefined);
-    }
+    };
 
     if (error) errorHandler(error);
 

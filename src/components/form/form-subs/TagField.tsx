@@ -6,9 +6,13 @@ import { IFormikLabelProps } from './generic/FormFields';
 
 import useTags from '../../../hooks/useTags';
 import Loading from '../../Loading';
+import { useStyles } from '../../../static/styles';
+
+import { Typography } from '@material-ui/core';
 
 export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const { data, isLoading, isError, isSuccess } = useTags();
+    const classes = useStyles();
 
     const convertToSelectionFormat = (arr: ITagFromClient[]) => {
         return arr.map((t) => {
@@ -35,8 +39,10 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
         const initSelections = convertToSelectionFormat(field.value);
 
         return (
-            <div>
-                <label htmlFor={field.name}>{label}</label>
+            <div className={classes.formRow}>
+                <label htmlFor={field.name}>
+                    <Typography>{label}</Typography>
+                </label>
                 <Field
                     name={field.name}
                     value={field.value}

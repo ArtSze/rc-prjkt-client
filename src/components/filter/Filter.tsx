@@ -40,7 +40,6 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     useEffect(() => {
         const params = createParams(statusFilter, tagFilter, ownerFilter, sortFilter);
         setParams(params);
-        console.log({ params });
     }, [statusFilter, tagFilter, ownerFilter, sortFilter]);
 
     return (

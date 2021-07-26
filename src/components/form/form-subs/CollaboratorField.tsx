@@ -6,12 +6,16 @@ import { IFormikLabelProps } from './generic/FormFields';
 
 import useUsers from '../../../hooks/useUsers';
 import Loading from '../../Loading';
+import { useStyles } from '../../../static/styles';
+
+import { Typography } from '@material-ui/core';
 
 export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps): JSX.Element => {
     const params = {
         omitSelf: 'true',
     };
     const { data, isLoading, isError, isSuccess } = useUsers(params);
+    const classes = useStyles();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
         return arr.map((u) => {
@@ -42,8 +46,10 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
         const initSelections = convertToSelectionFormat(field.value);
 
         return (
-            <div>
-                <label htmlFor={field.name}>{label}</label>
+            <div className={classes.formRow}>
+                <label htmlFor={field.name}>
+                    <Typography>{label}</Typography>
+                </label>
                 <Field
                     name={field.name}
                     value={field.value}

@@ -5,12 +5,17 @@ import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject, IProjectEdit } from '../../types';
 import { ProjectFormSubmitValues } from './ProjectFormAdd';
+import ProjectOwnerImage from '../static_project/ProjectOwnerImage';
+
+import { useStyles } from '../../static/styles';
+import { Paper } from '@material-ui/core';
 
 interface ProjectFormEditProps {
     projectToEdit: IProject;
     setEdit: Dispatch<SetStateAction<boolean>>;
 }
 const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
+    const classes = useStyles();
     const queryClient = useQueryClient();
     const editMutation = useMutation(
         (body: IProjectEdit) => axiosInstance.put(`/projects/${projectToEdit._id}`, body, { withCredentials: true }),
@@ -55,7 +60,12 @@ const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.
 
     return (
         <div>
-            <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
+            <Paper className={classes.projectFormContainer}>
+                <ProjectOwnerImage project={projectToEdit} />
+                <span className={classes.projectFormEditFields}>
+                    <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
+                </span>
+            </Paper>
         </div>
     );
 };
