@@ -22,6 +22,10 @@ const UserFilter = (): JSX.Element => {
         omitSelf: 'false',
     });
 
+    const handleChange = (userOption: IOption<IUser>) => {
+        userOption ? setUserFilter(userOption.value.rcId) : setUserFilter(undefined);
+    };
+
     if (isLoading) return <h3>Loading...</h3>;
 
     if (error) errorHandler(error);
@@ -34,9 +38,10 @@ const UserFilter = (): JSX.Element => {
             };
         });
 
-        const getValue = (): IOption<IUser> => {
+        const getValue = () => {
             const option = options.filter((u) => u.value.rcId === userFilter);
-            return option[0];
+            // console.log(option);
+            return option.length > 0 ? option[0] : null;
         };
 
         // TODO: change from user filter to owner filter?
@@ -48,7 +53,7 @@ const UserFilter = (): JSX.Element => {
                     components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
                     options={options}
                     name="user-filter"
-                    onChange={(e) => setUserFilter(e?.value.rcId)}
+                    onChange={(e) => handleChange(e as IOption<IUser>)}
                     placeholder="Select user..."
                     isClearable
                     isSearchable

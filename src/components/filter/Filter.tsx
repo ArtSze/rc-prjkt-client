@@ -41,7 +41,8 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
     useEffect(() => {
         const params = createParams(statusFilter, tagFilter, userFilter);
         setParams(params);
-        console.log({ params });
+        // console.log({ params });
+        // console.log({ statusFilter: statusFilter, tagFilter: tagFilter, userFilter: userFilter });
     }, [statusFilter, tagFilter, userFilter]);
 
     return (
