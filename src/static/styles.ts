@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-import { theme } from './theme';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +23,6 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',
-        paddingLeft: '4rem',
-        paddingRight: '4rem',
         backgroundColor: theme.palette.primary.light,
     },
     appBarLeft: {
@@ -33,13 +30,25 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifySelf: 'left',
         alignSelf: 'center',
-        marginLeft: '50px',
+        marginLeft: theme.spacing(2),
     },
     appBarRight: {
         display: 'flex',
         flexDirection: 'row',
-        justifySelf: 'right',
-        alignSelf: 'center',
+        justifyContent: 'right',
+        alignContent: 'center',
+    },
+    navDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'flex',
+        },
+    },
+    navMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
     },
     tallIndicator: {
         height: '5px',
