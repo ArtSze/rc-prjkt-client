@@ -1,14 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
-
 import { useStore, AppState } from './Home';
-
 import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
-import { BsPencilSquare, BsTrash } from 'react-icons/bs';
+import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag } from 'react-icons/fa';
-import { Paper, Typography, Chip, Link, Avatar, IconButton } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
+import { Paper, Typography, Chip, Link, Avatar, IconButton, Divider } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
 
@@ -125,10 +122,8 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                         </span>
                     </div>
                     <div className={classes.staticProjectRow}>
-                        {/* <span className={classes.chipContainer}> */}
-
                         <span className={classes.chipSub}>
-                            <Typography variant="body2">tags:</Typography>
+                            <Typography variant="subtitle2">Tags</Typography>
                             {project.tags.length ? (
                                 <span className={classes.staticProjectValue}>
                                     {project.tags.map((tag) => {
@@ -154,11 +149,10 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                 </span>
                             )}
                         </span>
-                        {/* </span> */}
                     </div>
                     <div className={classes.staticProjectRow}>
                         <span className={classes.chipSub}>
-                            <Typography variant="body2">collaborators:</Typography>
+                            <Typography variant="subtitle2">Collaborators</Typography>
                             {project.collaborators.length ? (
                                 <span className={classes.staticProjectValue}>
                                     {project.collaborators.map((collaborator) => {
