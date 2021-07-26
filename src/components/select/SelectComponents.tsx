@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
-import { CommonProps, components, OptionTypeBase, StylesConfig } from 'react-select';
+import { components, OptionTypeBase, StylesConfig } from 'react-select';
 import { FaUser, FaTag, FaTags } from 'react-icons/fa';
 import { MdSort } from 'react-icons/md';
 

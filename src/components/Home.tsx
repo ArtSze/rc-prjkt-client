@@ -8,8 +8,7 @@ import Loading from './Loading';
 import errorHandler from '../utils/errorHandler';
 import { usePrefetchUsers } from '../hooks/useUsers';
 import Nav from './Nav';
-import { TTagFilter } from './filter/Filter';
-import { TUserFilter } from './filter/Filter';
+import { TTagFilter, TOwnerFilter } from './filter/Filter';
 
 import { useStyles } from '../static/styles';
 import { Collapse } from '@material-ui/core';
@@ -17,22 +16,35 @@ import { useEffect } from 'react';
 import { ITag, IUser } from '../types';
 import ProjectFormAdd from './form/ProjectFormAdd';
 
+export enum SortMethods {
+    'Last Updated' = 'last updated',
+    'First Updated' = 'first updated',
+    'Last Created' = 'last created',
+    'First Created' = 'first created',
+    'Latest Batch' = 'latest batch',
+    'Oldest Batch' = 'oldest batch',
+}
+
 export interface AppState {
-    tagFilter: string[] | undefined;
-    userFilter: TUserFilter;
+    sortFilter: SortMethods;
+    tagFilter: TTagFilter;
+    ownerFilter: TOwnerFilter;
     addForm: boolean;
+    setSortFilter: (sort: SortMethods) => void;
     setTagFilter: (tags: ITag['value'][] | undefined) => void;
-    setUserFilter: (rcId: IUser['rcId'] | undefined) => void;
+    setOwnerFilter: (rcId: IUser['rcId'] | undefined) => void;
     setAddForm: () => void;
 }
 export const useStore = create<AppState>((set) => ({
+    sortFilter: SortMethods['Last Updated'],
     tagFilter: undefined,
-    userFilter: undefined,
+    ownerFilter: undefined,
     addForm: false,
+    setSortFilter: (sort) => set({ sortFilter: sort }),
     setTagFilter: (tags) => set({ tagFilter: tags }),
-    setUserFilter: (rcId) => {
+    setOwnerFilter: (rcId) => {
         set({
-            userFilter: rcId,
+            ownerFilter: rcId,
         });
     },
     setAddForm: () =>
@@ -42,7 +54,7 @@ export const useStore = create<AppState>((set) => ({
 }));
 
 const Home = (): JSX.Element => {
-    const [params, setParams] = useState<QueryParams>({});
+    const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
     const addForm = useStore((state) => state.addForm);
 

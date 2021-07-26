@@ -4,29 +4,23 @@ import useUsers from '../../hooks/useUsers';
 import { IUser, IUserOptions, IOption } from '../../types';
 import errorHandler from '../../utils/errorHandler';
 import { useStore, AppState } from '../Home';
-import { useStyles } from '../../static/styles';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 
-const UserFilter = (): JSX.Element => {
-    const classes = useStyles();
-    const setUserFilter = useStore((state: AppState) => state.setUserFilter);
-    const userFilter = useStore((state: AppState) => state.userFilter);
-
+const OwnerFilter = (): JSX.Element => {
+    const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
+    const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const {
         data: users,
         error,
-        isLoading,
         isSuccess,
     } = useUsers({
         omitSelf: 'false',
     });
 
     const handleChange = (userOption: IOption<IUser>) => {
-        userOption ? setUserFilter(userOption.value.rcId) : setUserFilter(undefined);
+        userOption ? setOwnerFilter(userOption.value.rcId) : setOwnerFilter(undefined);
     };
-
-    if (isLoading) return <h3>Loading...</h3>;
 
     if (error) errorHandler(error);
 
@@ -39,14 +33,12 @@ const UserFilter = (): JSX.Element => {
         });
 
         const getValue = () => {
-            const option = options.filter((u) => u.value.rcId === userFilter);
-            // console.log(option);
+            const option = options.filter((u) => u.value.rcId === ownerFilter);
             return option.length > 0 ? option[0] : null;
         };
 
-        // TODO: change from user filter to owner filter?
         return (
-            <div className={classes.userFilter}>
+            <Grid item xs={12} sm={12} md={6} lg={3}>
                 <Typography variant="subtitle2">Owner Filter</Typography>
                 <Select
                     value={getValue()}
@@ -58,12 +50,12 @@ const UserFilter = (): JSX.Element => {
                     isClearable
                     isSearchable
                 />
-            </div>
+            </Grid>
         );
     }
 
     return (
-        <div className={classes.userFilter}>
+        <Grid item xs={12} sm={12} md={6} lg={3}>
             <Typography variant="subtitle2">Owner Filter</Typography>
             <Select
                 components={{ Control: UserControl, Option, Menu, Placeholder, SingleValue: UserSingleValue }}
@@ -72,8 +64,8 @@ const UserFilter = (): JSX.Element => {
                 isClearable
                 isSearchable
             />
-        </div>
+        </Grid>
     );
 };
 
-export default UserFilter;
+export default OwnerFilter;

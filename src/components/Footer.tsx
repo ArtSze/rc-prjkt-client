@@ -1,7 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { FaGithub } from 'react-icons/fa';
 import { useStyles } from '../static/styles';
@@ -10,9 +8,7 @@ export default function Footer(): JSX.Element {
     const classes = useStyles();
 
     return (
-        // <div className={classes.root}>
         <footer className={classes.footer}>
-            {/* <Container className={classes.footerLinks}> */}
             <Link href="http://www.recurse.com" title="Made with love at the Recurse Center">
                 <img
                     alt="Recurse Center Logo"
@@ -25,8 +21,6 @@ export default function Footer(): JSX.Element {
                     <FaGithub /> View source code
                 </Typography>
             </Link>
-            {/* </Container> */}
         </footer>
-        // </div>
     );
 }

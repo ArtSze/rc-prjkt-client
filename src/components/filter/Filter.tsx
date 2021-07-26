@@ -2,12 +2,11 @@ import React from 'react';
 import Sort from './Sort';
 import StatusFilter from './StatusFilter';
 import { useEffect } from 'react';
-import { useStore, AppState } from '../Home';
+import { useStore, AppState, SortMethods } from '../Home';
 import { ITag, IUser } from '../../types';
 import { createParams } from '../../utils/paramParser';
-import { useStyles } from '../../static/styles';
-import { Divider } from '@material-ui/core';
-import UserFilter from './UserFilter';
+import { Divider, Grid } from '@material-ui/core';
+import OwnerFilter from './OwnerFilter';
 import TagFilter from './TagFilter';
 import { useImmer } from 'use-immer';
 
@@ -18,12 +17,13 @@ export enum StatusChoices {
 }
 
 export type TTagFilter = ITag['value'][] | undefined;
-export type TUserFilter = IUser['rcId'] | undefined;
+export type TOwnerFilter = IUser['rcId'] | undefined;
 
 export type QueryParams = {
     status?: boolean;
     tags?: TTagFilter;
-    user?: TUserFilter;
+    user?: TOwnerFilter;
+    sort: SortMethods;
     me?: boolean;
 };
 
@@ -34,26 +34,23 @@ interface FilterProps {
 const Filter = ({ setParams }: FilterProps): JSX.Element => {
     const [statusFilter, setStatusFilter] = useImmer<StatusChoices>(StatusChoices['Active']);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
-    const userFilter = useStore((state: AppState) => state.userFilter);
-
-    const classes = useStyles();
+    const ownerFilter = useStore((state: AppState) => state.ownerFilter);
+    const sortFilter = useStore((state: AppState) => state.sortFilter);
 
     useEffect(() => {
-        const params = createParams(statusFilter, tagFilter, userFilter);
+        const params = createParams(statusFilter, tagFilter, ownerFilter, sortFilter);
         setParams(params);
-        // console.log({ params });
-        // console.log({ statusFilter: statusFilter, tagFilter: tagFilter, userFilter: userFilter });
-    }, [statusFilter, tagFilter, userFilter]);
+    }, [statusFilter, tagFilter, ownerFilter, sortFilter]);
 
     return (
         <>
-            <div className={classes.filterBar}>
+            <Grid container spacing={1}>
                 <TagFilter />
-                <UserFilter />
+                <OwnerFilter />
                 <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
                 <Sort />
-            </div>
-            <Divider variant="fullWidth" style={{ marginBottom: '20px' }} />
+            </Grid>
+            <Divider variant="fullWidth" style={{ marginTop: '20px', marginBottom: '20px' }} />
         </>
     );
 };

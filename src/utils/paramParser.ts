@@ -1,7 +1,13 @@
 import qs from 'qs';
-import { StatusChoices, TTagFilter, TUserFilter, QueryParams } from '../components/filter/Filter';
+import { StatusChoices, TTagFilter, TOwnerFilter, QueryParams } from '../components/filter/Filter';
+import { SortMethods } from '../components/Home';
 
-export function createParams(statusFilter: StatusChoices, tagFilter: TTagFilter, userFilter: TUserFilter): QueryParams {
+export function createParams(
+    statusFilter: StatusChoices,
+    tagFilter: TTagFilter,
+    ownerFilter: TOwnerFilter,
+    sortFilter: SortMethods,
+): QueryParams {
     // parse UI state into format for axios params
     const params = {} as QueryParams;
 
@@ -24,9 +30,11 @@ export function createParams(statusFilter: StatusChoices, tagFilter: TTagFilter,
     if (tagFilter) {
         params.tags = tagFilter;
     }
-    if (userFilter) {
-        params.user = userFilter;
+    if (ownerFilter) {
+        params.user = ownerFilter;
     }
+
+    params.sort = sortFilter;
     return params;
 }
 
