@@ -162,4 +162,9 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         padding: '25px',
     },
+    noProjects: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '4rem',
+    },
 }));
