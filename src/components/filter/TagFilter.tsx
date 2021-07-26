@@ -36,7 +36,7 @@ const TagFilter = (): JSX.Element => {
         };
 
         return (
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={5}>
                 <Typography variant="subtitle2">Tag Filter</Typography>
                 <Select
                     value={getValue()}
@@ -55,7 +55,7 @@ const TagFilter = (): JSX.Element => {
     }
 
     return (
-        <Grid item xs={12} sm={6} md={6} lg={4}>
+        <Grid item xs={12} sm={6} md={6} lg={5}>
             <Typography variant="subtitle2">Tag Filter</Typography>
             <Select
                 components={{ Control: TagControl, Menu, MultiValueLabel: TagMultiValueLabel, Placeholder }}
