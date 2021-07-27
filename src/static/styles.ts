@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '70px 0 0 0',
+        margin: '70px 0',
         display: 'flex',
         width: '100%',
         flexDirection: 'column',
@@ -75,81 +75,67 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft: '1.5rem',
     },
     staticProject: {
-        marginBottom: '.75rem',
-        paddingTop: '.75rem',
-        paddingBottom: '.75rem',
-        background: 'rgb(238, 247, 241)',
         display: 'flex',
-        alignItems: 'center',
-        borderRadius: '0px',
+        alignItems: 'flex-start',
+        // borderRadius: '0px',
+        background: theme.palette.primary.light,
+        marginBottom: theme.spacing(2),
+        padding: theme.spacing(0.5),
     },
     staticProjectInfo: {
         display: 'flex',
+        flexDirection: 'column',
         flexWrap: 'wrap',
         flexBasis: '100%',
+        padding: theme.spacing(0.5),
+        gap: theme.spacing(0.5),
     },
-    staticProjectPhoto: {
-        display: 'flex',
-        marginLeft: '1rem',
-    },
-    staticProjectAboveDivider: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexBasis: '100%',
-    },
-    staticProjectBelowDivider: {
-        marginTop: '.6rem',
-    },
-    staticProjectRow: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexBasis: '100%',
-        flexDirection: 'row',
-        marginLeft: '1rem',
-        marginRight: '1rem',
-        marginTop: '.3rem',
-        marginBottom: '.3rem',
-        alignItems: 'center',
+    projectPhoto: {
+        width: '20%',
+        height: 'auto',
+        borderRadius: '.15rem',
+        boxShadow: '.05rem .05rem .2rem gray',
+        margin: theme.spacing(1),
     },
     staticProjectRowSplit: {
         display: 'flex',
-        flexBasis: '100%',
+        flexWrap: 'wrap',
         justifyContent: 'space-between',
+        alignContent: 'center',
     },
     staticProjectTitleStatus: {
         display: 'flex',
         alignItems: 'center',
+        gap: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: theme.spacing(0.5),
+        },
+    },
+    ownerIcons: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: theme.spacing(2),
     },
     staticProjectOwnerName: {
         display: 'flex',
-        marginLeft: '1rem',
-        marginRight: '.5rem',
         alignItems: 'center',
+        gap: theme.spacing(0.5),
     },
-    staticProjectValue: {
+    chips: {
         display: 'flex',
-        marginLeft: '1rem',
-        alignItems: 'center',
         flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        gap: theme.spacing(0.5),
     },
-    staticProjectDescription: {
-        marginBottom: '1.5rem',
+    marginBottom: {
+        marginBottom: theme.spacing(0.5),
     },
-    chipContainer: {
-        display: 'flex',
-        flexBasis: '100%',
-        justifyContent: 'space-between',
-        marginTop: '1rem',
-    },
-    chipSub: {
-        display: 'flex',
-        alignItems: 'center',
-        marginRight: '3rem',
-    },
-    singleChip: {
-        marginBottom: '.15rem',
-        marginRight: '.2rem',
-        paddingLeft: '.2rem',
+    tagChip: {
+        '& > svg': {
+            paddingLeft: theme.spacing(0.5),
+        },
     },
     auth: {
         border: 'solid',

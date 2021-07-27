@@ -9,15 +9,11 @@ interface ProjectsListProps {
 
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     return (
-        <div>
+        <main className="project-list">
             {projects.map((project: IProject) => {
-                return (
-                    <div key={project._id.toString()}>
-                        <ProjectDisplay project={project} />
-                    </div>
-                );
+                return <ProjectDisplay key={project._id.toString()} project={project} />;
             })}
-        </div>
+        </main>
     );
 };
 
