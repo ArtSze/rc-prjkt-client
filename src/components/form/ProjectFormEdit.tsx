@@ -22,6 +22,7 @@ const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(constants.projects);
+                queryClient.invalidateQueries(constants.tags);
             },
         },
     );
