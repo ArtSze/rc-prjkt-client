@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 
 import { useStore, AppState } from './Home';
+import { formatURL } from '../utils/formatUrl';
 
 import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
@@ -27,11 +28,6 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     function toggleEdit() {
         setEdit((prevState: boolean) => !prevState);
     }
-
-    const formatURL = (url: string) => {
-        const pattern = /^((http|https|ftp):\/\/)/;
-        return !pattern.test(url) ? `http://${url}` : url;
-    };
 
     const ownerProject = project as IProjectOwnerCheck;
 
