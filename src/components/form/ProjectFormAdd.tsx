@@ -23,11 +23,12 @@ const ProjectFormAdd = (): JSX.Element => {
 
     const queryClient = useQueryClient();
 
-    const editMutation = useMutation(
+    const addMutation = useMutation(
         (body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body, { withCredentials: true }),
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(constants.projects);
+                queryClient.invalidateQueries(constants.tags);
                 setAddForm();
             },
         },
@@ -36,7 +37,7 @@ const ProjectFormAdd = (): JSX.Element => {
     const submitProjectToAdd = async (values: ProjectFormSubmitValues) => {
         console.log({ values });
 
-        editMutation.mutate({
+        addMutation.mutate({
             title: values.title,
             description: values.description,
             githubLink: values.githubLink,

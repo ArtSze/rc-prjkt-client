@@ -31,6 +31,7 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(constants.projects);
+                queryClient.invalidateQueries(constants.tags);
             },
         },
     );
