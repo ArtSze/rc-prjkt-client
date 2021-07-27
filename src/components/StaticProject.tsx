@@ -28,6 +28,11 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
         setEdit((prevState: boolean) => !prevState);
     }
 
+    const formatURL = (url: string) => {
+        const pattern = /^((http|https|ftp):\/\/)/;
+        return !pattern.test(url) ? `http://${url}` : url;
+    };
+
     const ownerProject = project as IProjectOwnerCheck;
 
     return (
@@ -102,7 +107,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                             </span>
 
                             <span>
-                                <IconButton href={project.githubLink}>
+                                <IconButton href={formatURL(project.githubLink)} target="_blank" rel="noreferrer">
                                     <SiGithub />
                                 </IconButton>
                                 <IconButton
