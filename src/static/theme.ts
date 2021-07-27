@@ -5,7 +5,7 @@ export const rcColors = {
     green: '#23A050',
     backgroundGreen: '#eef7f1',
     borderGreen: '#3dc06c',
-    orange: '#D23E56',
+    orange: '#D28E56',
     blue: '#3C89C3',
     backgroundBlue: '#d9efff',
     borderBlue: '@4d9bd8',
