@@ -2,7 +2,7 @@ import React from 'react';
 import { QueryParams } from './filter/Filter';
 import { Button, Tab, Tabs, AppBar, Typography, Tooltip, Hidden } from '@material-ui/core';
 import { useStyles } from '../static/styles';
-import logo from '../static/images/rc-logo.png';
+import logo from '../static/images/green_rc_comp.jpg';
 import { useStore, AppState, SortMethods } from './Home';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 import { theme } from '../static/theme';
