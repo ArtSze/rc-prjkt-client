@@ -51,11 +51,9 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
 
     return (
         <div>
-            <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
-                <IconButton size="small" onClick={handleClickOpen}>
-                    <BsTrash />
-                </IconButton>
-            </IconContext.Provider>
+            <IconButton onClick={handleClickOpen}>
+                <BsTrash />
+            </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>{'Delete Project'}</DialogTitle>
                 <DialogContent>

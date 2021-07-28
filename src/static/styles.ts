@@ -75,11 +75,9 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft: '1.5rem',
     },
     staticProject: {
-        display: 'flex',
-        alignItems: 'flex-start',
         background: theme.palette.primary.light,
         marginBottom: theme.spacing(2),
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
     },
     staticProjectInfo: {
         display: 'flex',
