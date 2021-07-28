@@ -80,9 +80,6 @@ const Home = (): JSX.Element => {
             <Collapse in={allProjects}>
                 <Filter setParams={setParams} />
             </Collapse>
-            <Collapse in={addForm}>
-                <ProjectFormAdd />
-            </Collapse>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
         </div>
     );

@@ -7,6 +7,7 @@ import { useStore, AppState, SortMethods } from './Home';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 import { theme } from '../static/theme';
 import { useMediaQuery } from '@material-ui/core';
+import AddFormModal from './form/AddFormModal';
 
 interface NavProps {
     allProjects: boolean;
@@ -31,16 +32,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                 </Hidden>
             </div>
             <div className={classes.appBarRight}>
-                <Tooltip title="Add Project">
-                    <Button
-                        style={{ margin: '5px 25px 5px 5px' }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => setAddForm()}
-                    >
-                        {isSmallScreen ? <FaPlus /> : 'Add Project'}
-                    </Button>
-                </Tooltip>
+                <AddFormModal />
                 <Tabs
                     value={allProjects ? 0 : 1}
                     classes={{ indicator: classes.tallIndicator }}
