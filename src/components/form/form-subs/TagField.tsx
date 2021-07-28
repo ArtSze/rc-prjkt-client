@@ -39,9 +39,9 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
         const initSelections = convertToSelectionFormat(field.value);
 
         return (
-            <div className={classes.formRow}>
+            <div>
                 <label htmlFor={field.name}>
-                    <Typography>{label}</Typography>
+                    <Typography variant="subtitle2">{label}</Typography>
                 </label>
                 <Field
                     name={field.name}

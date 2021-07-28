@@ -8,6 +8,7 @@ import { ProjectFormSubmitValues } from '../ProjectFormAdd';
 import { TagField } from './TagField';
 
 import { useStyles } from '../../../static/styles';
+import { Button, Grid } from '@material-ui/core';
 
 interface Props {
     onSubmit: (values: ProjectFormSubmitValues) => Promise<void>;
@@ -33,27 +34,59 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                     .max(480, 'must be 480 characters or less')
                     .notRequired(),
                 githubLink: Yup.string().matches(URL, 'Enter a valid url').notRequired(),
-                // need to figure out how to validate collaborators
-                // need to figure out how to validate tags
                 active: Yup.bool().notRequired(),
             })}
         >
             <Form className={classes.projectForm}>
-                <Field name="title" label="Title" placeholder="title" component={TextField} />
-                <Field name="description" label="Description" placeholder="description" component={TextField} />
-                <Field
-                    name="githubLink"
-                    label="GitHub Link"
-                    placeholder="link to GitHub Repository"
-                    component={TextField}
-                />
-                <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
-                <Field name="tags" label="Tags" component={TagField} />
-                <Field name="active" label="Active" component={ActiveField} />
-                <button type="button" onClick={onCancel}>
-                    Cancel
-                </button>
-                <button type="submit">Submit</button>
+                <Grid container direction="column">
+                    <Grid item container>
+                        <Grid item>
+                            <Field name="title" label="Title" placeholder="title" component={TextField} />
+                        </Grid>
+                        <Grid item>
+                            <Field name="active" label="Active" component={ActiveField} />
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Field name="description" label="Description" placeholder="description" component={TextField} />
+                    </Grid>
+                    <Grid item>
+                        <Field
+                            name="githubLink"
+                            label="GitHub Link"
+                            placeholder="link to GitHub Repository"
+                            component={TextField}
+                        />
+                    </Grid>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid item>
+                            <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
+                        </Grid>
+                        <Grid item>
+                            <Field name="tags" label="Tags" component={TagField} />
+                        </Grid>
+                    </Grid>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid item>
+                            <Button type="submit" size="small" color="primary" variant="outlined">
+                                Submit
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                type="button"
+                                onClick={onCancel}
+                                size="small"
+                                color="primary"
+                                variant="outlined"
+                                style={{ color: 'red', borderColor: 'red' }}
+                                className={classes.button}
+                            >
+                                Cancel
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Form>
         </Formik>
     );

@@ -25,23 +25,14 @@ import {
 } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
-import ProjectOwnerImage from './static_project/ProjectOwnerImage';
+import EditFormModal from './form/EditFormModal';
 
-interface StaticProjectProps {
-    project: IProject;
-    setEdit: Dispatch<SetStateAction<boolean>>;
-}
-
-const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
+const StaticProject = (project: IProject): JSX.Element => {
     const classes = useStyles();
 
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
-
-    function toggleEdit() {
-        setEdit((prevState: boolean) => !prevState);
-    }
 
     const ownerProject = project as IProjectOwnerCheck;
 
@@ -137,11 +128,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (
                             <>
-                                <div>
-                                    <Button onClick={toggleEdit} size="small" color="primary" variant="outlined">
-                                        Edit
-                                    </Button>
-                                </div>
+                                <EditFormModal {...project} />
                                 <DeleteConfirmationModal {...project} />
                             </>
                         )}
