@@ -57,7 +57,6 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
                     <Button
                         className={classes.ownerDeleteConfirmationButton}
                         onClick={deleteAndClose}
-                        color="primary"
                         variant="outlined"
                         autoFocus
                     >
