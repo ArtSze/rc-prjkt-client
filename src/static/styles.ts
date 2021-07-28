@@ -77,7 +77,8 @@ export const useStyles = makeStyles((theme) => ({
     staticProject: {
         background: theme.palette.primary.light,
         marginBottom: theme.spacing(2),
-        padding: theme.spacing(2),
+        padding: theme.spacing(0.5),
+        paddingTop: theme.spacing(2),
     },
     staticProjectInfo: {
         display: 'flex',

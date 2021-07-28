@@ -1,11 +1,26 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
-import { IconContext } from 'react-icons';
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag } from 'react-icons/fa';
-import { Paper, Typography, Chip, Link, Avatar, IconButton, Divider, Container, Grid, Hidden } from '@material-ui/core';
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Typography,
+    Chip,
+    Link,
+    Avatar,
+    IconButton,
+    Divider,
+    Container,
+    Grid,
+    Hidden,
+    CardHeader,
+    Badge,
+} from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
 import ProjectOwnerImage from './static_project/ProjectOwnerImage';
@@ -27,66 +42,6 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     }
 
     const ownerProject = project as IProjectOwnerCheck;
-
-    const titleBar = (
-        <div className={classes.staticProjectRowSplit}>
-            <div className={classes.staticProjectTitleStatus}>
-                {/* TODO: update component type to appropriate header for accessibility purposes */}
-                <Typography variant="h6">{project.title}</Typography>
-                {project.active ? (
-                    <Typography variant="button" color="primary">
-                        active
-                    </Typography>
-                ) : (
-                    <Typography variant="button" color="error">
-                        inactive
-                    </Typography>
-                )}
-                {ownerProject.isOwner ? (
-                    <div className={classes.ownerIcons}>
-                        <Chip onClick={() => setOwnerFilter(project.owner.rcId)} label="OWNER"></Chip>
-                        <IconContext.Provider value={{ color: 'blue', className: 'global-class-name' }}>
-                            <IconButton size="small" onClick={toggleEdit}>
-                                <BsPencilSquare />
-                            </IconButton>
-                        </IconContext.Provider>
-                        <DeleteConfirmationModal {...project} />
-                    </div>
-                ) : (
-                    <Chip
-                        size="medium"
-                        avatar={
-                            <Avatar
-                                alt={`${project.owner.first_name} ${project.owner.last_name}`}
-                                src={project.owner.image_path}
-                            ></Avatar>
-                        }
-                        label={`${project.owner.first_name} ${project.owner.last_name} (${project.owner.batch})`}
-                        onClick={() => setOwnerFilter(project.owner.rcId)}
-                    />
-                    // <Link
-                    //     color="inherit"
-                    //     className={classes.staticProjectOwnerName}
-                    // >
-                    //     <Typography variant="body1">{`${project.owner.first_name} ${project.owner.last_name}`}</Typography>
-                    //     <Typography variant="body2">{`(${project.owner.batch})`}</Typography>
-                    // </Link>
-                )}
-            </div>
-            <div>
-                <IconButton href={project.githubLink}>
-                    <SiGithub />
-                </IconButton>
-                <IconButton
-                    rel="noreferrer"
-                    target="_blank"
-                    href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
-                >
-                    <SiZulip />
-                </IconButton>
-            </div>
-        </div>
-    );
 
     const tags = (
         <Container disableGutters className={classes.marginBottom}>
@@ -151,27 +106,82 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     );
 
     return (
-        <Paper elevation={2} className={classes.staticProject}>
-            <div className={classes.staticProjectInfo}>
-                {titleBar}
-                <Divider className={classes.marginBottom} />
-                <Grid direction="column">
-                    <Grid item>
-                        <Typography variant="body2" paragraph>
-                            {project.description}
-                        </Typography>
+        <Card className={classes.staticProject}>
+            <CardHeader
+                disableTypography
+                title={
+                    <Grid container style={{ alignItems: 'center', gap: '10px' }}>
+                        <Typography variant="h6">{project.title}</Typography>
+                        {project.active ? (
+                            <Typography variant="button" color="primary">
+                                active
+                            </Typography>
+                        ) : (
+                            <Typography variant="button" color="error">
+                                inactive
+                            </Typography>
+                        )}
                     </Grid>
-                    <Grid direction="row" container>
-                        <Grid xs={12} md={3} item>
+                }
+                avatar={
+                    <Avatar
+                        variant="rounded"
+                        style={{ width: '3rem', height: '3rem', boxShadow: '.05rem .05rem .2rem gray' }}
+                        alt={project.owner.first_name + ' ' + project.owner.last_name}
+                        src={project.owner.image_path}
+                    ></Avatar>
+                }
+                action={
+                    <Grid container alignItems="center">
+                        {ownerProject.isOwner && (
+                            <>
+                                <div>
+                                    <Button onClick={toggleEdit} size="small" color="primary" variant="outlined">
+                                        Edit
+                                    </Button>
+                                </div>
+                                <DeleteConfirmationModal {...project} />
+                            </>
+                        )}
+                        <IconButton href={project.githubLink}>
+                            <SiGithub />
+                        </IconButton>
+                        <IconButton
+                            rel="noreferrer"
+                            target="_blank"
+                            href={'https://recurse.zulipchat.com/#narrow/pm-with/' + project.owner.zulip_id}
+                        >
+                            <SiZulip />
+                        </IconButton>
+                    </Grid>
+                }
+                subheader={
+                    <>
+                        <Link style={{ cursor: 'pointer' }} onClick={() => setOwnerFilter(project.owner.rcId)}>
+                            <Typography variant="body2" color="textSecondary">
+                                {`${project.owner.first_name} ${project.owner.last_name} (${project.owner.batch})`}
+                            </Typography>
+                        </Link>
+                    </>
+                }
+            ></CardHeader>
+            <CardContent>
+                <Container style={{ alignItems: 'flex-start', paddingLeft: '60px' }}>
+                    <Divider style={{ marginBottom: '15px', marginTop: '-25px' }} />
+                    <Typography variant="body1" component="p" paragraph>
+                        {project.description}
+                    </Typography>
+                    <Grid container style={{ paddingTop: '15px' }}>
+                        <Grid xs={12} lg={4} item>
                             {collaborators}
                         </Grid>
-                        <Grid xs={12} lg={9} item>
+                        <Grid xs={12} lg={8} item>
                             {tags}
                         </Grid>
                     </Grid>
-                </Grid>
-            </div>
-        </Paper>
+                </Container>
+            </CardContent>
+        </Card>
     );
 };
 
