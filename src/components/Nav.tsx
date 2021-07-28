@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryParams } from './filter/Filter';
-import { Button, Tab, Tabs, AppBar, Typography, Tooltip, Hidden, Avatar } from '@material-ui/core';
+import { Button, Tab, Tabs, AppBar, Typography, Hidden, Avatar } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
 import { useStore, AppState, SortMethods } from './Home';

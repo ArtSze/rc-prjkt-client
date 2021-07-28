@@ -119,4 +119,9 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
         gap: theme.spacing(4),
     },
+    noProjects: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '4rem',
+    },
 }));

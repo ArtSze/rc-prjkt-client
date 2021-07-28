@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
+import { formatURL } from '../utils/formatUrl';
+
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { FaTag } from 'react-icons/fa';
 import {
@@ -133,7 +135,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                 <DeleteConfirmationModal {...project} />
                             </>
                         )}
-                        <IconButton href={project.githubLink}>
+                        <IconButton href={formatURL(project.githubLink)} target="_blank" rel="noreferrer">
                             <SiGithub />
                         </IconButton>
                         <IconButton

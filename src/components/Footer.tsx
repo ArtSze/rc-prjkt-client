@@ -11,12 +11,24 @@ export default function Footer(): JSX.Element {
     return (
         <Grid container direction="column" alignItems="center" className={classes.footer}>
             <Typography variant="body1">
-                <Link title="Recurse Center Logo" color="textSecondary" href="https://recurse.com">
+                <Link
+                    title="Recurse Center Logo"
+                    color="textSecondary"
+                    href="https://recurse.com"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     Made with <FaHeart /> at the Recurse Center
                 </Link>
             </Typography>
             <Typography variant="body1">
-                <Link color="textSecondary" title="GitHub Repo Link" href="https://github.com/ArtSze/rc-prjkt-client">
+                <Link
+                    color="textSecondary"
+                    title="GitHub Repo Link"
+                    href="https://github.com/ArtSze/rc-prjkt-client"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     <FaGithub /> View source code
                 </Link>
             </Typography>
