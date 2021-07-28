@@ -152,9 +152,6 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
 
     return (
         <Paper elevation={2} className={classes.staticProject}>
-            {/* <Hidden mdDown>
-                <ProjectOwnerImage project={project} />
-            </Hidden> */}
             <div className={classes.staticProjectInfo}>
                 {titleBar}
                 <Divider className={classes.marginBottom} />
