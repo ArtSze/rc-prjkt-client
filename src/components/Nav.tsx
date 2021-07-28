@@ -17,7 +17,7 @@ interface NavProps {
 const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-    const setAddForm = useStore((state) => state.setAddForm);
+
     const isSmallScreen = useMediaQuery('(max-width: 650px)');
     const classes = useStyles();
 

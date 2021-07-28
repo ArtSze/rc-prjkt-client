@@ -33,7 +33,6 @@ export interface AppState {
     setSortFilter: (sort: SortMethods) => void;
     setTagFilter: (tags: ITag['value'][] | undefined) => void;
     setOwnerFilter: (rcId: IUser['rcId'] | undefined) => void;
-    setAddForm: () => void;
 }
 export const useStore = create<AppState>((set) => ({
     sortFilter: SortMethods['Last Updated'],
@@ -47,10 +46,6 @@ export const useStore = create<AppState>((set) => ({
             ownerFilter: rcId,
         });
     },
-    setAddForm: () =>
-        set((state) => ({
-            addForm: !state.addForm,
-        })),
 }));
 
 const Home = (): JSX.Element => {
