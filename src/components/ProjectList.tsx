@@ -11,19 +11,15 @@ interface ProjectsListProps {
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     if (projects.length < 1) {
         return <NoProjects />;
-    } else {
-        return (
-            <div>
-                {projects.map((project: IProject) => {
-                    return (
-                        <div key={project._id.toString()}>
-                            <ProjectDisplay project={project} />
-                        </div>
-                    );
-                })}
-            </div>
-        );
     }
+
+    return (
+        <main className="project-list">
+            {projects.map((project: IProject) => {
+                return <ProjectDisplay key={project._id.toString()} project={project} />;
+            })}
+        </main>
+    );
 };
 
 export default ProjectList;

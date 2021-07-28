@@ -46,8 +46,8 @@ const Filter = ({ setParams }: FilterProps): JSX.Element => {
         <>
             <Grid container spacing={1}>
                 <TagFilter />
-                <OwnerFilter />
                 <StatusFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
+                <OwnerFilter />
                 <Sort />
             </Grid>
             <Divider variant="fullWidth" style={{ marginTop: '20px', marginBottom: '20px' }} />

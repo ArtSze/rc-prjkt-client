@@ -1,8 +1,8 @@
 import React from 'react';
 import { QueryParams } from './filter/Filter';
-import { Button, Tab, Tabs, AppBar, Typography, Tooltip, Hidden } from '@material-ui/core';
+import { Button, Tab, Tabs, AppBar, Typography, Hidden, Avatar } from '@material-ui/core';
 import { useStyles } from '../static/styles';
-import logo from '../static/images/green_rc_comp.jpg';
+import logo from '../static/images/rc-logo.png';
 import { useStore, AppState, SortMethods } from './Home';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 import { theme } from '../static/theme';
@@ -23,53 +23,36 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
     return (
         <AppBar className={classes.appBar} position="fixed">
             <div className={classes.appBarLeft}>
-                <img alt="logo" style={{ width: '30px', height: '30px' }} src={logo}></img>
+                <Avatar variant="square" alt="logo" src={logo}></Avatar>
                 <Hidden xsDown>
-                    <Typography style={{ marginLeft: theme.spacing(2) }} variant="h6" color="primary">
+                    <Typography component="h1" variant="h6">
                         RC-Prjkt
                     </Typography>
                 </Hidden>
             </div>
             <div className={classes.appBarRight}>
-                <Tooltip title="Add Project">
-                    <Button
-                        style={{ margin: '5px 25px 5px 5px' }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => setAddForm()}
-                    >
-                        {isSmallScreen ? <FaPlus /> : 'Add Project'}
-                    </Button>
-                </Tooltip>
-                <Tabs
-                    value={allProjects ? 0 : 1}
-                    classes={{ indicator: classes.tallIndicator }}
-                    textColor="primary"
-                    indicatorColor="primary"
-                >
-                    <Tooltip title="All Projects">
-                        <Tab
-                            label={!isSmallScreen && 'All Projects'}
-                            icon={isSmallScreen ? <FaHome /> : ''}
-                            onClick={() => {
-                                setAllProjects(true);
-                                setParams({ status: true, sort: SortMethods['Last Updated'] });
-                                setOwnerFilter(undefined);
-                                setTagFilter(undefined);
-                            }}
-                        />
-                    </Tooltip>
-                    <Tooltip title="My Projects">
-                        <Tab
-                            label={!isSmallScreen && 'My Projects'}
-                            icon={isSmallScreen ? <FaUser /> : ''}
-                            onClick={() => {
-                                setAllProjects(false);
-                                setParams({ me: true, sort: SortMethods['Last Updated'] });
-                            }}
-                        />
-                    </Tooltip>
-                    ;
+                <Button variant="contained" color="secondary" onClick={() => setAddForm()}>
+                    {isSmallScreen ? <FaPlus /> : 'Add Project'}
+                </Button>
+                <Tabs value={allProjects ? 0 : 1} classes={{ indicator: classes.tallIndicator }}>
+                    <Tab
+                        label={!isSmallScreen && 'All Projects'}
+                        icon={isSmallScreen ? <FaHome /> : ''}
+                        onClick={() => {
+                            setAllProjects(true);
+                            setParams({ status: true, sort: SortMethods['Last Updated'] });
+                            setOwnerFilter(undefined);
+                            setTagFilter(undefined);
+                        }}
+                    />
+                    <Tab
+                        label={!isSmallScreen && 'My Projects'}
+                        icon={isSmallScreen ? <FaUser /> : ''}
+                        onClick={() => {
+                            setAllProjects(false);
+                            setParams({ me: true, sort: SortMethods['Last Updated'] });
+                        }}
+                    />
                 </Tabs>
             </div>
         </AppBar>
