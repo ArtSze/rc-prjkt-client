@@ -145,7 +145,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                                 <DeleteConfirmationModal {...project} />
                             </>
                         )}
-                        <IconButton href={project.githubLink}>
+                        <IconButton href={formatURL(project.githubLink)} rel="noreferrer" target="_blank">
                             <SiGithub />
                         </IconButton>
                         <IconButton
