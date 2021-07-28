@@ -74,6 +74,16 @@ export const useStyles = makeStyles((theme) => ({
         borderRadius: '.3rem',
         marginLeft: '1.5rem',
     },
+    ownerDeleteConfirmationButton: {
+        color: theme.palette.error.main,
+        borderColor: theme.palette.error.main,
+    },
+    ownerDeleteButton: {
+        color: theme.palette.error.main,
+        borderColor: theme.palette.error.main,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(2),
+    },
     staticProject: {
         background: theme.palette.primary.light,
         marginBottom: theme.spacing(2),

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-
-// import { useDeleteProjects } from '../mutations/useDeleteProject';
 import { axiosInstance } from '../../utils/axiosInstance';
 import { IProject } from '../../types';
 import constants from '../../utils/constants';
-
+import { useStyles } from '../../static/styles';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@material-ui/core';
 
 const DeleteConfirmationModal = (project: IProject): JSX.Element => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const queryClient = useQueryClient();
 
@@ -36,17 +35,11 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
     const deleteAndClose = () => {
         handleClose();
         deleteMutation.mutate(project);
-        // useDeleteProjects(project);
     };
 
     return (
         <div>
-            <Button
-                style={{ color: 'red', borderColor: 'red', marginLeft: '10px', marginRight: '20px' }}
-                size="small"
-                variant="outlined"
-                onClick={handleClickOpen}
-            >
+            <Button className={classes.ownerDeleteButton} size="small" variant="outlined" onClick={handleClickOpen}>
                 Delete
             </Button>
             <Dialog open={open} onClose={handleClose}>
@@ -61,7 +54,13 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={deleteAndClose} color="primary" variant="outlined" autoFocus>
+                    <Button
+                        className={classes.ownerDeleteConfirmationButton}
+                        onClick={deleteAndClose}
+                        color="primary"
+                        variant="outlined"
+                        autoFocus
+                    >
                         Confirm Deletion
                     </Button>
                 </DialogActions>
