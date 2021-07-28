@@ -12,7 +12,7 @@ import BadRequest from './error_pages/BadRequest';
 const App = (): JSX.Element => {
     return (
         <ThemeProvider theme={theme}>
-            <Container>
+            <Container disableGutters maxWidth="md">
                 <Router>
                     <Route exact path="/">
                         <Auth />

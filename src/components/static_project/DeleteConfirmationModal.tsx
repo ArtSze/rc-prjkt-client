@@ -6,17 +6,7 @@ import { axiosInstance } from '../../utils/axiosInstance';
 import { IProject } from '../../types';
 import constants from '../../utils/constants';
 
-import {
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Button,
-    IconButton,
-} from '@material-ui/core';
-import { IconContext } from 'react-icons';
-import { BsTrash } from 'react-icons/bs';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@material-ui/core';
 
 const DeleteConfirmationModal = (project: IProject): JSX.Element => {
     const [open, setOpen] = useState(false);
@@ -52,11 +42,14 @@ const DeleteConfirmationModal = (project: IProject): JSX.Element => {
 
     return (
         <div>
-            <IconContext.Provider value={{ color: 'red', className: 'global-class-name' }}>
-                <IconButton onClick={handleClickOpen}>
-                    <BsTrash size={17} />
-                </IconButton>
-            </IconContext.Provider>
+            <Button
+                style={{ color: 'red', borderColor: 'red', marginLeft: '10px', marginRight: '20px' }}
+                size="small"
+                variant="outlined"
+                onClick={handleClickOpen}
+            >
+                Delete
+            </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>{'Delete Project'}</DialogTitle>
                 <DialogContent>

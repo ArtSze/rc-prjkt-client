@@ -19,7 +19,7 @@ const StatusFilter = ({ setStatusFilter }: StatusFilterProps): JSX.Element => {
     ];
 
     return (
-        <Grid item xs={12} sm={6} md={6} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
             <Typography variant="subtitle2">Status</Typography>
             <Select
                 defaultValue={options[0]}
