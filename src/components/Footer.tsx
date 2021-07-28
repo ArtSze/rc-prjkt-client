@@ -1,26 +1,25 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaHeart } from 'react-icons/fa';
 import { useStyles } from '../static/styles';
+import { Grid } from '@material-ui/core';
 
 export default function Footer(): JSX.Element {
     const classes = useStyles();
 
     return (
-        <footer className={classes.footer}>
-            <Link href="http://www.recurse.com" title="Made with love at the Recurse Center">
-                <img
-                    alt="Recurse Center Logo"
-                    src="https://cloud.githubusercontent.com/assets/2883345/11322973/9e557144-910b-11e5-959a-8fdaaa4a88c5.png"
-                    height="12px"
-                />
-            </Link>
-            <Link href="https://github.com/ArtSze/rc-prjkt-client">
-                <Typography variant="body1">
+        <Grid container direction="column" alignItems="center" className={classes.footer}>
+            <Typography variant="body1">
+                <Link title="Recurse Center Logo" color="textSecondary" href="https://recurse.com">
+                    Made with <FaHeart /> at the Recurse Center
+                </Link>
+            </Typography>
+            <Typography variant="body1">
+                <Link color="textSecondary" title="GitHub Repo Link" href="https://github.com/ArtSze/rc-prjkt-client">
                     <FaGithub /> View source code
-                </Typography>
-            </Link>
-        </footer>
+                </Link>
+            </Typography>
+        </Grid>
     );
 }
