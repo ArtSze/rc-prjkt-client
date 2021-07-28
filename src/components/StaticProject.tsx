@@ -2,12 +2,10 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
 import { SiGithub, SiZulip } from 'react-icons/si';
-import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag } from 'react-icons/fa';
 import {
     Button,
     Card,
-    CardActions,
     CardContent,
     Typography,
     Chip,
@@ -17,9 +15,7 @@ import {
     Divider,
     Container,
     Grid,
-    Hidden,
     CardHeader,
-    Badge,
 } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
@@ -123,14 +119,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                         )}
                     </Grid>
                 }
-                avatar={
-                    <Avatar
-                        variant="rounded"
-                        style={{ width: '3rem', height: '3rem', boxShadow: '.05rem .05rem .2rem gray' }}
-                        alt={project.owner.first_name + ' ' + project.owner.last_name}
-                        src={project.owner.image_path}
-                    ></Avatar>
-                }
+                avatar={<ProjectOwnerImage project={project}></ProjectOwnerImage>}
                 action={
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (

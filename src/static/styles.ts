@@ -99,11 +99,8 @@ export const useStyles = makeStyles((theme) => ({
         gap: theme.spacing(0.5),
     },
     projectPhoto: {
-        width: '20%',
-        height: 'auto',
-        borderRadius: '.15rem',
         boxShadow: '.05rem .05rem .2rem gray',
-        margin: theme.spacing(1),
+        marginRight: theme.spacing(0.75),
     },
     staticProjectRowSplit: {
         display: 'flex',
