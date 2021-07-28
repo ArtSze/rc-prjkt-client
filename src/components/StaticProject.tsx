@@ -34,7 +34,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
     const tagFilter = useStore((state: AppState) => state.tagFilter);
 
     function toggleEdit() {
-        setEdit((prevState: boolean) => !prevState);
+        setEdit((prevState) => !prevState);
     }
 
     const ownerProject = project as IProjectOwnerCheck;
@@ -45,11 +45,11 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 Tags
             </Typography>
             {project.tags.length ? (
-                <div className={classes.chips}>
+                <Grid>
                     {project.tags.map((tag) => {
                         return (
                             <Chip
-                                className={classes.tagChip}
+                                className={classes.chip}
                                 key={tag._id.toString()}
                                 icon={<FaTag />}
                                 label={`${tag.value}`}
@@ -59,7 +59,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                             />
                         );
                     })}
-                </div>
+                </Grid>
             ) : (
                 <Typography variant="body2" color="textSecondary">
                     No Tags
@@ -74,10 +74,11 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 Collaborators
             </Typography>
             {project.collaborators.length ? (
-                <div className={classes.chips}>
+                <Grid>
                     {project.collaborators.map((collaborator) => {
                         return (
                             <Chip
+                                className={classes.chip}
                                 key={collaborator._id.toString()}
                                 avatar={
                                     <Avatar
@@ -92,7 +93,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                             />
                         );
                     })}
-                </div>
+                </Grid>
             ) : (
                 <Typography variant="body2" color="textSecondary">
                     No Collaborators
@@ -106,7 +107,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
             <CardHeader
                 disableTypography
                 title={
-                    <Grid container style={{ alignItems: 'center', gap: '10px' }}>
+                    <Grid container alignItems="center" className={classes.bigGridGap}>
                         <Typography variant="h6">{project.title}</Typography>
                         {project.active ? (
                             <Typography variant="button" color="primary">
@@ -146,7 +147,7 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 }
                 subheader={
                     <>
-                        <Link style={{ cursor: 'pointer' }} onClick={() => setOwnerFilter(project.owner.rcId)}>
+                        <Link className={classes.cursorPointer} onClick={() => setOwnerFilter(project.owner.rcId)}>
                             <Typography variant="body2" color="textSecondary">
                                 {`${project.owner.first_name} ${project.owner.last_name} (${project.owner.batch})`}
                             </Typography>
@@ -155,12 +156,12 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                 }
             ></CardHeader>
             <CardContent>
-                <Container style={{ alignItems: 'flex-start', paddingLeft: '60px' }}>
-                    <Divider style={{ marginBottom: '15px', marginTop: '-25px' }} />
+                <Container className={classes.staticProjectDetails}>
+                    <Divider className={classes.staticProjectDivider} />
                     <Typography variant="body1" component="p" paragraph>
                         {project.description}
                     </Typography>
-                    <Grid container style={{ paddingTop: '15px' }}>
+                    <Grid container>
                         <Grid xs={12} lg={4} item>
                             {collaborators}
                         </Grid>

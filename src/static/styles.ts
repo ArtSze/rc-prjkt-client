@@ -88,59 +88,33 @@ export const useStyles = makeStyles((theme) => ({
         background: theme.palette.primary.light,
         marginBottom: theme.spacing(2),
         padding: theme.spacing(0.5),
-        paddingTop: theme.spacing(2),
-    },
-    staticProjectInfo: {
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        flexBasis: '100%',
-        padding: theme.spacing(0.5),
-        gap: theme.spacing(0.5),
+        paddingTop: theme.spacing(1.5),
     },
     projectPhoto: {
         boxShadow: '.05rem .05rem .2rem gray',
         marginRight: theme.spacing(0.75),
     },
-    staticProjectRowSplit: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        alignContent: 'center',
-    },
-    staticProjectTitleStatus: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: theme.spacing(0.5),
-        },
-    },
-    ownerIcons: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: theme.spacing(2),
-    },
-    staticProjectOwnerName: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: theme.spacing(0.5),
-    },
-    chips: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        gap: theme.spacing(0.5),
-    },
     marginBottom: {
         marginBottom: theme.spacing(0.5),
     },
-    tagChip: {
+    chip: {
+        margin: theme.spacing(0.25),
         '& > svg': {
             paddingLeft: theme.spacing(0.5),
         },
+    },
+    bigGridGap: {
+        gap: theme.spacing(1.5),
+    },
+    cursorPointer: {
+        cursor: 'pointer',
+    },
+    staticProjectDetails: {
+        paddingLeft: theme.spacing(8),
+    },
+    staticProjectDivider: {
+        marginTop: theme.spacing(-3),
+        marginBottom: theme.spacing(1.5),
     },
     auth: {
         border: 'solid',
