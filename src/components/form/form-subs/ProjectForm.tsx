@@ -39,29 +39,19 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
         >
             <Form className={classes.projectForm}>
                 <Grid container direction="column">
-                    <Grid item container>
-                        <Grid item xs={10}>
-                            <Field name="title" label="Title" placeholder="title" component={CustomTextField} />
+                    <Grid item container className={classes.projectFormRow}>
+                        <Grid item xs={12} sm={10}>
+                            <Field name="title" label="Title" component={CustomTextField} />
                         </Grid>
-                        <Grid item xs={2}>
-                            <Field name="active" label="Active" component={ActiveField} />
+                        <Grid item xs={12} sm={2}>
+                            <Field name="active" component={ActiveField} />
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Field
-                            name="description"
-                            label="Description"
-                            placeholder="description"
-                            component={CustomTextField}
-                        />
+                        <Field name="description" label="Description" multiline={true} component={CustomTextField} />
                     </Grid>
                     <Grid item xs={12}>
-                        <Field
-                            name="githubLink"
-                            label="GitHub Link"
-                            placeholder="link to GitHub Repository"
-                            component={CustomTextField}
-                        />
+                        <Field name="githubLink" label="GitHub Link" component={CustomTextField} />
                     </Grid>
                     <Grid container direction="row" spacing={2}>
                         <Grid item xs={12}>
@@ -71,13 +61,13 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                             <Field name="tags" label="Tags" component={TagField} />
                         </Grid>
                     </Grid>
-                    <Grid container direction="row" spacing={2} className={classes.formSubmitRow}>
-                        <Grid item>
+                    <Grid container className={classes.formSubmitRow}>
+                        <Grid item xs={6} sm={6}>
                             <Button type="submit" size="small" color="primary" variant="outlined">
                                 Submit
                             </Button>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={6} sm={6}>
                             <Button
                                 type="button"
                                 onClick={onCancel}

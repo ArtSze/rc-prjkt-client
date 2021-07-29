@@ -46,32 +46,19 @@ export const useStyles = makeStyles((theme) => ({
     projectForm: {
         // flexGrow: 1,
     },
+    projectFormRow: {
+        alignItems: 'center',
+    },
     projectFormEditFields: {
-        display: 'flex',
-        marginBottom: '6px',
-        width: '98%',
-        borderRadius: '3px',
-        borderWidth: '1px',
-        borderColor: 'lightgray',
+        marginBottom: theme.spacing(1),
+        width: '100%',
     },
     projectFormCheckFields: {
-        marginLeft: '5px',
+        marginLeft: theme.spacing(3),
     },
     formSubmitRow: {
-        justifyContent: 'center',
-        marginTop: '5px',
-    },
-
-    formErrorText: {
-        color: 'red',
-        // borderStyle: 'solid',
-        // borderWidth: '2px',
-        // borderColor: 'red',
-        display: 'flex',
-        justifyContent: 'center',
-        paddingLeft: '.5rem',
-        paddingRight: '.5rem',
-        borderRadius: '.3rem',
+        justifyContent: 'space-around',
+        marginTop: theme.spacing(1),
     },
     ownerDeleteConfirmationButton: {
         color: theme.palette.error.main,

@@ -1,17 +1,17 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { TextField, Switch } from 'formik-material-ui';
 
-import { Typography, FormControlLabel } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
 import { useStyles } from '../../../../static/styles';
-import ErrorAlert from './ErrorAlert';
 
 export interface IFormikLabelProps extends FieldProps {
     label: string;
     placeholder?: string;
+    multiline?: boolean;
 }
 
-export const CustomTextField = ({ label, placeholder, field }: IFormikLabelProps): JSX.Element => {
+export const CustomTextField = ({ label, field, multiline = false }: IFormikLabelProps): JSX.Element => {
     const classes = useStyles();
 
     return (
@@ -21,16 +21,17 @@ export const CustomTextField = ({ label, placeholder, field }: IFormikLabelProps
             label={label}
             component={TextField}
             variant="outlined"
-            // className={classes.projectFormEditFields}
+            multiline={multiline}
+            className={classes.projectFormEditFields}
         />
     );
 };
 
-export const ActiveField = ({ label, field }: IFormikLabelProps): JSX.Element => {
+export const ActiveField = ({ field }: IFormikLabelProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <div>
+        <div className={classes.projectFormCheckFields}>
             <FormControlLabel
                 control={<Field component={Switch} name={field.name} type="checkbox" checked={field.value} />}
                 label={field.value === true ? 'Active' : 'Inactive'}
