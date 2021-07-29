@@ -62,24 +62,26 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                         </Grid>
                     </Grid>
                     <Grid container className={classes.formSubmitRow}>
-                        <Grid item xs={6} sm={6}>
-                            <Button type="submit" size="small" color="primary" variant="outlined">
-                                Submit
-                            </Button>
-                        </Grid>
-                        <Grid item xs={6} sm={6}>
-                            <Button
-                                type="button"
-                                onClick={onCancel}
-                                size="small"
-                                color="primary"
-                                variant="outlined"
-                                style={{ color: 'red', borderColor: 'red' }}
-                                className={classes.button}
-                            >
-                                Cancel
-                            </Button>
-                        </Grid>
+                        <Button
+                            type="submit"
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            className={classes.button}
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={onCancel}
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            style={{ color: 'red', borderColor: 'red' }}
+                            className={classes.button}
+                        >
+                            Cancel
+                        </Button>
                     </Grid>
                 </Grid>
             </Form>

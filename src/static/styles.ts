@@ -37,7 +37,8 @@ export const useStyles = makeStyles((theme) => ({
         height: '5px',
     },
     button: {
-        marginRight: '.75rem',
+        marginLeft: theme.spacing(2.5),
+        marginRight: theme.spacing(2.5),
     },
     projectFormContainer: {
         marginBottom: theme.spacing(2),
@@ -50,14 +51,14 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     projectFormEditFields: {
-        marginBottom: theme.spacing(1),
+        marginBottom: theme.spacing(1.25),
         width: '100%',
     },
     projectFormCheckFields: {
         marginLeft: theme.spacing(3),
     },
     formSubmitRow: {
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         marginTop: theme.spacing(1),
     },
     ownerDeleteConfirmationButton: {
