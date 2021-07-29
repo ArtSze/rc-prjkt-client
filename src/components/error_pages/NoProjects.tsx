@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 import { useStyles } from '../../static/styles';
 
-const NoProjects = () => {
+const NoProjects = (): JSX.Element => {
     const classes = useStyles();
 
     return (
