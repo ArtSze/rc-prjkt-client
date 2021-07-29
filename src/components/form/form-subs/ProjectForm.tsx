@@ -2,12 +2,13 @@ import React from 'react';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { ActiveField, TextField } from './generic/FormFields';
+import { ActiveField, CustomTextField } from './generic/FormFields';
 import { CollaboratorField } from './CollaboratorField';
 import { ProjectFormSubmitValues } from '../ProjectFormAdd';
 import { TagField } from './TagField';
 
 import { useStyles } from '../../../static/styles';
+import { Button, Grid } from '@material-ui/core';
 
 interface Props {
     onSubmit: (values: ProjectFormSubmitValues) => Promise<void>;
@@ -32,28 +33,57 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                     .min(20, 'must be 20 characters or longer')
                     .max(480, 'must be 480 characters or less')
                     .notRequired(),
-                githubLink: Yup.string().matches(URL, 'Enter a valid url').notRequired(),
-                // need to figure out how to validate collaborators
-                // need to figure out how to validate tags
+                githubLink: Yup.string().matches(URL, 'enter a valid url').notRequired(),
                 active: Yup.bool().notRequired(),
             })}
         >
             <Form className={classes.projectForm}>
-                <Field name="title" label="Title" placeholder="title" component={TextField} />
-                <Field name="description" label="Description" placeholder="description" component={TextField} />
-                <Field
-                    name="githubLink"
-                    label="GitHub Link"
-                    placeholder="link to GitHub Repository"
-                    component={TextField}
-                />
-                <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
-                <Field name="tags" label="Tags" component={TagField} />
-                <Field name="active" label="Active" component={ActiveField} />
-                <button type="button" onClick={onCancel}>
-                    Cancel
-                </button>
-                <button type="submit">Submit</button>
+                <Grid container direction="column">
+                    <Grid item container className={classes.projectFormRow}>
+                        <Grid item xs={12} sm={10}>
+                            <Field name="title" label="Title" component={CustomTextField} />
+                        </Grid>
+                        <Grid item xs={12} sm={2}>
+                            <Field name="active" component={ActiveField} />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Field name="description" label="Description" multiline={true} component={CustomTextField} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Field name="githubLink" label="GitHub Link" component={CustomTextField} />
+                    </Grid>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid item xs={12}>
+                            <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Field name="tags" label="Tags" component={TagField} />
+                        </Grid>
+                    </Grid>
+                    <Grid container className={classes.formSubmitRow}>
+                        <Button
+                            type="submit"
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            className={classes.button}
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={onCancel}
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            style={{ color: 'red', borderColor: 'red' }}
+                            className={classes.button}
+                        >
+                            Cancel
+                        </Button>
+                    </Grid>
+                </Grid>
             </Form>
         </Formik>
     );

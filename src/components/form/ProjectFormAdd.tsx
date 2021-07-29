@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { axiosInstance } from '../../utils/axiosInstance';
@@ -6,8 +6,8 @@ import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
-import { useStore } from '../Home';
-import { Divider, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
+import { useStyles } from '../../static/styles';
 
 export interface ProjectFormSubmitValues {
     title: string;
@@ -18,10 +18,13 @@ export interface ProjectFormSubmitValues {
     active: boolean;
 }
 
-const ProjectFormAdd = (): JSX.Element => {
-    const setAddForm = useStore((state) => state.setAddForm);
+interface AddProps {
+    setOpen: Dispatch<SetStateAction<boolean>>;
+}
 
+const ProjectFormAdd = ({ setOpen }: AddProps): JSX.Element => {
     const queryClient = useQueryClient();
+    const classes = useStyles();
 
     const addMutation = useMutation(
         (body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body, { withCredentials: true }),
@@ -29,14 +32,11 @@ const ProjectFormAdd = (): JSX.Element => {
             onSuccess: () => {
                 queryClient.invalidateQueries(constants.projects);
                 queryClient.invalidateQueries(constants.tags);
-                setAddForm();
             },
         },
     );
 
     const submitProjectToAdd = async (values: ProjectFormSubmitValues) => {
-        console.log({ values });
-
         addMutation.mutate({
             title: values.title,
             description: values.description,
@@ -45,10 +45,11 @@ const ProjectFormAdd = (): JSX.Element => {
             tags: values.tags,
             active: values.active,
         });
+        setOpen((prevState: boolean) => !prevState);
     };
 
     const onCancel = () => {
-        setAddForm();
+        setOpen((prevState: boolean) => !prevState);
     };
 
     const initialValues: ProjectFormSubmitValues = {
@@ -62,9 +63,9 @@ const ProjectFormAdd = (): JSX.Element => {
 
     return (
         <div>
-            <Typography variant="h5">Add New Project</Typography>
-            <ProjectForm onSubmit={submitProjectToAdd} initialValues={initialValues} onCancel={onCancel} />
-            <Divider variant="fullWidth" style={{ marginTop: '20px', marginBottom: '20px' }} />
+            <Container disableGutters className={classes.projectFormContainer}>
+                <ProjectForm onSubmit={submitProjectToAdd} initialValues={initialValues} onCancel={onCancel} />
+            </Container>
         </div>
     );
 };

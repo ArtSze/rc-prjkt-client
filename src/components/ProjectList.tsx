@@ -2,7 +2,7 @@ import React from 'react';
 import { IProject } from '../types';
 import NoProjects from './error_pages/NoProjects';
 
-import ProjectDisplay from './ProjectDispay';
+import StaticProject from './StaticProject';
 
 interface ProjectsListProps {
     projects: IProject[];
@@ -11,15 +11,15 @@ interface ProjectsListProps {
 const ProjectList = ({ projects }: ProjectsListProps): JSX.Element => {
     if (projects.length < 1) {
         return <NoProjects />;
+    } else {
+        return (
+            <main className="project-list">
+                {projects.map((project: IProject) => {
+                    return <StaticProject key={project._id.toString()} {...project} />;
+                })}
+            </main>
+        );
     }
-
-    return (
-        <main className="project-list">
-            {projects.map((project: IProject) => {
-                return <ProjectDisplay key={project._id.toString()} project={project} />;
-            })}
-        </main>
-    );
 };
 
 export default ProjectList;
