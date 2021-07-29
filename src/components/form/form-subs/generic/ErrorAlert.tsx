@@ -5,9 +5,9 @@ import { useStyles } from '../../../../static/styles';
 const ErrorAlert = ({ msg }: { msg: string }) => {
     const classes = useStyles();
     return (
-        <span className={classes.formError}>
-            <Typography variant="body2">{msg}</Typography>
-        </span>
+        <Typography variant="body2" className={classes.formErrorText}>
+            {msg}
+        </Typography>
     );
 };
 

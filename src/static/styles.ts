@@ -40,28 +40,38 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: '.75rem',
     },
     projectFormContainer: {
-        background: theme.palette.primary.light,
         marginBottom: theme.spacing(2),
         padding: theme.spacing(0.5),
-        paddingTop: theme.spacing(2),
     },
-    projectForm: {},
+    projectForm: {
+        // flexGrow: 1,
+    },
     projectFormEditFields: {
         display: 'flex',
-        paddingLeft: '12px',
+        marginBottom: '6px',
+        width: '98%',
+        borderRadius: '3px',
+        borderWidth: '1px',
+        borderColor: 'lightgray',
     },
-    // formRow: {
-    //     display: 'flex',
-    //     flexDirection: 'row',
-    //     alignItems: 'center',
-    //     flexBasis: '100%',
-    // },
-    formError: {
-        background: 'rgb(255, 157, 157)',
+    projectFormCheckFields: {
+        marginLeft: '5px',
+    },
+    formSubmitRow: {
+        justifyContent: 'center',
+        marginTop: '5px',
+    },
+
+    formErrorText: {
+        color: 'red',
+        // borderStyle: 'solid',
+        // borderWidth: '2px',
+        // borderColor: 'red',
+        display: 'flex',
+        justifyContent: 'center',
         paddingLeft: '.5rem',
         paddingRight: '.5rem',
         borderRadius: '.3rem',
-        marginLeft: '1.5rem',
     },
     ownerDeleteConfirmationButton: {
         color: theme.palette.error.main,

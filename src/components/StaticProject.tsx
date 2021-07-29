@@ -5,6 +5,7 @@ import { formatURL } from '../utils/formatUrl';
 
 import { useStyles } from '../static/styles';
 import EditFormModal from './form/EditFormModal';
+import AddFormModal from './form/AddFormModal';
 import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
 import ProjectOwnerImage from './static_project/ProjectOwnerImage';
 
@@ -120,6 +121,7 @@ const StaticProject = (project: IProject): JSX.Element => {
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (
                             <>
+                                <AddFormModal />
                                 <EditFormModal {...project} />
                                 <DeleteConfirmationModal {...project} />
                             </>

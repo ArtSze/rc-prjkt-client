@@ -56,29 +56,9 @@ const ProjectFormEdit = ({ projectToEdit, setOpen }: ProjectFormEditProps): JSX.
 
     return (
         <div>
-            <Card className={classes.projectFormContainer}>
-                <Container disableGutters>
-                    <Grid container direction="row" alignItems="flex-start">
-                        <Grid item>
-                            <Avatar
-                                variant="rounded"
-                                style={{ width: '3rem', height: '3rem', boxShadow: '.05rem .05rem .2rem gray' }}
-                                alt={projectToEdit.owner.first_name + ' ' + projectToEdit.owner.last_name}
-                                src={projectToEdit.owner.image_path}
-                            ></Avatar>
-                        </Grid>
-                        <Grid item>
-                            <Container disableGutters className={classes.projectFormEditFields}>
-                                <ProjectForm
-                                    onSubmit={submitEdittedProject}
-                                    initialValues={initialValues}
-                                    onCancel={onCancel}
-                                />
-                            </Container>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Card>
+            <Container disableGutters className={classes.projectFormContainer}>
+                <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
+            </Container>
         </div>
     );
 };

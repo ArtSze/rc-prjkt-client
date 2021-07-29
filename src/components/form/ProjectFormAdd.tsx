@@ -6,8 +6,8 @@ import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IUserFromClient } from './form-subs/generic/CustomMultiSelect';
 import { ITagFromClient } from './form-subs/generic/CustomCreatableMultiSelect';
-import { useStore } from '../Home';
-import { Divider, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
+import { useStyles } from '../../static/styles';
 
 export interface ProjectFormSubmitValues {
     title: string;
@@ -24,6 +24,7 @@ interface AddProps {
 
 const ProjectFormAdd = ({ setOpen }: AddProps): JSX.Element => {
     const queryClient = useQueryClient();
+    const classes = useStyles();
 
     const addMutation = useMutation(
         (body: ProjectFormSubmitValues) => axiosInstance.post(`/projects/`, body, { withCredentials: true }),
@@ -62,7 +63,9 @@ const ProjectFormAdd = ({ setOpen }: AddProps): JSX.Element => {
 
     return (
         <div>
-            <ProjectForm onSubmit={submitProjectToAdd} initialValues={initialValues} onCancel={onCancel} />
+            <Container disableGutters className={classes.projectFormContainer}>
+                <ProjectForm onSubmit={submitProjectToAdd} initialValues={initialValues} onCancel={onCancel} />
+            </Container>
         </div>
     );
 };

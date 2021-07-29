@@ -33,24 +33,24 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                     .min(20, 'must be 20 characters or longer')
                     .max(480, 'must be 480 characters or less')
                     .notRequired(),
-                githubLink: Yup.string().matches(URL, 'Enter a valid url').notRequired(),
+                githubLink: Yup.string().matches(URL, 'enter a valid url').notRequired(),
                 active: Yup.bool().notRequired(),
             })}
         >
             <Form className={classes.projectForm}>
                 <Grid container direction="column">
                     <Grid item container>
-                        <Grid item>
+                        <Grid item xs={10}>
                             <Field name="title" label="Title" placeholder="title" component={TextField} />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={2}>
                             <Field name="active" label="Active" component={ActiveField} />
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <Field name="description" label="Description" placeholder="description" component={TextField} />
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <Field
                             name="githubLink"
                             label="GitHub Link"
@@ -59,14 +59,14 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                         />
                     </Grid>
                     <Grid container direction="row" spacing={2}>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <Field name="collaborators" label="Collaborators" component={CollaboratorField} />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <Field name="tags" label="Tags" component={TagField} />
                         </Grid>
                     </Grid>
-                    <Grid container direction="row" spacing={2}>
+                    <Grid container direction="row" spacing={2} className={classes.formSubmitRow}>
                         <Grid item>
                             <Button type="submit" size="small" color="primary" variant="outlined">
                                 Submit

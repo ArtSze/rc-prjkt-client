@@ -14,7 +14,7 @@ const EditFormModal = (project: IProject): JSX.Element => {
                 Edit
             </Button>
 
-            <Dialog open={open} onClose={() => setOpen(false)}>
+            <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth={true}>
                 <DialogTitle>{'Edit Project'}</DialogTitle>
                 <DialogContent>
                     <ProjectFormEdit projectToEdit={project} setOpen={setOpen} />
