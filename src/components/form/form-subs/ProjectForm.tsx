@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { ActiveField, TextField } from './generic/FormFields';
+import { ActiveField, CustomTextField } from './generic/FormFields';
 import { CollaboratorField } from './CollaboratorField';
 import { ProjectFormSubmitValues } from '../ProjectFormAdd';
 import { TagField } from './TagField';
@@ -41,21 +41,26 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
                 <Grid container direction="column">
                     <Grid item container>
                         <Grid item xs={10}>
-                            <Field name="title" label="Title" placeholder="title" component={TextField} />
+                            <Field name="title" label="Title" placeholder="title" component={CustomTextField} />
                         </Grid>
                         <Grid item xs={2}>
                             <Field name="active" label="Active" component={ActiveField} />
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Field name="description" label="Description" placeholder="description" component={TextField} />
+                        <Field
+                            name="description"
+                            label="Description"
+                            placeholder="description"
+                            component={CustomTextField}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <Field
                             name="githubLink"
                             label="GitHub Link"
                             placeholder="link to GitHub Repository"
-                            component={TextField}
+                            component={CustomTextField}
                         />
                     </Grid>
                     <Grid container direction="row" spacing={2}>
