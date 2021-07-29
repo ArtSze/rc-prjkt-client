@@ -3,13 +3,16 @@ import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
 import { formatURL } from '../utils/formatUrl';
 
+import { useStyles } from '../static/styles';
+import EditFormModal from './form/EditFormModal';
+import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
+import ProjectOwnerImage from './static_project/ProjectOwnerImage';
+
 import { SiGithub, SiZulip } from 'react-icons/si';
-import { BsPencilSquare } from 'react-icons/bs';
 import { FaTag } from 'react-icons/fa';
 import {
     Button,
     Card,
-    CardActions,
     CardContent,
     Typography,
     Chip,
@@ -19,13 +22,8 @@ import {
     Divider,
     Container,
     Grid,
-    Hidden,
     CardHeader,
-    Badge,
 } from '@material-ui/core';
-import { useStyles } from '../static/styles';
-import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
-import EditFormModal from './form/EditFormModal';
 
 const StaticProject = (project: IProject): JSX.Element => {
     const classes = useStyles();
@@ -42,11 +40,11 @@ const StaticProject = (project: IProject): JSX.Element => {
                 Tags
             </Typography>
             {project.tags.length ? (
-                <div className={classes.chips}>
+                <Grid>
                     {project.tags.map((tag) => {
                         return (
                             <Chip
-                                className={classes.tagChip}
+                                className={classes.chip}
                                 key={tag._id.toString()}
                                 icon={<FaTag />}
                                 label={`${tag.value}`}
@@ -56,7 +54,7 @@ const StaticProject = (project: IProject): JSX.Element => {
                             />
                         );
                     })}
-                </div>
+                </Grid>
             ) : (
                 <Typography variant="body2" color="textSecondary">
                     No Tags
@@ -71,10 +69,11 @@ const StaticProject = (project: IProject): JSX.Element => {
                 Collaborators
             </Typography>
             {project.collaborators.length ? (
-                <div className={classes.chips}>
+                <Grid>
                     {project.collaborators.map((collaborator) => {
                         return (
                             <Chip
+                                className={classes.chip}
                                 key={collaborator._id.toString()}
                                 avatar={
                                     <Avatar
@@ -89,7 +88,7 @@ const StaticProject = (project: IProject): JSX.Element => {
                             />
                         );
                     })}
-                </div>
+                </Grid>
             ) : (
                 <Typography variant="body2" color="textSecondary">
                     No Collaborators
@@ -103,7 +102,7 @@ const StaticProject = (project: IProject): JSX.Element => {
             <CardHeader
                 disableTypography
                 title={
-                    <Grid container style={{ alignItems: 'center', gap: '10px' }}>
+                    <Grid container alignItems="center" className={classes.bigGridGap}>
                         <Typography variant="h6">{project.title}</Typography>
                         {project.active ? (
                             <Typography variant="button" color="primary">
@@ -116,14 +115,7 @@ const StaticProject = (project: IProject): JSX.Element => {
                         )}
                     </Grid>
                 }
-                avatar={
-                    <Avatar
-                        variant="rounded"
-                        style={{ width: '3rem', height: '3rem', boxShadow: '.05rem .05rem .2rem gray' }}
-                        alt={project.owner.first_name + ' ' + project.owner.last_name}
-                        src={project.owner.image_path}
-                    ></Avatar>
-                }
+                avatar={<ProjectOwnerImage project={project}></ProjectOwnerImage>}
                 action={
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (
@@ -146,7 +138,7 @@ const StaticProject = (project: IProject): JSX.Element => {
                 }
                 subheader={
                     <>
-                        <Link style={{ cursor: 'pointer' }} onClick={() => setOwnerFilter(project.owner.rcId)}>
+                        <Link className={classes.cursorPointer} onClick={() => setOwnerFilter(project.owner.rcId)}>
                             <Typography variant="body2" color="textSecondary">
                                 {`${project.owner.first_name} ${project.owner.last_name} (${project.owner.batch})`}
                             </Typography>
@@ -155,12 +147,12 @@ const StaticProject = (project: IProject): JSX.Element => {
                 }
             ></CardHeader>
             <CardContent>
-                <Container style={{ alignItems: 'flex-start', paddingLeft: '60px' }}>
-                    <Divider style={{ marginBottom: '15px', marginTop: '-25px' }} />
+                <Container className={classes.staticProjectDetails}>
+                    <Divider className={classes.staticProjectDivider} />
                     <Typography variant="body1" component="p" paragraph>
                         {project.description}
                     </Typography>
-                    <Grid container style={{ paddingTop: '15px' }}>
+                    <Grid container>
                         <Grid xs={12} lg={4} item>
                             {collaborators}
                         </Grid>

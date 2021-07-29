@@ -20,17 +20,9 @@ const AddFormModal = (): JSX.Element => {
 
     return (
         <div>
-            <Tooltip title="Add Project">
-                <Button
-                    style={{ margin: '5px 25px 5px 5px' }}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setOpen(true)}
-                >
-                    {isSmallScreen ? <FaPlus /> : 'Add Project'}
-                </Button>
-            </Tooltip>
-
+            <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
+                {isSmallScreen ? <FaPlus /> : 'Add Project'}
+            </Button>
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>{'Edit Project'}</DialogTitle>
                 <DialogContent>

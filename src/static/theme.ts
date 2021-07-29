@@ -14,27 +14,15 @@ export const rcColors = {
     backgroundRed: '#fedce9',
     borderRed: '#d95a88',
 };
+import { green, purple } from '@material-ui/core/colors';
 
 export const theme = createTheme({
     palette: {
         primary: {
-            light: rcColors.backgroundGreen,
-            main: rcColors.green,
+            main: green[300],
         },
         secondary: {
-            main: rcColors.purple,
-        },
-        info: {
-            main: rcColors.blue,
-        },
-        warning: {
-            main: rcColors.orange,
-        },
-        error: {
-            main: rcColors.red,
-        },
-        success: {
-            main: rcColors.pink,
+            main: purple[300],
         },
     },
 });
