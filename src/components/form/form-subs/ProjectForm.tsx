@@ -40,10 +40,10 @@ const ProjectForm = ({ onSubmit, onCancel, initialValues }: Props): JSX.Element 
             <Form className={classes.projectForm}>
                 <Grid container direction="column">
                     <Grid item container className={classes.projectFormRow}>
-                        <Grid item xs={12} sm={10}>
+                        <Grid item xs={6} sm={10} className={classes.titleGridItem}>
                             <Field name="title" label="Title" component={CustomTextField} />
                         </Grid>
-                        <Grid item xs={12} sm={2}>
+                        <Grid item xs={1} sm={1}>
                             <Field name="active" component={ActiveField} />
                         </Grid>
                     </Grid>
