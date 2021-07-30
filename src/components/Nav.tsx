@@ -5,7 +5,6 @@ import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
 import { useStore, AppState, SortMethods } from './Home';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
-import { theme } from '../static/theme';
 import { useMediaQuery } from '@material-ui/core';
 import AddFormModal from './form/AddFormModal';
 

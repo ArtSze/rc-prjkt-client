@@ -23,6 +23,7 @@ import {
     Container,
     Grid,
     CardHeader,
+    Hidden,
 } from '@material-ui/core';
 
 const StaticProject = (project: IProject): JSX.Element => {
@@ -100,22 +101,31 @@ const StaticProject = (project: IProject): JSX.Element => {
     return (
         <Card className={classes.staticProject}>
             <CardHeader
+                className={classes.cardHeader}
                 disableTypography
                 title={
                     <Grid container alignItems="center" className={classes.bigGridGap}>
-                        <Typography variant="h6">{project.title}</Typography>
-                        {project.active ? (
-                            <Typography variant="button" color="primary">
-                                active
-                            </Typography>
-                        ) : (
-                            <Typography variant="button" color="error">
-                                inactive
-                            </Typography>
-                        )}
+                        <Grid item>
+                            <Typography variant="h6">{project.title}</Typography>
+                        </Grid>
+                        <Grid item>
+                            {project.active ? (
+                                <Typography variant="button" color="primary">
+                                    active
+                                </Typography>
+                            ) : (
+                                <Typography variant="button" color="error">
+                                    inactive
+                                </Typography>
+                            )}
+                        </Grid>
                     </Grid>
                 }
-                avatar={<ProjectOwnerImage project={project}></ProjectOwnerImage>}
+                avatar={
+                    <Hidden xsDown>
+                        <ProjectOwnerImage project={project}></ProjectOwnerImage>
+                    </Hidden>
+                }
                 action={
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (

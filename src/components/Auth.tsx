@@ -4,9 +4,10 @@ import { useStyles } from '../static/styles';
 import usePing from '../hooks/usePing';
 import { usePrefetchTags } from '../hooks/useTags';
 import { usePrefetchUsers } from '../hooks/useUsers';
-import { AppBar, Typography, Button, Avatar, Hidden, Tabs } from '@material-ui/core';
+import { AppBar, Typography, Button, Avatar, Hidden } from '@material-ui/core';
 import logo from '../static/images/rc-logo.png';
 import Container from '@material-ui/core/Container';
+import { authURL } from '../utils/axiosInstance';
 
 const Auth = (): JSX.Element => {
     const history = useHistory();
@@ -33,10 +34,9 @@ const Auth = (): JSX.Element => {
                     </Hidden>
                 </div>
                 <div className={classes.appBarRight}>
-                    <Button variant="contained" color="secondary" href="http://localhost:4000/auth">
+                    <Button className={classes.authButton} variant="contained" color="secondary" href={authURL}>
                         Authorize
                     </Button>
-                    <Tabs></Tabs>
                 </div>
             </AppBar>
             <Container className={classes.auth} maxWidth="sm">
@@ -45,7 +45,7 @@ const Auth = (): JSX.Element => {
                     Welcome to RC Projects!
                 </Typography>
                 <Typography variant="body2">Please authorize using your Recurse Center data to continue</Typography>
-                <Button href="http://localhost:4000/auth" fullWidth variant="contained" color="secondary">
+                <Button href={authURL} fullWidth variant="contained" color="secondary">
                     Authorize
                 </Button>
             </Container>

@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core';
+import { inherits } from 'util';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        position: 'relative',
         margin: '80px 0',
         minHeight: '100vh',
     },
@@ -35,6 +40,16 @@ export const useStyles = makeStyles((theme) => ({
     tallIndicator: {
         backgroundColor: theme.palette.secondary.main,
         height: '5px',
+    },
+    filter: {
+        padding: theme.spacing(1.5),
+    },
+    cardHeader: {
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: theme.spacing(1),
+        },
     },
     button: {
         marginLeft: theme.spacing(2.5),
@@ -75,6 +90,7 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     staticProject: {
+        margin: theme.spacing(1),
         marginBottom: theme.spacing(2),
         padding: theme.spacing(0.5),
         paddingTop: theme.spacing(1.5),
@@ -100,22 +116,30 @@ export const useStyles = makeStyles((theme) => ({
     },
     staticProjectDetails: {
         paddingLeft: theme.spacing(8),
+        [theme.breakpoints.down('xs')]: {
+            paddingLeft: 0,
+        },
     },
     staticProjectDivider: {
         marginTop: theme.spacing(-3),
         marginBottom: theme.spacing(1.5),
     },
     auth: {
+        width: 'unset',
         border: 'solid',
         borderWidth: theme.spacing(2),
         borderColor: theme.palette.primary.dark,
         backgroundColor: theme.palette.primary.light,
-        marginTop: theme.spacing(16),
+        margin: theme.spacing(2),
+        marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         padding: theme.spacing(3),
         gap: theme.spacing(4),
+    },
+    authButton: {
+        margin: theme.spacing(0.75),
     },
     noProjects: {
         display: 'flex',
