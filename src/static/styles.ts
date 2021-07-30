@@ -54,9 +54,11 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1.45),
         width: '100%',
     },
+    titleGridItem: {
+        marginRight: theme.spacing(3),
+    },
     projectFormCheckFields: {
-        marginLeft: theme.spacing(3),
-        paddingBottom: theme.spacing(1.2),
+        paddingBottom: theme.spacing(1.5),
     },
     formSubmitRow: {
         justifyContent: 'center',
