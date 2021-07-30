@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2.5),
     },
     projectFormContainer: {
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(1),
         padding: theme.spacing(0.5),
     },
     projectForm: {
@@ -60,7 +60,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     formSubmitRow: {
         justifyContent: 'center',
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2.5),
     },
     ownerDeleteConfirmationButton: {
         color: theme.palette.error.main,
