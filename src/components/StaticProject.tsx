@@ -3,6 +3,11 @@ import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
 import { formatURL } from '../utils/formatUrl';
 
+import { useStyles } from '../static/styles';
+import EditFormModal from './form/EditFormModal';
+import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
+import ProjectOwnerImage from './static_project/ProjectOwnerImage';
+
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { FaTag } from 'react-icons/fa';
 import {
@@ -20,25 +25,13 @@ import {
     CardHeader,
     Hidden,
 } from '@material-ui/core';
-import { useStyles } from '../static/styles';
-import DeleteConfirmationModal from './static_project/DeleteConfirmationModal';
-import ProjectOwnerImage from './static_project/ProjectOwnerImage';
 
-interface StaticProjectProps {
-    project: IProject;
-    setEdit: Dispatch<SetStateAction<boolean>>;
-}
-
-const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element => {
+const StaticProject = (project: IProject): JSX.Element => {
     const classes = useStyles();
 
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
-
-    function toggleEdit() {
-        setEdit((prevState) => !prevState);
-    }
 
     const ownerProject = project as IProjectOwnerCheck;
 
@@ -137,15 +130,11 @@ const StaticProject = ({ project, setEdit }: StaticProjectProps): JSX.Element =>
                     <Grid container alignItems="center">
                         {ownerProject.isOwner && (
                             <>
-                                <div>
-                                    <Button onClick={toggleEdit} size="small" color="primary" variant="outlined">
-                                        Edit
-                                    </Button>
-                                </div>
+                                <EditFormModal {...project} />
                                 <DeleteConfirmationModal {...project} />
                             </>
                         )}
-                        <IconButton href={formatURL(project.githubLink)} target="_blank" rel="noreferrer">
+                        <IconButton href={formatURL(project.githubLink)} rel="noreferrer" target="_blank">
                             <SiGithub />
                         </IconButton>
                         <IconButton

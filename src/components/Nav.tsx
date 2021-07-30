@@ -6,6 +6,7 @@ import logo from '../static/images/rc-logo.png';
 import { useStore, AppState, SortMethods } from './Home';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 import { useMediaQuery } from '@material-ui/core';
+import AddFormModal from './form/AddFormModal';
 
 interface NavProps {
     allProjects: boolean;
@@ -15,7 +16,7 @@ interface NavProps {
 const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-    const setAddForm = useStore((state) => state.setAddForm);
+
     const isSmallScreen = useMediaQuery('(max-width: 650px)');
     const classes = useStyles();
 
@@ -30,9 +31,7 @@ const Nav = ({ allProjects, setAllProjects, setParams }: NavProps): JSX.Element 
                 </Hidden>
             </div>
             <div className={classes.appBarRight}>
-                <Button variant="contained" color="secondary" onClick={() => setAddForm()}>
-                    {isSmallScreen ? <FaPlus /> : 'Add Project'}
-                </Button>
+                <AddFormModal />
                 <Tabs value={allProjects ? 0 : 1} classes={{ indicator: classes.tallIndicator }}>
                     <Tab
                         label={!isSmallScreen && 'All Projects'}

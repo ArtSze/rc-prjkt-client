@@ -1,39 +1,41 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
+import { TextField, Switch } from 'formik-material-ui';
 
-import { Typography } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
 import { useStyles } from '../../../../static/styles';
-import ErrorAlert from './ErrorAlert';
 
 export interface IFormikLabelProps extends FieldProps {
     label: string;
     placeholder?: string;
+    multiline?: boolean;
 }
 
-export const TextField = ({ label, placeholder, field }: IFormikLabelProps): JSX.Element => {
+export const CustomTextField = ({ label, field, multiline = false }: IFormikLabelProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <div className={classes.formRow}>
-            <label htmlFor={field.name}>
-                <Typography>{label}</Typography>
-            </label>
-            <Field name={field.name} value={field.value} placeholder={placeholder} type="text" />
-            <ErrorMessage name={field.name}>{(msg) => <ErrorAlert msg={msg} />}</ErrorMessage>
-        </div>
+        <Field
+            name={field.name}
+            value={field.value}
+            label={label}
+            component={TextField}
+            variant="outlined"
+            multiline={multiline}
+            className={classes.projectFormEditFields}
+        />
     );
 };
 
-export const ActiveField = ({ label, field }: IFormikLabelProps): JSX.Element => {
+export const ActiveField = ({ field }: IFormikLabelProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <div className={classes.formRow}>
-            <label htmlFor={field.name}>
-                <Typography>{label}</Typography>
-            </label>
-            <Field name={field.name} type="checkbox" checked={field.value} />
-            <ErrorMessage name={field.name}>{(msg) => <ErrorAlert msg={msg} />}</ErrorMessage>
+        <div className={classes.projectFormCheckFields}>
+            <FormControlLabel
+                control={<Field component={Switch} name={field.name} type="checkbox" checked={field.value} />}
+                label={field.value === true ? 'Active' : 'Inactive'}
+            />
         </div>
     );
 };

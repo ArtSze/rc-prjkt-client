@@ -51,35 +51,30 @@ export const useStyles = makeStyles((theme) => ({
             gap: theme.spacing(1),
         },
     },
+    button: {
+        marginLeft: theme.spacing(2.5),
+        marginRight: theme.spacing(2.5),
+    },
     projectFormContainer: {
-        marginBottom: '.75rem',
-        paddingTop: '.75rem',
-        paddingBottom: '.75rem',
-        background: 'rgb(238, 247, 241)',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '0px',
+        marginBottom: theme.spacing(2),
+        padding: theme.spacing(0.5),
     },
     projectForm: {
-        // display: 'flex',
-        // flexDirection: 'column',
+        // flexGrow: 1,
+    },
+    projectFormRow: {
+        alignItems: 'center',
     },
     projectFormEditFields: {
-        display: 'flex',
-        marginLeft: '1rem',
+        marginBottom: theme.spacing(1.25),
+        width: '100%',
     },
-    formRow: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        flexBasis: '100%',
+    projectFormCheckFields: {
+        marginLeft: theme.spacing(3),
     },
-    formError: {
-        background: 'rgb(255, 157, 157)',
-        paddingLeft: '.5rem',
-        paddingRight: '.5rem',
-        borderRadius: '.3rem',
-        marginLeft: '1.5rem',
+    formSubmitRow: {
+        justifyContent: 'center',
+        marginTop: theme.spacing(1),
     },
     ownerDeleteConfirmationButton: {
         color: theme.palette.error.main,

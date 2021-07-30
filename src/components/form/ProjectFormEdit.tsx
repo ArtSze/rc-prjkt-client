@@ -5,16 +5,15 @@ import constants from '../../utils/constants';
 import ProjectForm from './form-subs/ProjectForm';
 import { IProject, IProjectEdit } from '../../types';
 import { ProjectFormSubmitValues } from './ProjectFormAdd';
-import ProjectOwnerImage from '../static_project/ProjectOwnerImage';
 
 import { useStyles } from '../../static/styles';
-import { Paper } from '@material-ui/core';
+import { Card, Avatar, Grid, Container } from '@material-ui/core';
 
 interface ProjectFormEditProps {
     projectToEdit: IProject;
-    setEdit: Dispatch<SetStateAction<boolean>>;
+    setOpen: Dispatch<SetStateAction<boolean>>;
 }
-const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.Element => {
+const ProjectFormEdit = ({ projectToEdit, setOpen }: ProjectFormEditProps): JSX.Element => {
     const classes = useStyles();
     const queryClient = useQueryClient();
     const editMutation = useMutation(
@@ -28,8 +27,6 @@ const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.
     );
 
     const submitEdittedProject = async (values: ProjectFormSubmitValues) => {
-        // console.log({ values });
-
         editMutation.mutate({
             ...projectToEdit,
             title: values.title,
@@ -41,11 +38,11 @@ const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.
         });
 
         // maybe incorporate visual feedback for successful submission?
-        setEdit((prevState: boolean) => !prevState);
+        setOpen((prevState: boolean) => !prevState);
     };
 
     const onCancel = () => {
-        setEdit((prevState: boolean) => !prevState);
+        setOpen((prevState: boolean) => !prevState);
     };
 
     const initialValues: ProjectFormSubmitValues = {
@@ -57,16 +54,11 @@ const ProjectFormEdit = ({ projectToEdit, setEdit }: ProjectFormEditProps): JSX.
         active: projectToEdit.active || true,
     };
 
-    if (editMutation.isSuccess) return <div>success!</div>;
-
     return (
         <div>
-            <Paper className={classes.projectFormContainer}>
-                <ProjectOwnerImage project={projectToEdit} />
-                <span className={classes.projectFormEditFields}>
-                    <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
-                </span>
-            </Paper>
+            <Container disableGutters className={classes.projectFormContainer}>
+                <ProjectForm onSubmit={submitEdittedProject} initialValues={initialValues} onCancel={onCancel} />
+            </Container>
         </div>
     );
 };
