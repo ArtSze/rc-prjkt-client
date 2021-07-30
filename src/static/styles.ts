@@ -51,11 +51,12 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     projectFormEditFields: {
-        marginBottom: theme.spacing(1.25),
+        marginBottom: theme.spacing(1.45),
         width: '100%',
     },
     projectFormCheckFields: {
         marginLeft: theme.spacing(3),
+        paddingBottom: theme.spacing(1.2),
     },
     formSubmitRow: {
         justifyContent: 'center',
