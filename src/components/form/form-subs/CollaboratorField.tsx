@@ -9,7 +9,7 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
-import { AppState, useStore } from '../../Home';
+import errorHandler from '../../../utils/errorHandler';
 
 export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const params = {
@@ -17,7 +17,6 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
     };
     const { data, error, isSuccess } = useUsers(params);
     const classes = useStyles();
-    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
         return arr.map((u) => {
@@ -34,7 +33,7 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
         });
     };
 
-    if (error) setErrorOpen(true);
+    if (error) errorHandler(error);
 
     if (isSuccess && data) {
         const collaborators = convertToSelectionFormat(data);
