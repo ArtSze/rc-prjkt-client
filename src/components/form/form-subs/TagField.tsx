@@ -41,7 +41,7 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
         return (
             <div>
                 <label htmlFor={field.name}>
-                    <Typography variant="subtitle2">{label}</Typography>
+                    <Typography className={classes.selectTitles}>{label}</Typography>
                 </label>
                 <Field
                     name={field.name}

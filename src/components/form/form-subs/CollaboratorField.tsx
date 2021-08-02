@@ -10,7 +10,7 @@ import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
 
-export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps): JSX.Element => {
+export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const params = {
         omitSelf: 'true',
     };
@@ -48,7 +48,7 @@ export const CollaboratorField = ({ label, field, ...props }: IFormikLabelProps)
         return (
             <div>
                 <label htmlFor={field.name}>
-                    <Typography variant="subtitle2">{label}</Typography>
+                    <Typography className={classes.selectTitles}>{label}</Typography>
                 </label>
                 <Field
                     name={field.name}
