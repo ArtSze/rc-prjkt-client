@@ -1,10 +1,10 @@
 import React from 'react';
 import { QueryParams } from './filter/Filter';
-import { Button, Tab, Tabs, AppBar, Typography, Hidden, Avatar } from '@material-ui/core';
+import { Tab, Tabs, AppBar, Typography, Hidden, Avatar } from '@material-ui/core';
 import { useStyles } from '../static/styles';
 import logo from '../static/images/rc-logo.png';
 import { useStore, AppState, SortMethods } from './Home';
-import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
+import { FaHome, FaUser } from 'react-icons/fa';
 import { useMediaQuery } from '@material-ui/core';
 import AddFormModal from './form/AddFormModal';
 

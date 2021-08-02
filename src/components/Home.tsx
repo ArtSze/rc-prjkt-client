@@ -14,7 +14,6 @@ import { useStyles } from '../static/styles';
 import { Collapse } from '@material-ui/core';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../types';
-import ProjectFormAdd from './form/ProjectFormAdd';
 
 export enum SortMethods {
     'Last Updated' = 'last updated',
@@ -51,8 +50,6 @@ export const useStore = create<AppState>((set) => ({
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const addForm = useStore((state) => state.addForm);
-
     const { data: projects, isSuccess, error, refetch } = useProjects(params);
 
     usePrefetchUsers({
