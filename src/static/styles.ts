@@ -129,7 +129,9 @@ export const useStyles = makeStyles((theme) => ({
         borderWidth: theme.spacing(2),
         borderColor: theme.palette.primary.dark,
         backgroundColor: theme.palette.primary.light,
-        margin: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2),
+        },
         marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
