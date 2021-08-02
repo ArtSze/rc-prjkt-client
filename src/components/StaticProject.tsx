@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
 import { formatURL } from '../utils/formatUrl';
@@ -11,7 +11,6 @@ import ProjectOwnerImage from './static_project/ProjectOwnerImage';
 import { SiGithub, SiZulip } from 'react-icons/si';
 import { FaTag } from 'react-icons/fa';
 import {
-    Button,
     Card,
     CardContent,
     Typography,

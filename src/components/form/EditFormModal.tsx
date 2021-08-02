@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { IProject } from '../../types';
 
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@material-ui/core';
+import { Dialog, DialogContent, DialogTitle, Button } from '@material-ui/core';
 import ProjectFormEdit from './ProjectFormEdit';
 
 const EditFormModal = (project: IProject): JSX.Element => {

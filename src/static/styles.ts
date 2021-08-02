@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-import { inherits } from 'util';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -145,5 +144,11 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '4rem',
+    },
+    selectTitles: {
+        color: 'rgba(0, 0, 0, 0.54)',
+        fontSize: '12px',
+        fontWeight: 400,
+        marginBottom: theme.spacing(0.5),
     },
 }));

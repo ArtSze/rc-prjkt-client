@@ -7,7 +7,7 @@ import { IProject, IProjectEdit } from '../../types';
 import { ProjectFormSubmitValues } from './ProjectFormAdd';
 
 import { useStyles } from '../../static/styles';
-import { Card, Avatar, Grid, Container } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 interface ProjectFormEditProps {
     projectToEdit: IProject;
