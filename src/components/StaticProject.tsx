@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from './Home';
 import { formatURL } from '../utils/formatUrl';
