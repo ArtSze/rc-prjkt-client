@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OptionsType, ValueType } from 'react-select';
+import { OptionsType, OptionTypeBase, ValueType } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { FieldProps } from 'formik';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../../../select/SelectComponents';
@@ -52,7 +52,7 @@ const CustomMultiSelect = ({
 
     const getValue = () => {
         if (!field.value) {
-            return isMulti ? [] : ('' as any);
+            return isMulti ? [] : ('' as unknown as OptionTypeBase);
         }
     };
 

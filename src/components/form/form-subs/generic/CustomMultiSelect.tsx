@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { OptionsType, ValueType } from 'react-select';
+import Select, { OptionsType, OptionTypeBase, ValueType } from 'react-select';
 import { FieldProps } from 'formik';
 import {
     UserControl,
@@ -48,7 +48,7 @@ const CustomMultiSelect = ({
 
     const getValue = () => {
         if (!field.value) {
-            return isMulti ? [] : ('' as any);
+            return isMulti ? [] : ('' as unknown as OptionTypeBase);
         }
     };
 
