@@ -9,13 +9,15 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
+import { AppState, useStore } from '../../Home';
 
 export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const params = {
         omitSelf: 'true',
     };
-    const { data, isLoading, isError, isSuccess } = useUsers(params);
+    const { data, error, isSuccess } = useUsers(params);
     const classes = useStyles();
+    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
         return arr.map((u) => {
@@ -32,14 +34,7 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
         });
     };
 
-    // TODO: replace isError with error handler?
-    if (isError) {
-        return <div>Error</div>;
-    }
-
-    if (isLoading) {
-        return <Loading />;
-    }
+    if (error) setErrorOpen(true);
 
     if (isSuccess && data) {
         const collaborators = convertToSelectionFormat(data);
@@ -62,5 +57,5 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
         );
     }
 
-    return <div>Error</div>;
+    return <Loading />;
 };
