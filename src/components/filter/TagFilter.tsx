@@ -10,8 +10,6 @@ import errorHandler from '../../utils/errorHandler';
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
-    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
-
     const tagFilter = useStore((state: AppState) => state.tagFilter);
 
     const { data: tags, error, isSuccess } = useTags();

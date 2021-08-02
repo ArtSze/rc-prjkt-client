@@ -9,7 +9,6 @@ import errorHandler from '../../utils/errorHandler';
 
 const OwnerFilter = (): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
-    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
     const {
         data: users,
