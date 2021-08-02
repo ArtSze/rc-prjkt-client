@@ -2,7 +2,6 @@ import React from 'react';
 import Select from 'react-select';
 import { useStore, AppState } from '../Home';
 import useTags from '../../hooks/useTags';
-import errorHandler from '../../utils/errorHandler';
 import { TTagFilter } from './Filter';
 import { ITag, ITagOptions } from '../../types';
 import { Grid, Typography } from '@material-ui/core';
@@ -10,6 +9,7 @@ import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
+    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
 
     const tagFilter = useStore((state: AppState) => state.tagFilter);
 
@@ -21,7 +21,7 @@ const TagFilter = (): JSX.Element => {
         tags.length > 0 ? setTagFilter(tags) : setTagFilter(undefined);
     };
 
-    if (error) errorHandler(error);
+    if (error) setErrorOpen(true);
 
     if (isSuccess && tags) {
         const options: ITagOptions = tags.map((tag: ITag) => {

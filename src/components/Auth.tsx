@@ -11,12 +11,14 @@ import { authURL } from '../utils/axiosInstance';
 
 const Auth = (): JSX.Element => {
     const history = useHistory();
-    const { isSuccess } = usePing();
+    const { isSuccess, isLoading } = usePing();
     usePrefetchTags();
     usePrefetchUsers({
         omitSelf: 'false',
     });
     const classes = useStyles();
+
+    if (isLoading) return <></>;
 
     if (isSuccess) {
         history.push('/home');
@@ -34,7 +36,7 @@ const Auth = (): JSX.Element => {
                     </Hidden>
                 </div>
                 <div className={classes.appBarRight}>
-                    <Button className={classes.authButton} variant="contained" color="secondary" href={authURL}>
+                    <Button className={classes.navButton} variant="contained" color="secondary" href={authURL}>
                         Authorize
                     </Button>
                 </div>

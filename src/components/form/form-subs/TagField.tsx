@@ -9,10 +9,12 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
+import { AppState, useStore } from '../../Home';
 
 export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
-    const { data, isLoading, isError, isSuccess } = useTags();
+    const { data, error, isSuccess } = useTags();
     const classes = useStyles();
+    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
 
     const convertToSelectionFormat = (arr: ITagFromClient[]) => {
         return arr.map((t) => {
@@ -26,13 +28,7 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
         });
     };
 
-    if (isError) {
-        return <div>Error</div>;
-    }
-
-    if (isLoading) {
-        return <Loading />;
-    }
+    if (error) setErrorOpen(true);
 
     if (isSuccess && data) {
         const tags = convertToSelectionFormat(data);
@@ -55,5 +51,5 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
         );
     }
 
-    return <div>Error</div>;
+    return <Loading />;
 };
