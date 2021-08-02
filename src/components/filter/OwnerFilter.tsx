@@ -5,6 +5,7 @@ import { IUser, IUserOptions, IOption } from '../../types';
 import { useStore, AppState } from '../Home';
 import { Grid, Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
+import errorHandler from '../../utils/errorHandler';
 
 const OwnerFilter = (): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
@@ -22,7 +23,7 @@ const OwnerFilter = (): JSX.Element => {
         userOption ? setOwnerFilter(userOption.value.rcId) : setOwnerFilter(undefined);
     };
 
-    if (error) setErrorOpen(true);
+    if (error) errorHandler(error);
 
     if (isSuccess && users) {
         const options: IUserOptions = users.map((user: IUser) => {

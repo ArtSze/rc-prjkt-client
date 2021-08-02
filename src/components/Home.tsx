@@ -14,6 +14,7 @@ import { Collapse, Snackbar } from '@material-ui/core';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../types';
 import { Alert } from '@material-ui/lab';
+import errorHandler from '../utils/errorHandler';
 
 export enum SortMethods {
     'Last Updated' = 'last updated',
@@ -64,7 +65,7 @@ const Home = (): JSX.Element => {
 
     const classes = useStyles();
 
-    if (error) setErrorOpen(true);
+    if (error) errorHandler(error);
 
     useEffect(() => {
         refetch();
