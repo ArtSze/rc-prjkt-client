@@ -20,7 +20,7 @@ export const CustomTextField = ({ label, field, multiline = false }: IFormikLabe
             value={field.value}
             label={label}
             component={TextField}
-            variant="outlined"
+            // variant="outlined"
             multiline={multiline}
             className={classes.projectFormEditFields}
         />
@@ -33,7 +33,9 @@ export const ActiveField = ({ field }: IFormikLabelProps): JSX.Element => {
     return (
         <div className={classes.projectFormCheckFields}>
             <FormControlLabel
-                control={<Field component={Switch} name={field.name} type="checkbox" checked={field.value} />}
+                control={
+                    <Field component={Switch} color="primary" name={field.name} type="checkbox" checked={field.value} />
+                }
                 label={field.value === true ? 'Active' : 'Inactive'}
             />
         </div>
