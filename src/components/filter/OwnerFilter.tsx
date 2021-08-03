@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import useUsers from '../../hooks/useUsers';
 import { IUser, IUserOptions, IOption } from '../../types';
-import { useStore, AppState } from '../Home';
+import { useStore, AppState } from '../../utils/store';
 import { Grid, Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
 import errorHandler from '../error_pages/errorHandler';
@@ -10,19 +10,13 @@ import errorHandler from '../error_pages/errorHandler';
 const OwnerFilter = (): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);
     const ownerFilter = useStore((state: AppState) => state.ownerFilter);
-    const {
-        data: users,
-        error,
-        isSuccess,
-    } = useUsers({
+    const { data: users, isSuccess } = useUsers({
         omitSelf: 'false',
     });
 
     const handleChange = (userOption: IOption<IUser>) => {
         userOption ? setOwnerFilter(userOption.value.rcId) : setOwnerFilter(undefined);
     };
-
-    if (error) errorHandler(error);
 
     if (isSuccess && users) {
         const options: IUserOptions = users.map((user: IUser) => {

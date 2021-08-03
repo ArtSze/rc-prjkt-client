@@ -9,10 +9,9 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
-import errorHandler from '../../error_pages/errorHandler';
 
 export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
-    const { data, error, isSuccess } = useTags();
+    const { data, isSuccess } = useTags();
     const classes = useStyles();
 
     const convertToSelectionFormat = (arr: ITagFromClient[]) => {
@@ -26,8 +25,6 @@ export const TagField = ({ label, field }: IFormikLabelProps): JSX.Element => {
             };
         });
     };
-
-    if (error) errorHandler(error);
 
     if (isSuccess && data) {
         const tags = convertToSelectionFormat(data);

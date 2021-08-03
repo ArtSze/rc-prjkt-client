@@ -1,26 +1,23 @@
 import React from 'react';
 import Select from 'react-select';
-import { useStore, AppState } from '../Home';
+import { useStore, AppState } from '../../utils/store';
 import useTags from '../../hooks/useTags';
 import { TTagFilter } from './Filter';
 import { ITag, ITagOptions } from '../../types';
 import { Grid, Typography } from '@material-ui/core';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
-import errorHandler from '../error_pages/errorHandler';
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
     const tagFilter = useStore((state: AppState) => state.tagFilter);
 
-    const { data: tags, error, isSuccess } = useTags();
+    const { data: tags, isSuccess } = useTags();
 
     const handleChange = (selectFilter: ITagOptions) => {
         const tags: TTagFilter = selectFilter.map((tagOption) => tagOption.value.value);
         // set tags to undefined if there are no tags to filter by
         tags.length > 0 ? setTagFilter(tags) : setTagFilter(undefined);
     };
-
-    if (error) errorHandler(error);
 
     if (isSuccess && tags) {
         const options: ITagOptions = tags.map((tag: ITag) => {

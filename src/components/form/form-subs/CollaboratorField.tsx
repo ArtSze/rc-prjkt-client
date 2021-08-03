@@ -9,13 +9,12 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
-import errorHandler from '../../error_pages/errorHandler';
 
 export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const params = {
         omitSelf: 'true',
     };
-    const { data, error, isSuccess } = useUsers(params);
+    const { data, isSuccess } = useUsers(params);
     const classes = useStyles();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
@@ -32,8 +31,6 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
             };
         });
     };
-
-    if (error) errorHandler(error);
 
     if (isSuccess && data) {
         const collaborators = convertToSelectionFormat(data);
