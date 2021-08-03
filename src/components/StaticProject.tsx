@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { IProject, IProjectOwnerCheck } from '../types';
 import { useStore, AppState } from '../utils/store';
-import { SortMethods } from '../types';
 import { formatURL } from '../utils/formatUrl';
 
 import { useStyles } from '../static/styles';

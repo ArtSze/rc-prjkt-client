@@ -7,7 +7,6 @@ import Loading from './Loading';
 import Auth from './Auth';
 import Nav from './Nav';
 import { SortMethods } from '../types';
-import { useStore, AppState } from '../utils/store';
 
 import { useStyles } from '../static/styles';
 import { Collapse, Snackbar } from '@material-ui/core';
