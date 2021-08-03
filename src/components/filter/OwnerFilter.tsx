@@ -5,7 +5,7 @@ import { IUser, IUserOptions, IOption } from '../../types';
 import { useStore, AppState } from '../Home';
 import { Grid, Typography } from '@material-ui/core';
 import { UserControl, Menu, Option, Placeholder, UserSingleValue } from '../select/SelectComponents';
-import errorHandler from '../../utils/errorHandler';
+import errorHandler from '../error_pages/errorHandler';
 
 const OwnerFilter = (): JSX.Element => {
     const setOwnerFilter = useStore((state: AppState) => state.setOwnerFilter);

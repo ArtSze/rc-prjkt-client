@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Filter, { QueryParams } from './filter/Filter';
 import create from 'zustand';
 
+import errorHandler from './error_pages/errorHandler';
 import ProjectList from './ProjectList';
 import useProjects from '../hooks/useProjects';
 import Loading from './Loading';
@@ -14,7 +15,6 @@ import { Collapse, Snackbar } from '@material-ui/core';
 import { useEffect } from 'react';
 import { ITag, IUser } from '../types';
 import { Alert } from '@material-ui/lab';
-import errorHandler from '../utils/errorHandler';
 
 export enum SortMethods {
     'Last Updated' = 'last updated',
@@ -54,10 +54,12 @@ export const useStore = create<AppState>((set) => ({
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
+
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const { data: projects, isSuccess, error, refetch } = useProjects(params);
     const errorOpen = useStore((state: AppState) => state.errorOpen);
     const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
+
+    const { data: projects, isSuccess, error, refetch } = useProjects(params);
 
     usePrefetchUsers({
         omitSelf: 'false',

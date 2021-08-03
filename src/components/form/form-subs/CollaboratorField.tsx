@@ -9,7 +9,7 @@ import Loading from '../../Loading';
 import { useStyles } from '../../../static/styles';
 
 import { Typography } from '@material-ui/core';
-import errorHandler from '../../../utils/errorHandler';
+import errorHandler from '../../error_pages/errorHandler';
 
 export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Element => {
     const params = {

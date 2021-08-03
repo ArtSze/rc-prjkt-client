@@ -12,16 +12,16 @@ import { authURL } from '../utils/axiosInstance';
 const Auth = (): JSX.Element => {
     const history = useHistory();
     const { isSuccess, isLoading } = usePing();
-    usePrefetchTags();
-    usePrefetchUsers({
-        omitSelf: 'false',
-    });
+    // usePrefetchTags();
+    // usePrefetchUsers({
+    //     omitSelf: 'false',
+    // });
     const classes = useStyles();
 
     if (isLoading) return <></>;
 
     if (isSuccess) {
-        history.push('/home');
+        history.push('/');
     }
 
     return (

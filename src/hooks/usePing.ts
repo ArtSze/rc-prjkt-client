@@ -1,6 +1,7 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { IProject } from '../types';
 import { axiosInstance } from '../utils/axiosInstance';
+import { AxiosError } from 'axios';
 import constants from '../utils/constants';
 
 const ping = async (): Promise<IProject[]> => {
@@ -8,7 +9,7 @@ const ping = async (): Promise<IProject[]> => {
     return data;
 };
 
-const usePing = (): UseQueryResult<IProject[], Error> => {
+const usePing = (): UseQueryResult<IProject[], AxiosError> => {
     return useQuery(constants.projects, ping, { retry: false });
 };
 

@@ -143,11 +143,16 @@ export const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.75),
     },
     notFound: {
+        alignSelf: 'center',
         display: 'flex',
-        justifyContent: 'center',
+        justifyItems: 'center',
+        alignItems: 'center',
         flexDirection: 'column',
         gap: theme.spacing(2),
         marginTop: theme.spacing(8),
+    },
+    notFoundButton: {
+        width: theme.spacing(24),
     },
     noProjects: {
         display: 'flex',

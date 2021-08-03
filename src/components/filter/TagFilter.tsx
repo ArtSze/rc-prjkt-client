@@ -6,7 +6,7 @@ import { TTagFilter } from './Filter';
 import { ITag, ITagOptions } from '../../types';
 import { Grid, Typography } from '@material-ui/core';
 import { TagControl, Menu, Placeholder, TagMultiValueLabel, multiStyles } from '../select/SelectComponents';
-import errorHandler from '../../utils/errorHandler';
+import errorHandler from '../error_pages/errorHandler';
 
 const TagFilter = (): JSX.Element => {
     const setTagFilter = useStore((state: AppState) => state.setTagFilter);
