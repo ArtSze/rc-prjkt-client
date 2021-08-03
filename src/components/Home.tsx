@@ -17,23 +17,13 @@ import { Alert } from '@material-ui/lab';
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const errorOpen = useStore((state: AppState) => state.errorOpen);
-    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
+    const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
     const { data: projects, isSuccess, error } = useProjects(params);
     const classes = useStyles();
 
-    if (error) {
-        const status = error.response?.status;
-
-        switch (status) {
-            case 401:
-                return <Auth />;
-            default:
-                setErrorOpen(true);
-                break;
-        }
-    }
+    if (error && error.response?.status === 401) <Auth />;
+    if (error && error.response?.status === 400) setErrorOpen(true);
 
     return (
         <div className={classes.root}>
