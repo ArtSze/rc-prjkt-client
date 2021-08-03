@@ -1,17 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container, ThemeProvider } from '@material-ui/core';
 import { theme } from '../static/theme';
-
+import Home, { AppState, useStore } from '../components/Home';
 import Footer from './Footer';
 import Auth from './Auth';
-import Home from './Home';
 import NotFound from './error_pages/NotFound';
 
 import usePing from '../hooks/usePing';
 
 const App = (): JSX.Element => {
-    const { isSuccess, isLoading, error } = usePing();
+    const { isSuccess, error } = usePing();
+    const setErrorOpen = useStore((state: AppState) => state.setErrorOpen);
+
+    if (error && error.response?.status === 400) {
+        setErrorOpen(true);
+    }
 
     if (isSuccess || error) {
         return (
@@ -20,7 +24,7 @@ const App = (): JSX.Element => {
                     <Router>
                         <Switch>
                             <Route exact path="/">
-                                {error ? <Auth /> : <Home />}
+                                {error?.response?.status === 401 ? <Auth /> : <Home />}
                             </Route>
                             <Route component={NotFound} />
                         </Switch>
