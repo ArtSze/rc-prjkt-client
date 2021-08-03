@@ -14,7 +14,7 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
     const params = {
         omitSelf: 'true',
     };
-    const { data, isLoading, isError, isSuccess } = useUsers(params);
+    const { data, isSuccess } = useUsers(params);
     const classes = useStyles();
 
     const convertToSelectionFormat = (arr: IUserFromClient[]) => {
@@ -31,15 +31,6 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
             };
         });
     };
-
-    // TODO: replace isError with error handler?
-    if (isError) {
-        return <div>Error</div>;
-    }
-
-    if (isLoading) {
-        return <Loading />;
-    }
 
     if (isSuccess && data) {
         const collaborators = convertToSelectionFormat(data);
@@ -62,5 +53,5 @@ export const CollaboratorField = ({ label, field }: IFormikLabelProps): JSX.Elem
         );
     }
 
-    return <div>Error</div>;
+    return <Loading />;
 };

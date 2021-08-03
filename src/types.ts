@@ -74,3 +74,12 @@ export interface IUser {
     ownedProjects: Array<IProject>;
     collabProjects: Array<IProject>;
 }
+
+export enum SortMethods {
+    'Last Updated' = 'last updated',
+    'First Updated' = 'first updated',
+    'Last Created' = 'last created',
+    'First Created' = 'first created',
+    'Latest Batch' = 'latest batch',
+    'Oldest Batch' = 'oldest batch',
+}

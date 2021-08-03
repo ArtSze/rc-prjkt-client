@@ -1,70 +1,28 @@
 import React, { useState } from 'react';
 import Filter, { QueryParams } from './filter/Filter';
-import create from 'zustand';
 
 import ProjectList from './ProjectList';
 import useProjects from '../hooks/useProjects';
 import Loading from './Loading';
-import errorHandler from '../utils/errorHandler';
-import { usePrefetchUsers } from '../hooks/useUsers';
+import Auth from './Auth';
 import Nav from './Nav';
-import { TTagFilter, TOwnerFilter } from './filter/Filter';
+import { SortMethods } from '../types';
 
 import { useStyles } from '../static/styles';
-import { Collapse } from '@material-ui/core';
-import { useEffect } from 'react';
-import { ITag, IUser } from '../types';
+import { Collapse, Snackbar } from '@material-ui/core';
 
-export enum SortMethods {
-    'Last Updated' = 'last updated',
-    'First Updated' = 'first updated',
-    'Last Created' = 'last created',
-    'First Created' = 'first created',
-    'Latest Batch' = 'latest batch',
-    'Oldest Batch' = 'oldest batch',
-}
-
-export interface AppState {
-    sortFilter: SortMethods;
-    tagFilter: TTagFilter;
-    ownerFilter: TOwnerFilter;
-    addForm: boolean;
-    setSortFilter: (sort: SortMethods) => void;
-    setTagFilter: (tags: ITag['value'][] | undefined) => void;
-    setOwnerFilter: (rcId: IUser['rcId'] | undefined) => void;
-}
-export const useStore = create<AppState>((set) => ({
-    sortFilter: SortMethods['Last Updated'],
-    tagFilter: undefined,
-    ownerFilter: undefined,
-    addForm: false,
-    setSortFilter: (sort) => set({ sortFilter: sort }),
-    setTagFilter: (tags) => set({ tagFilter: tags }),
-    setOwnerFilter: (rcId) => {
-        set({
-            ownerFilter: rcId,
-        });
-    },
-}));
+import { Alert } from '@material-ui/lab';
 
 const Home = (): JSX.Element => {
     const [params, setParams] = useState<QueryParams>({ sort: SortMethods['Last Updated'] });
     const [allProjects, setAllProjects] = useState<boolean>(true);
-    const { data: projects, isSuccess, error, refetch } = useProjects(params);
+    const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
-    usePrefetchUsers({
-        omitSelf: 'false',
-    });
-
+    const { data: projects, isSuccess, error } = useProjects(params);
     const classes = useStyles();
 
-    if (error) {
-        errorHandler(error);
-    }
-
-    useEffect(() => {
-        refetch();
-    }, [allProjects]);
+    if (error && error.response?.status === 401) <Auth />;
+    if (error && error.response?.status === 400) setErrorOpen(true);
 
     return (
         <div className={classes.root}>
@@ -72,6 +30,11 @@ const Home = (): JSX.Element => {
             <Collapse in={allProjects}>
                 <Filter setParams={setParams} />
             </Collapse>
+            <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={errorOpen}>
+                <Alert severity="error" onClose={() => setErrorOpen(false)}>
+                    An unexpected error has occurred
+                </Alert>
+            </Snackbar>
             {isSuccess && projects ? <ProjectList projects={projects} /> : <Loading />}
         </div>
     );

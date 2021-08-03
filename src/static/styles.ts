@@ -139,13 +139,25 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
         gap: theme.spacing(4),
     },
-    authButton: {
+    navButton: {
         margin: theme.spacing(0.75),
+    },
+    notFound: {
+        alignSelf: 'center',
+        display: 'flex',
+        justifyItems: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        gap: theme.spacing(2),
+        marginTop: theme.spacing(8),
+    },
+    notFoundButton: {
+        width: theme.spacing(24),
     },
     noProjects: {
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '4rem',
+        marginTop: theme.spacing(8),
     },
     selectTitles: {
         color: 'rgba(0, 0, 0, 0.54)',

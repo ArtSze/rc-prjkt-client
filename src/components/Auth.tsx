@@ -1,26 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useStyles } from '../static/styles';
-import usePing from '../hooks/usePing';
-import { usePrefetchTags } from '../hooks/useTags';
-import { usePrefetchUsers } from '../hooks/useUsers';
 import { AppBar, Typography, Button, Avatar, Hidden } from '@material-ui/core';
 import logo from '../static/images/rc-logo.png';
 import Container from '@material-ui/core/Container';
 import { authURL } from '../utils/axiosInstance';
 
 const Auth = (): JSX.Element => {
-    const history = useHistory();
-    const { isSuccess } = usePing();
-    usePrefetchTags();
-    usePrefetchUsers({
-        omitSelf: 'false',
-    });
     const classes = useStyles();
-
-    if (isSuccess) {
-        history.push('/home');
-    }
 
     return (
         <>
@@ -34,7 +20,7 @@ const Auth = (): JSX.Element => {
                     </Hidden>
                 </div>
                 <div className={classes.appBarRight}>
-                    <Button className={classes.authButton} variant="contained" color="secondary" href={authURL}>
+                    <Button className={classes.navButton} variant="contained" color="secondary" href={authURL}>
                         Authorize
                     </Button>
                 </div>

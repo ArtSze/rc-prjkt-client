@@ -2,9 +2,9 @@ import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import Select from 'react-select';
 import { IOption } from '../../types';
-import { AppState, useStore } from '../Home';
+import { useStore, AppState } from '../../utils/store';
 import { Menu, SingleValue, SortControl } from '../select/SelectComponents';
-import { SortMethods } from '../Home';
+import { SortMethods } from '../../types';
 
 const Sort = (): JSX.Element => {
     const sortFilter = useStore((state: AppState) => state.sortFilter);
